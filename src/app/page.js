@@ -1,5 +1,9 @@
-import Image from "next/image";
+import ListServer from "@/components/listview/ListServer";
 
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <ListServer />
+    </div>
+  );
 }
