@@ -36,4 +36,4 @@ const ListCardHero = () => {
         </>;
 };
 
-export default Footer;
+export default ListCardHero;
