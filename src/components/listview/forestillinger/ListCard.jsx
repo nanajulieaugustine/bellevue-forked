@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ListClient({ items = [] }) {
+export default function ListCard({ items = [] }) {
   if (!items.length) return <p>Ingen items fundet</p>;
 
   return (

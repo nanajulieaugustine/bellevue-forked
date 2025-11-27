@@ -1,4 +1,4 @@
-import KalenderCard from "../kalender/KalenderCard";
+import KalenderSamlet from "./KalenderSamlet";
 import { createClient } from "@supabase/supabase-js";
 
 // Supabase client (fungerer som server)
@@ -24,7 +24,7 @@ export default async function ListServer() {
   // Returnerer data ellers tomt array
   return (
     <ul>
-      <KalenderCard items={data || []} />
+      <KalenderSamlet items={data || []} />
     </ul>
   );
 }
