@@ -3,18 +3,32 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import MobileMenu from "./MobileMenu";
+import { IoIosMenu, IoMdClose } from "react-icons/io";
 
 const Header = () => {
+  //til burgermenu
+
+    const [showSideMenu, setShowSideMenu] = useState(false);
+
+  const toggleSideMenu = () => setShowSideMenu((prev) => !prev);
+
+    const closeSideMenu = () => {
+    if (showSideMenu) {
+      toggleSideMenu();
+    }
+  };
+  //---- animation til den gule cirkel -----
   const pathname = usePathname();
 
   const [hovered, setHovered] = useState(null);
   const [active, setIsActive] = useState(null);
 
-  const [sentinelRef, inView] = useInView({ threshold: 0.5 });
+  const [sentinelRef, inView] = useInView({ threshold: 1 });
 
-  // animation til fixed
+  //----- animation til fixed -------
 
   const [showFixed, setShowFixed] = useState(true);
   useEffect(() => {
@@ -23,7 +37,7 @@ const Header = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-     let lastY = window.scrollY;
+     let lastY = window.scrollY; //definerer brugerens scrolling ad y-aksen
     let ticking = false;
 
     const onScroll = () => {
@@ -31,9 +45,9 @@ const Header = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const delta = currentY - lastY;
-
+          // If else statement til hvornår header dukker op og forsvinder, baseret på pixels.
           if (!inView) {
-            if (delta <= -10) {
+            if (delta <= -20) {
               setShowFixed(true);
             } else if (delta >= 10) {
               setShowFixed(false);
@@ -49,14 +63,16 @@ const Header = () => {
       }
     };
 
+    //Tilføjer og fjerner eventlistener, defineret på brugerens scroll, og mountes ved useEffect, der kalder på inView konstanten
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [inView]);
-
+  }, [inView]); 
+// Styling af nav, der definerer om den er fixed eller absolute
   const baseNavClasses =
     "px-(--content-width) w-full z-110 backdrop-blur-xs bg-(--moerkblaa-600) transition-transform duration-200 ease-out shadow-md";
   const navPositionClass = inView
-    ? "relative"
+    ? "absolute"
     : showFixed
     ? "fixed top-0 left-0 right-0"
     : "fixed top-0 left-0 right-0 -translate-y-full";
@@ -68,9 +84,9 @@ const Header = () => {
       <motion.nav
         className={`${baseNavClasses} ${navPositionClass}`}
         animate={{ y: inView ? 0 : showFixed ? 0 : -100 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <ul className="flex flex-col items-center justify-between py-4 px-8">
+        <ul className="hidden md:flex flex-col items-center justify-between py-4 px-8">
           <li>
             <a href="/">
               <Image
@@ -94,6 +110,7 @@ const Header = () => {
                       prev === "/forestillinger" ? null : "/forestillinger"
                     )
                   }
+                  // OnMouseEnter og onMouseLeave til at danne en smooth animation når brugeren hover
                   onMouseEnter={() => setHovered("/forestillinger")}
                   onMouseLeave={() => setHovered(null)}
                   onFocus={() => setHovered("/arrangementer")}
@@ -101,6 +118,7 @@ const Header = () => {
                   className="cursor-pointer text-(--hvid) relative"
                 >
                   Forestillinger
+                  {/* papthname definerer den gule cirkel, dukker op når brugeren er på siden */}
                   <AnimatePresence>
                     {(hovered === "/forestillinger" || active === "/forestillinger") && (
                       <motion.div
@@ -108,7 +126,7 @@ const Header = () => {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0 }}
-                        transition={{ duration: 0.18, ease: "easeOut" }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                         className="absolute -top-3 -left-2 w-10 h-10 rounded-full bg-(--gul-900) -z-100"
                       />
                     )}
@@ -236,6 +254,21 @@ const Header = () => {
             </ul>
           </li>
         </ul>
+         <button
+          aria-label="gå til menu"
+          className="block md:hidden sticky py-10 cursor-pointer hover:scale-105 transition-all z-100 duration-300 text-(--hvid)"
+          onClick={toggleSideMenu}
+        >
+          {showSideMenu ? (
+            <IoMdClose size={40} />
+          ) : (
+            <IoIosMenu size={40} />
+          )}
+        </button>
+
+        {/* Mobilmenu — vises kun når showSideMenu er true */}
+        {showSideMenu && <MobileMenu isVisible={showSideMenu} closeMenu={closeSideMenu} />}
+
       </motion.nav>
     </>
   );
