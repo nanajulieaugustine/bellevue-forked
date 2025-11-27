@@ -14,6 +14,8 @@ const Header = () => {
 
   const [sentinelRef, inView] = useInView({ threshold: 0 });
 
+  // animation til fixed
+
   const [showFixed, setShowFixed] = useState(false);
   useEffect(() => {
     setIsActive(pathname);
