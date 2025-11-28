@@ -27,7 +27,7 @@ export default function SingleCard({ item }) {
 
       {/* sticky kolonne (venstre) */}
       <aside className="h-[200vh]">
-        <div className="sticky top-50">
+        <div className="sticky top-40">
           <StickyInfo item={item} />
         </div>
       </aside>

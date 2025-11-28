@@ -1,6 +1,6 @@
 const StickyInfo = ({item}) => {
     return ( 
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-20 max-w-200 p-10">
              <h1>{item.name}</h1>
         <div className="h-full z-10 flex gap-20">
 

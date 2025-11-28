@@ -66,3 +66,34 @@ body {
   font-family: var(--font-text);
   background-color: var(--hvid);
 }
+
+
+/* REACT DATE PICKER STYLING */
+
+/* Selected day */
+.rdp-day_selected {
+  font-weight: 900;
+  background-color: var(--bellevueblaa-900);
+  border-radius: 9999px !important;
+  color: var(--hvid);
+}
+
+/* Available dates */
+.rdp-day_available {
+  border-radius: 9999px !important;
+  background-color: var(--bellevueblaa-600);
+  color: var(--hvid);
+  
+  :hover{
+    transition-duration: 250ms;
+    transition-timing-function: ease-in-out;  
+    background-color: var(--bellevueblaa-900)
+  }
+}
+
+.react-datepicker__navigation--next {
+    background: no-repeat;
+    width: 15px;
+    height: 199px;
+    border: none;
+}
