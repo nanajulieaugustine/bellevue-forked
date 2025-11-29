@@ -74,6 +74,7 @@ export default function ListCardHero() {
       Ellers vis den anden del ((...))” */}
       {activeFilter === "forestillinger" ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-30 mt-4">
+          {/* Fortæller at den skal vise alle kortene vi har hentet fra supabase */}
           <ListCard items={items} />
         </ul>
       ) : (
