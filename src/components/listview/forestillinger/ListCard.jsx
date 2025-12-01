@@ -38,14 +38,14 @@ export default function ListCard({ items = [] }) {
           <div className="flex flex-row gap-3 w-full">
             <Link
               href={`/forestillinger/${item.id}`}
-              className="bg-blue-100 text-blue-800 border border-blue-800 
+              className="bg-blue-100 border-(--bellevueblaa-600) text-(--bellevueblaa-600) 
               py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
             >
               Køb billet
             </Link>
             <Link
               href={`/forestillinger/${item.id}`}
-              className=" bg-blue-100 text-blue-800 border border-blue-800 
+              className=" bg-blue-100 border-(--bellevueblaa-600) text-(--bellevueblaa-600) 
               py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
             >
               Læs mere
