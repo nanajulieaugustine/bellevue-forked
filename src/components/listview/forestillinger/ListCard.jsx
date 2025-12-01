@@ -28,28 +28,32 @@ export default function ListCard({ items = [] }) {
           <div className="pl-3">
             <div className="grid grid-cols-2">
               <h2 className="text-blue-800 font-bold pt-2">{item.name}</h2>
-              <p className="text-blue-300 font-light text-right text-sm"> {item.tags}</p>
+              <p className="text-blue-300 font-light text-right text-sm">
+                {" "}
+                {item.tags}
+              </p>
             </div>
             <p className="text-blue-800 font-light pt-2">Dato: {item.date}</p>
             <p className="text-blue-800 font-light">{item.description}</p>
           </div>
 
           <div className="pl-3 pb-4 pt-20 text-center">
-          <div className="flex flex-row gap-3 w-full">
-            <Link
-              href={`https://www.ticketmaster.dk/search?q=${encodeURIComponent(item.name)}`}
-              className="bg-blue-100 border-(--bellevueblaa-600) text-(--bellevueblaa-600) 
+            <div className="flex flex-row gap-3 w-full">
+              <Link
+                href={`https://www.ticketmaster.dk/search?q=${encodeURIComponent(
+                  item.name
+                )}`}
+                className="bg-blue-100 border-(--bellevueblaa-600) text-(--bellevueblaa-600) 
               py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
-            >
-              Køb billet
-            </Link>
-            <Link
-              href={`/forestillinger/${item.id}`}
-              className=" bg-blue-100 border-(--bellevueblaa-600) text-(--bellevueblaa-600) 
-              py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
-            >
-              Læs mere
-            </Link>
+              >
+                Køb billet
+              </Link>
+              <Link
+                href={`/forestillinger/${item.id}`}
+                className="bg-(--roed-600) text-(--beige-100) py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
+              >
+                Læs mere
+              </Link>
             </div>
           </div>
         </li>
