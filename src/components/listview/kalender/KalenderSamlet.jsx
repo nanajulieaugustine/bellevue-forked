@@ -1,5 +1,5 @@
 "use client";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { parse } from "date-fns";
 import { da } from "date-fns/locale";
 import KalenderCard from "./KalenderCard";
@@ -8,27 +8,27 @@ import KalenderCard from "./KalenderCard";
 const KalenderSamlet = ({ items }) => {
   if (!items?.length) return <p>Ingen items fundet</p>;
 
-  // Brug af memo: koden kører kun når items ændrer sig + undgår at beregne datoer på hver render
+  // Brug af memo: koden kører kun når items ændrer sig + undgår unødige genberegninger
   const grouped = useMemo(() => {
     // Opretter et Map, der skal samle datoer
     const map = new Map();
 
-    // Loop gennem alle items og alle deres datoer
+    // Loop gennem alle items og deres tilhørende datoer
     items.forEach((item) => {
       item.fullDates?.forEach((entry) => {
         if (!entry?.date) return;
 
-        // parse -> laver streng om til Date-objekt
+        // parse -> laver dato-streng om til Date-objekt
         const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
         if (isNaN(d)) return;
 
-        // setHours -> fjerner tidszone-problemer
+        // setHours -> nulstiller tid for at undgå tidszoneforskydninger
         d.setHours(0, 0, 0, 0);
 
-        // getTime -> laver dato om til et unikt tal (timestamp)
+        // getTime -> bruges som unikt ID for datoen
         const ts = d.getTime();
 
-        // Split tiderne i et array:
+        // Split tiderne i et array
         let times = [];
         if (Array.isArray(entry.time)) {
           entry.time.forEach((t) => {
@@ -40,12 +40,12 @@ const KalenderSamlet = ({ items }) => {
           times = entry.time.split(",").map((s) => s.trim());
         }
 
-        times = Array.from(new Set(times.filter(Boolean))); // fjern dubletter + tomme
+        times = Array.from(new Set(times.filter(Boolean))); // Fjern dubletter + tomme værdier
 
-        // Hvis første gang vi ser denne dato, opret arrayet
+        // Hvis datoen ikke findes i map endnu, opret ny array
         if (!map.has(ts)) map.set(ts, []);
 
-        // PUSH ét entry pr. tidspunkt
+        // Tilføj hver forestilling med hvert tidspunkt
         times.forEach((t) => {
           map.get(ts).push({
             item,
@@ -55,41 +55,75 @@ const KalenderSamlet = ({ items }) => {
       });
     });
 
-    // Lav map om til en sorteret liste
+    // Map omdannes til sorteret array
     return [...map.entries()]
-      .sort((a, b) => a[0] - b[0])
+      .sort((a, b) => a[0] - b[0]) // sorter efter dato
       .map(([timestamp, shows]) => ({
         date: new Date(timestamp),
         shows,
       }));
   }, [items]);
 
+  // ======================================= DROPDOWN-FILTRERING ============================================
+
+  // State som holder styr på hvilken dato der er valgt i dropdown
+  const [selectedDate, setSelectedDate] = useState("all");
+
+  // Funktion til formattering af datoer (bruges både i dropdown og overskrifter)
+  const formatDate = (date) =>
+    date
+      .toLocaleDateString("da-DK", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+      .replace(",", "")
+      .replace(" den ", " d. ") // ændrer "den" til "d."
+      .replace(/^\w/, (c) => c.toUpperCase()); // stort begyndelsesbogstav
+
+  // Filtrering: hvis "all" er valgt -> vis alt, ellers filtrér på valgt dato
+  const filteredGrouped =
+    selectedDate === "all"
+      ? grouped
+      : grouped.filter(
+          (g) => g.date.toISOString().split("T")[0] === selectedDate
+        );
+
   // ======================================= ALT STYLING OG OPSÆTNING ============================================
   return (
     <div className="grid gap-20 px-(--content-width) w-full">
       <h1 className="text-6xl">KALENDER</h1>
 
-      {grouped.map(({ date, shows }) => (
+      {/* Dropdown menu til filtrering af hvilke datoer der vises */}
+      <div>
+        <select
+          className="cursor-pointer px-4 py-3 rounded-4xl border border-(--bellevueblaa-600) text-(--bellevueblaa-600) w-30"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+        >
+          <option value="all">Datoer</option>
+
+          {grouped.map(({ date }) => {
+            const iso = date.toISOString().split("T")[0];
+            return (
+              <option key={iso} value={iso}>
+                {formatDate(date)}
+              </option>
+            );
+          })}
+        </select>
+      </div>
+
+      {/* Her vises enten alle datoer eller filtreret dato */}
+      {filteredGrouped.map(({ date, shows }) => (
         <div key={date.getTime()} className="grid grid-cols-[1fr_2fr]">
           <div>
-            {/* Herunder ændres formattering af datovisning */}
-            <h3 className="text-xl">
-              {
-                date
-                  .toLocaleDateString("da-DK", {
-                    weekday: "long",
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })
-                  .replace(",", "")
-                  .replace(" den ", " d. ") // ændrer "den" til "d."
-                  .replace(/^\w/, (c) => c.toUpperCase()) // stort begyndelsesbogstav på ugedag
-              }
-            </h3>
+            {/* Dato-overskrift */}
+            <h3 className="text-xl">{formatDate(date)}</h3>
           </div>
 
-          {/* Herunder laves listen af cards */}
+          {/* Herunder laves listen af kort (KalenderCard) */}
           <ul className="grid gap-10">
             {shows.map(({ item, time }, i) => (
               <KalenderCard key={item.id + "-" + i} item={item} time={time} />
