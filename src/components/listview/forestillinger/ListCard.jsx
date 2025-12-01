@@ -11,7 +11,7 @@ export default function ListCard({ items = [] }) {
         <li
           key={item.id}
           className="rounded-xl border-b-4 border-l-4 border-blue-100 transform transition-transform duration-300 
-          hover:scale-105 cursor-pointer ml-4 mr-4"
+          hover:scale-105 cursor-pointer ml-4 mr-4 mt-10"
         >
           {item.image?.[0] && (
             <div className="flex shrink-0 w-full">
@@ -43,14 +43,14 @@ export default function ListCard({ items = [] }) {
                 href={`https://www.ticketmaster.dk/search?q=${encodeURIComponent(
                   item.name
                 )}`}
-                className="bg-blue-100 border border-(--bellevueblaa-600) text-(--bellevueblaa-900) 
+                className="bg-(--bellevueblaa-100) border border-(--bellevueblaa-900) text-(--bellevueblaa-900) 
               py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
               >
                 Køb billet
               </Link>
               <Link
                 href={`/forestillinger/${item.id}`}
-                className="bg-(--roed-600) text-(--beige-100) py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
+                className=" text-(--bellevueblaa-900) border border-(--bellevueblaa-900) py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
               >
                 Læs mere
               </Link>

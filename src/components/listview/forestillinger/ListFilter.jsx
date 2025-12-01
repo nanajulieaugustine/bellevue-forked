@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { parse } from "date-fns";
 import { da } from "date-fns/locale";
 import ListCard from "./ListCard";
+import ListCardDropDown from "./ListCardDropDown";
+
 
 export default function ListFilter({ items = [] }) {
   const [activeTab, setActiveTab] = useState("current"); // current / archive
@@ -57,31 +59,35 @@ export default function ListFilter({ items = [] }) {
 
   return (
     <div className="mt-6">
+      
       {/* TABS */}
-      <div className="flex gap-6 mb-6 border-b pb-3 pl-4">
+      <div className="flex gap-6 mb-6 pb-3 ">
         <button
-          className={`text-xl font-semibold ${
-            activeTab === "current" ? "text-blue-800" : "text-blue-300"
+          className={`text-5xl ml-5 ${
+            activeTab === "current" ? "text-blue-800 border-b-4" : "text-blue-300 border-b-4"
           }`}
           onClick={() => setActiveTab("current")}
         >
-          Forestillinger
+          FORESTILLINGER
         </button>
 
         <button
-          className={`text-xl font-semibold ${
-            activeTab === "archive" ? "text-blue-800" : "text-blue-300"
+          className={`text-5xl ${
+            activeTab === "archive" ? "text-blue-800 border-b-4" : "text-blue-300 border-b-4"
           }`}
           onClick={() => setActiveTab("archive")}
         >
-          Arkiv
+          ARKIV
         </button>
       </div>
+      <ListCardDropDown />
+
 
       {/* LISTCARD */}
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
         <ListCard items={visibleItems} />
       </ul>
+
     </div>
   );
 }
