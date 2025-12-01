@@ -32,7 +32,7 @@ const StickyInfo = ({item}) => {
         <div>
             <p>{item.description_short}</p>
         </div>
-        {item.embed ? (
+        {/* {item.embed ? (
             <iframe title={`trailer af ${item.name}`}
                     src={item.embed}
                     className="h-80 w-full rounded-lg"
@@ -40,7 +40,7 @@ const StickyInfo = ({item}) => {
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     ></iframe>
-          ) : null  }
+          ) : null  } */}
     </div>
      );
 }
