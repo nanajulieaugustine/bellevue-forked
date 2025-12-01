@@ -4,7 +4,6 @@ const nextConfig = {
     optimizeCss: false,
   },
 
-  //gjort img sikre
   images: {
     remotePatterns: [
       {
@@ -12,6 +11,16 @@ const nextConfig = {
         hostname: "static.wixstatic.com",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "static.wixstatic.com",
+        pathname: "/**",
+      },
+       {
+        protocol: "http",
+        hostname: "bellevueteatret.dk",
+        pathname: "/**",
+      }
     ],
   },
 };

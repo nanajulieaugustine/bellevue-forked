@@ -63,6 +63,16 @@ h6 {
   text-wrap: balance;
 }
 
+.add-on-content h1,
+.add-on-content h2,
+.add-on-content h3,
+.add-on-content h4,
+.add-on-content h5,
+.add-on-content h6 {
+  color: inherit;
+}
+
+
 blockquote {
   font-family: var(--font-heading);
   font-style: italic;
@@ -70,10 +80,19 @@ blockquote {
   text-wrap: balance;
 } 
 
-body {
+html, body {
   font-family: var(--font-text);
   background-color: var(--hvid);
 }
+
+.scroll-snap-container{
+    scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+.scroll-snap-section {
+  scroll-snap-align: start;
+}
+
 
 
 /* REACT DATE PICKER STYLING */

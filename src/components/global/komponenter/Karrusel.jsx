@@ -62,14 +62,14 @@ const Karrusel = ({ children, interval = 10000 }) => {
 
       {/* knapper */}
       <button
-        className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl font-bold"
+        className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl font-bold p-10"
         onClick={goToPrev}
       >
         <ArrowLeft className="text-(--hvid)" size={40} />
       </button>
 
       <button
-        className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl font-bold"
+        className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl font-bold p-10"
         onClick={goToNext}
       >
         <ArrowRight className="text-(--hvid)" size={40} />
