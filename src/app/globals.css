@@ -49,6 +49,9 @@
   /* Font family */
   --font-text: "Inter", sans-serif;
   --font-heading: "Oswald", sans-serif;
+
+  /* Font sizes */
+  --font-size-hero: clamp(1.25rem, -6.786rem + 21.429vw, 12.5rem);
 }
 
 /*  =================== STYLING AF HEADING + TEXT ================== */
@@ -63,13 +66,11 @@ h6 {
   text-wrap: balance;
 }
 
-.add-on-content h1,
-.add-on-content h2,
-.add-on-content h3,
-.add-on-content h4,
-.add-on-content h5,
-.add-on-content h6 {
-  color: inherit;
+
+.display{
+  font-size: var(--font-size-hero);
+  text-transform: uppercase;
+  line-height: 12rem;
 }
 
 
@@ -85,6 +86,20 @@ body {
   background-color: var(--hvid);
 }
 
+/*OVERWRITES*/
+
+.add-on-content h1,
+.add-on-content h2,
+.add-on-content h3,
+.add-on-content h4,
+.add-on-content h5,
+.add-on-content h6 {
+  color: inherit;
+}
+
+.bellevueblaa-600 h1 {
+  color: var(--bellevueblaa-600);
+}
 
 /* REACT DATE PICKER STYLING */
 
