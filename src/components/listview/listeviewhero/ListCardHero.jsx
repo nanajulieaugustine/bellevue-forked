@@ -7,7 +7,7 @@ import ListCardDropDown from "./ListCardDropDown";
 
 const supabase = createClient(
   "https://rzwaokiepaobrlrpphia.supabase.co",
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  process.env.SUPABASE_ANON_KEY
 );
 
   //vi laver en ny funktion og kalder den ListCardHero
