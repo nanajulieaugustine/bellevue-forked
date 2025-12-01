@@ -1,4 +1,4 @@
-import ListCard from "./ListCard";
+import ListFilter from "./ListFilter";
 import { createClient } from "@supabase/supabase-js";
 
 // Supabase client (fungerer som server)
@@ -7,7 +7,6 @@ const supabase = createClient(
 
   // Key som ligger i .env fil
   process.env.SUPABASE_ANON_KEY
-
 );
 
 export default async function ListServer() {
@@ -24,8 +23,8 @@ export default async function ListServer() {
 
   // Returnerer data ellers tomt array
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
-      <ListCard items={data || []} />
-    </ul>
+    <div>
+      <ListFilter items={data || []} />
+    </div>
   );
 }
