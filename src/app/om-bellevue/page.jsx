@@ -1,5 +1,11 @@
+import OmSamlet from "@/components/ombellevue/OmSamlet";
+
 const OmBellevue = () => {
-  return <div></div>;
+  return (
+    <div>
+      <OmSamlet />
+    </div>
+  );
 };
 
 export default OmBellevue;

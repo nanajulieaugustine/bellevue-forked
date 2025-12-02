@@ -1,7 +1,12 @@
 "use client";
+
+// Imports fra bibliotek
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+
+// Imports af komponentet
+import PrimaryButton from "@/components/global/knapper/PrimaryButton";
+import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
 
 const KalenderCard = ({ item, time }) => {
   const [openId, setOpenId] = useState(null);
@@ -30,17 +35,16 @@ const KalenderCard = ({ item, time }) => {
       <div className="transition-colors duration-300">
         {/* ============================= CARD ============================= */}
         <div
-          className={`
-            flex justify-between p-10 transition-colors duration-300
-            ${isOpen ? "bg-(--beige-300)" : "bg-(--beige-100)"}
-            ${noBottomRadius ? "rounded-t-2xl" : "rounded-2xl"}
-          `}
+          className={`flex justify-between p-10 transition-colors duration-300 gap-15 ${
+            isOpen ? "bg-(--beige-300)" : "bg-(--beige-100)"
+          } ${
+            noBottomRadius ? "rounded-t-2xl" : "rounded-2xl"
+          } flex-col gap-6 sm:flex-row`}
         >
           {/* INFORMATION */}
           <div className="grid gap-5">
             <div className="w-50">
               <div className="grid grid-cols-3">
-                {/* Udskiftet item.date → TIME */}
                 <p>{displayTime}</p>
 
                 <div className="flex gap-5">
@@ -50,16 +54,19 @@ const KalenderCard = ({ item, time }) => {
               </div>
             </div>
 
-            <h2 className="text-2xl">{item.name}</h2>
+            <h3>{item.name}</h3>
           </div>
 
           {/* KNAPPEN */}
-          <button
-            className="self-end px-9 py-3 rounded-4xl border border-(--bellevueblaa-600) text-(--bellevueblaa-600)"
-            onClick={() => toggle(item.id)}
-          >
-            {isOpen ? "Luk" : "Læs mere"}
-          </button>
+          <div className="flex gap-4 self-start sm:self-end">
+            <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
+              Køb billet
+            </AnchorTagPrimaryButton>
+
+            <PrimaryButton onClick={() => toggle(item.id)}>
+              {isOpen ? "Luk" : "Læs mere"}
+            </PrimaryButton>
+          </div>
         </div>
 
         {/* =========================== ACCORDION ============================ */}
@@ -67,14 +74,14 @@ const KalenderCard = ({ item, time }) => {
           className={`
             overflow-hidden transition-all duration-300 ease-in-out 
             px-10 bg-(--beige-300) rounded-b-2xl
-            ${isOpen ? "max-h-[400px] pt-5 pb-10" : "max-h-0 py-0"}
+            ${isOpen ? "max-h-[900px] pt-5 pb-10" : "max-h-0 py-0"}
           `}
           onTransitionEnd={() => {
             if (isClosing) setClosingId(null);
           }}
         >
-          {/* INDHOLDET */}
-          <div className="grid grid-cols-2 gap-10">
+          {/* INDHOLDET BILLEDE */}
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 ">
             {item.image?.[0] && (
               <div className="flex shrink-0 w-full">
                 <Image
@@ -87,15 +94,15 @@ const KalenderCard = ({ item, time }) => {
               </div>
             )}
 
-            <div className="flex flex-col justify-between">
+            {/* INDHOLDET TEXT + KNAPPER */}
+            <div className="flex flex-col justify-between gap-8">
               <p>{item.description_short}</p>
 
-              <Link
-                href={`/forestillinger/${item.id}`}
-                className="self-end px-9 py-3 rounded-4xl bg-(--bellevueblaa-600) text-(--beige-100)"
-              >
-                Læs mere
-              </Link>
+              <div className="self-start sm:self-end">
+                <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
+                  Læs mere
+                </AnchorTagPrimaryButton>
+              </div>
             </div>
           </div>
         </div>

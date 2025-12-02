@@ -90,10 +90,10 @@ const KalenderSamlet = ({ items }) => {
           (g) => g.date.toISOString().split("T")[0] === selectedDate
         );
 
-  // ======================================= ALT STYLING OG OPSÆTNING ============================================
+  // ====================================== ALT STYLING OG OPSÆTNING =========================================
   return (
     <div className="grid gap-20 px-(--content-width) w-full">
-      <h1 className="text-6xl">KALENDER</h1>
+      <h1>KALENDER</h1>
 
       {/* Dropdown menu til filtrering af hvilke datoer der vises */}
       <div>
@@ -117,10 +117,10 @@ const KalenderSamlet = ({ items }) => {
 
       {/* Her vises enten alle datoer eller filtreret dato */}
       {filteredGrouped.map(({ date, shows }) => (
-        <div key={date.getTime()} className="grid grid-cols-[1fr_2fr]">
+        <div key={date.getTime()} className="grid lg:grid-cols-[1fr_2fr] gap-8">
           <div>
             {/* Dato-overskrift */}
-            <h3 className="text-xl">{formatDate(date)}</h3>
+            <h4>{formatDate(date)}</h4>
           </div>
 
           {/* Herunder laves listen af kort (KalenderCard) */}

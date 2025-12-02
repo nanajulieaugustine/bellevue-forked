@@ -7,7 +7,6 @@ const supabase = createClient(
 
   // Key som ligger i .env fil
   process.env.SUPABASE_ANON_KEY
-
 );
 
 export default async function ListServer() {
