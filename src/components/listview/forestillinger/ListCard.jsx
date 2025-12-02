@@ -10,9 +10,10 @@ export default function ListCard({ items = [] }) {
       {items.map((item) => (
         <li
           key={item.id}
-          className="rounded-xl border-b-4 border-l-4 border-blue-100 transform transition-transform duration-300 
-          hover:scale-105 cursor-pointer ml-4 mr-4 mt-10"
+          className="flex flex-col rounded-xl border-b-4 border-l-4 border-blue-100 transform transition-transform duration-300 
+          hover:scale-105 cursor-pointer ml-4 mr-4 mt-10 min-h-[400px]"
         >
+        {/* Billede */}
           {item.image?.[0] && (
             <div className="flex shrink-0 w-full">
               <Image
@@ -25,6 +26,7 @@ export default function ListCard({ items = [] }) {
             </div>
           )}
 
+          {/* Indhold */}
           <div className="pl-3">
             <div className="grid grid-cols-2">
               <h2 className="text-blue-800 font-bold pt-2">{item.name}</h2>
@@ -37,7 +39,8 @@ export default function ListCard({ items = [] }) {
             <p className="text-blue-800 font-light">{item.description}</p>
           </div>
 
-          <div className="pl-3 pb-4 pt-20 text-center">
+          {/* Knapper - altid i bunden */}
+          <div className="p-3 pt-0 text-center mt-auto">
             <div className="flex flex-row gap-3 w-full">
               <Link
                 href={`https://www.ticketmaster.dk/search?q=${encodeURIComponent(
