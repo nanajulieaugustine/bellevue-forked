@@ -3,6 +3,7 @@ import BellevueStriber from "@/components/global/animationer/BellevueStriber";
 
 const KontaktHero = () => (
     <div>
+        <div style={{ maxHeight: "600px", overflow: "hidden" }}>
       <BellevueStriber>
         <div className="flex flex-col max-w-250 relative left-50">
         <h1 className="display bellevueblaa-600">KONTAKT</h1>
@@ -26,6 +27,8 @@ const KontaktHero = () => (
         </div>
       </BellevueStriber>
     </div>
+    </div>
+
   );
   
   export default KontaktHero;
