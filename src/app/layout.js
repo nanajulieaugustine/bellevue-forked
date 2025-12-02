@@ -5,8 +5,8 @@ import Header from "@/components/global/header/Header";
 import Footer from "@/components/global/Footer";
 
 export const metadata = {
-  title: "Bellevue Teater",
-  description: "Bellevue teater",
+  title: "Bellevue Teatret",
+  description: "Bellevue Teatret",
 };
 
 export const viewport = {
@@ -28,7 +28,6 @@ export default function RootLayout({ children }) {
           <Header/>
         </header>
         <main
-        className="py-40"
         >{children}</main>
         <footer>
           <Footer />

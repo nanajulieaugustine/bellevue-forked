@@ -1,12 +1,35 @@
 import BellevueStriber from "@/components/global/animationer/BellevueStriber";
 import Image from "next/image";
 import VandTaarn from "@/components/global/ikoner/VandTaarn";
+import Karrusel from "@/components/global/komponenter/Karrusel";
+import ListCard from "@/components/listview/forestillinger/ListCard";
+import { createClient } from "@supabase/supabase-js";
+import Card from "@/components/landingpage/Card";
+import KarruselSliced from "@/components/global/komponenter/KarruselSliced";
+import SlidingForestillinger from "@/components/landingpage/SlidingForestillinger";
 
-export default function Home() {
+  // Supabase client (fungerer som server)
+  const supabase = createClient(
+    "https://rzwaokiepaobrlrpphia.supabase.co",
+  
+    // Key som ligger i .env fil
+    process.env.SUPABASE_ANON_KEY
+  );
+  
+
+export default async function Home() {
+
+    // Hent data fra Supabase med navn på tabel
+    const { data } = await supabase.from("bellevue_items").select("*");
+  
+    console.log("Fetched data:", data);
+
+    
+
   return (
     <div>
       <BellevueStriber>
-        <div className="flex flex-col max-w-300 relative left-50">
+        <div className="flex flex-col max-w-300 relative left-50 pt-40">
         <h1 className="display bellevueblaa-600 indent-5 moerkblaa-600">Bellevue</h1>
 
           <div className="flex relative">
@@ -29,6 +52,10 @@ export default function Home() {
         </div>
         </div>
       </BellevueStriber>
+
+           <SlidingForestillinger data={data} />
+
+
     </div>
   );
 }

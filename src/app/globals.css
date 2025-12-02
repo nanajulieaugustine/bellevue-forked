@@ -109,6 +109,10 @@ body {
   color: var(--moerkblaa-600);
 }
 
+.padding-top{
+  padding-top: 40px;
+}
+
 /* REACT DATE PICKER STYLING */
 
 /* Selected day */
