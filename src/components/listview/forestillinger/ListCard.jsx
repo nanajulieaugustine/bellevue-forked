@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
-// import Link from "next/link";
+import Link from "next/link";
 import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
 
 export default function ListCard({ items = [] }) {
   if (!items.length) return <p>Ingen items fundet</p>;
 
   return (
-    <> 
+    <>
       {items.map((item) => (
         <li
           key={item.id}
@@ -44,18 +44,8 @@ export default function ListCard({ items = [] }) {
           </div>
 
           {/* Knapper - altid i bunden */}
-          <div className="p-3 pt-0 text-center mt-auto">
-            <div className="flex flex-row gap-3 w-full">
-
-              {/* <Link
-                href={`https://www.ticketmaster.dk/search?q=${encodeURIComponent(
-                  item.name
-                )}`}
-                className="bg-(--bellevueblaa-100) border border-(--bellevueblaa-900) text-(--bellevueblaa-900) 
-              py-2 px-4 rounded-2xl w-full text-sm md:text-base whitespace-nowrap"
-              >
-                Køb billet
-              </Link> */}
+          <div className="p-3 pt-0 pb-10 text-center mt-auto">
+            <div className="flex justify-center gap-10 w-full">
 
               <div>
                 <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`} >
