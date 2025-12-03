@@ -1,4 +1,3 @@
-// KontaktServer.jsx
 import KontaktFilter from "./KontaktFilter";
 import { createClient } from "@supabase/supabase-js";
 
@@ -10,7 +9,12 @@ const supabase = createClient(
 export default async function KontaktServer() {
   const { data, error } = await supabase.from("bellevue_employees").select("*");
 
-  if (error) return <p>Der skete en fejl med at hente data.</p>;
+  console.log("Fetched data:", data);
+  console.log("Error:", error);
+
+  if (error) {
+    return <p>Der skete en fejl med at hente.</p>;
+  }
 
   return <KontaktFilter employees={data || []} />;
 }
