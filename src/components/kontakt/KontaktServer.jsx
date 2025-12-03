@@ -16,5 +16,9 @@ export default async function KontaktServer() {
     return <p>Der skete en fejl med at hente.</p>;
   }
 
-  return <KontaktFilter employees={data || []} />;
+  return (
+    <div>
+      <KontaktFilter employees={data || []} />
+    </div>
+  );
 }
