@@ -23,9 +23,9 @@ export default async function ListServer() {
 
   // Returnerer data ellers tomt array
   return (
-    <div>
+    <section>
       <ListFilter items={data || []} />
-    </div>
+    </section>
   );
 } 
   

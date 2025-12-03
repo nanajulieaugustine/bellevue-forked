@@ -5,7 +5,7 @@ const KontaktHero = () => (
     <div>
         <div style={{ maxHeight: "600px", overflow: "hidden" }}>
       <BellevueStriber>
-        <div className="flex flex-col max-w-250 relative left-50">
+        <div className="flex flex-col max-w-250 relative left-50 pt-40">
         <h1 className="display bellevueblaa-600">KONTAKT</h1>
         </div>
         <div className="grid grid-cols-3 ml-50">

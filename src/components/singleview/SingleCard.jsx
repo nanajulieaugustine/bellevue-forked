@@ -67,19 +67,18 @@ export default function SingleCard({ item }) {
             </div>
         ):null
     }
-
                 {item.billeder ?(
-                    <div className="h-screen w-screen overflow-hidden">
+                  <div className="h-screen w-screen overflow-hidden">
 
             <Karrusel>
             {item.billeder.map((billede) => (
-                <BilledKarrusel billede={billede} item={item} />
+              <BilledKarrusel billede={billede} item={item} />
             ))}
             </Karrusel>
 
             </div>
         ):null
-    }
+      }
     </div>
 
                  {/* {item.embed ? (

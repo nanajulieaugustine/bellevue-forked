@@ -6,7 +6,7 @@ import Clock from "../global/ikoner/Clock";
 const StickyInfo = ({item}) => {
     return ( 
         <div className="flex flex-col gap-20 max-w-200 p-10 backdrop-blur-3xl rounded-2xl">
-             <h1>{item.name}</h1>
+             <h2>{item.name}</h2>
         <div className="h-full z-10 flex gap-20">
 
             <div className="flex flex-col gap-20">

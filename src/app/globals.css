@@ -71,15 +71,19 @@ h4 {
 
 h1 {
   font-size: var(--font-size-h1);
+  line-height:1;
 }
 h2 {
   font-size: var(--font-size-h2);
+    line-height:1;
 }
 h3 {
   font-size: var(--font-size-h3);
+  line-height:1.2;
 }
 h4 {
   font-size: var(--font-size-h4);
+    line-height:1.2;
 }
 
 .display {
@@ -99,6 +103,10 @@ body {
   font-family: var(--font-text);
   background-color: var(--hvid);
   color: var(--moerkblaa-900);
+}
+
+section{
+  padding-inline: var(--content-width);
 }
 
 /*OVERWRITES*/
@@ -122,6 +130,10 @@ body {
 
 .moerkblaa-600 {
   color: var(--moerkblaa-600);
+}
+
+.bellevueblaa-100{
+  color: var(--bellevueblaa-100);
 }
 
 .padding-top{

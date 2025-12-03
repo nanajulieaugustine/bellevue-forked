@@ -53,7 +53,7 @@ export default async function Home() {
         </div>
       </BellevueStriber>
 
-           <SlidingForestillinger data={data} />
+           {/* <SlidingForestillinger data={data} /> */}
 
 
     </div>

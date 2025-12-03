@@ -1,18 +1,30 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
+import { useEffect } from "react";
 import { parse } from "date-fns";
 import { da } from "date-fns/locale";
 import ListCard from "./ListCard";
 import ListCardDropDown from "./ListCardDropDown";
-
+import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
 
 export default function ListFilter({ items = [] }) {
   const [activeTab, setActiveTab] = useState("current"); // current / archive
   const [selectedCategory, setSelectedCategory] = useState(null); // ny state for kategori
 
+  //til dynamisk bredde af animeret linje
+  const currentRef = useRef(null);
+  const archiveRef = useRef(null);
+  const [tabWidths, setTabWidths] = useState({ current: 0, archive: 0 });
 
-  // Today uden tidszone-problemer
+  useEffect(() => {
+    setTabWidths({
+      current: currentRef.current?.offsetWidth || 0,
+      archive: archiveRef.current?.offsetWidth || 0,
+    });
+  }, [activeTab]);
+
+  // i dag uden tidszone-problemer
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -45,7 +57,7 @@ export default function ListFilter({ items = [] }) {
           latestDate,
         };
       })
-      .filter(Boolean); // fjern nulls
+      .filter(Boolean); // fjern null-elementer
   }, [items]);
 
   // Dynamiske kategorier ud fra Supabase data
@@ -84,27 +96,30 @@ const dynamicCategories = useMemo(() => {
 
 
   return (
-    <div className="mt-6">
+    <div className="pt-40">
       
       {/* TABS */}
-      <div className="flex gap-6 mb-6 pb-3 ">
+    <div className="flex gap-6 mb-6 pb-3 relative w-full">
         <button
-          className={`text-5xl ml-5 ${
-            activeTab === "current" ? "text-blue-800 border-b-4" : "text-blue-300 border-b-4"
-          }`}
           onClick={() => setActiveTab("current")}
         >
-          FORESTILLINGER
+          <h1 ref={currentRef}  className={`${
+            activeTab === "current" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"
+          }`}>FORESTILLINGER</h1>
         </button>
 
         <button
-          className={`text-5xl ${
-            activeTab === "archive" ? "text-blue-800 border-b-4" : "text-blue-300 border-b-4"
-          }`}
           onClick={() => setActiveTab("archive")}
         >
-          ARKIV
+          <h1 ref={archiveRef}  className={`${
+            activeTab === "archive" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"
+          }`}>ARKIV</h1>
         </button>
+
+        <WipeLineAnimation
+          activeTab={activeTab}
+          tabWidths={tabWidths} // sender bredderne som props
+        />
       </div>
       <ListCardDropDown 
   onFilterChange={handleFilterChange}

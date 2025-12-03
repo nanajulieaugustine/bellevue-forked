@@ -26,7 +26,7 @@ export default async function SingleItem({ params }) {
   }
 
   return (
-    <section>
+    <section className="pt-40">
       <SingleCard item={data} />
     </section>
   );
