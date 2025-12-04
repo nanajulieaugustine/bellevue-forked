@@ -6,9 +6,20 @@ import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimary
 export default function ListCard({ item }) {
   return (
         <li
-          className="relative"
+          className="relative ml-4 mr-4 mt-10"
         >
-          <div className="flex flex-col rounded-2xl cursor-pointer ml-4 mr-4 mt-10 min-h-[450px] max-w-100 backdrop-blur-3xl">
+          <div
+        className="
+          relative flex flex-col bg-white rounded-3xl p-2 min-h-[450px]
+          before:content-[''] before:absolute before:inset-0
+          before:rounded-3xl before:border-l-4 before:border-b-4 before:border-blue-900
+          before:pointer-events-none
+        "
+      >
+        <p className="font-light text-right text-sm">
+                {" "}
+                {item.tags}
+              </p>
         {/* Billede */}
         <Link href={`/forestillinger/${item.id}`}>
           {item.image?.[0] && (
@@ -18,8 +29,7 @@ export default function ListCard({ item }) {
                 alt={item.image[0].alt}
                 width={2000}
                 height={200}
-                className="rounded-3xl p-2 transition-all duration-300 
-          hover:scale-102"
+                className="rounded-3xl p-2"
                 />
             </div>
           )}
@@ -29,10 +39,6 @@ export default function ListCard({ item }) {
           <div className="p-3">
             <div className="flex justify-between">
               <h4 className="font-bold">{item.name}</h4>
-              <p className="font-light text-right text-sm">
-                {" "}
-                {item.tags}
-              </p>
             </div>
             <p className="font-light pt-2">{item.date}</p>
             <p className=" font-light">{item.description}</p>
@@ -42,22 +48,27 @@ export default function ListCard({ item }) {
           <div className="p-3 pt-0 pb-10 text-center mt-auto">
             <div className="flex justify-center gap-10 w-full">
 
-              <div>
+              <div className="border-2 border-(--koboltblaa-600) rounded-2xl py-3 px-6 bg-(--bellevueblaa-100)">
                 <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`} >
-                  Køb billet
+                  <h4>Køb billet</h4>
                 </AnchorTagPrimaryButton>
               </div>
-              <div>
+              <div className="py-3 px-6">
                 <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`} >
-                  Læs mere
+                <span className="
+                    relative flex items-center gap-2 
+                    before:content-[''] before:absolute before:left-0 before:right-0 
+                    before:-bottom-0.5 before:h-[2px] 
+                    before:bg-current
+                  " >
+                  <h4>Læs mere <span>→</span></h4> 
+                  </span>
                 </AnchorTagPrimaryButton>
               </div>
 
             </div>
           </div>
            </div>
-           <div className="absolute top-10 left-2.5 w-98 min-h-[455px] border-l-5 border-b-10 border-(--koboltblaa-900) rounded-3xl -z-10
-          bg-[linear-gradient(to_left,var(--hvid)_95%,var(--koboltblaa-900)_5%,var(--koboltblaa-900)_100%)] drop-shadow-2xl"></div>
         </li>
   );
 }
