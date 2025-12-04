@@ -1,6 +1,5 @@
 import ListFilter from "./ListFilter";
 import { createClient } from "@supabase/supabase-js";
-import SlidingForestillinger from "@/components/landingpage/SlidingForestillinger";
 
 // Supabase client (fungerer som server)
 const supabase = createClient(
@@ -18,7 +17,7 @@ export default async function ListServer() {
 
   return (
     <section>
-      <SlidingForestillinger items={data || []} />
+      <ListFilter items={data || []} />
     </section>
   );
 } 
