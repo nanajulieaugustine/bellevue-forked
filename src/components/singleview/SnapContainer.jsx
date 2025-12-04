@@ -42,9 +42,10 @@ const SnapContainer = ({ item }) => {
 
       {/* forgrund med container-scroll */}
       <div
-        ref={containerRef}
-        className="relative z-20 h-full w-full overflow-y-auto snap-y snap-mandatory text-(--hvid)"
-      >
+    ref={containerRef}
+    className="relative z-20 h-full w-full overflow-y-auto snap-y snap-mandatory text-(--hvid)"
+    >
+
         {/* uden anmeldelse */}
         <div className="h-[90vh] w-full flex items-center justify-center snap-start" />
 

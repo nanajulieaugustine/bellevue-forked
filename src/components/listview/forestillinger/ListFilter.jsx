@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState, useRef, useEffect } from "react";
-import { parseDates } from "@/app/utils.js"
+import { parseDates } from "@/app/utils.js";
 import ListCard from "./ListCard";
 import ListCardDropDown from "./ListCardDropDown";
 import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
@@ -20,29 +20,35 @@ export default function ListFilter({ items }) {
     });
   }, [activeTab]);
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  // Behold hele datoen + tidspunktet
+  const now = new Date();
 
-  // Beregner gyldige dato fra funktion i utils
-    const itemsWithLatestDate = useMemo(
-      () => parseDates(items, { addLatestDate: true }),
-      [items]
-    );
+  // Beregn latestDate for hvert item (inkl. tidspunkt)
+  const itemsWithLatestDate = useMemo(
+    () => parseDates(items, { addLatestDate: true }),
+    [items]
+  );
 
+  // Uddrag dynamiske kategorier
   const dynamicCategories = useMemo(() => {
     const allTags = items.flatMap((item) => item.tags || []);
     return [...new Set(allTags)];
   }, [items]);
 
+  // Upcoming (dato + tidspunkt i fremtiden)
   const upcoming = itemsWithLatestDate.filter(
-    (item) => item.latestDate.getTime() >= today.getTime()
+    (item) => item.latestDate.getTime() >= now.getTime()
   );
+
+  // Archive (dato + tidspunkt i fortiden)
   const archive = itemsWithLatestDate.filter(
-    (item) => item.latestDate.getTime() < today.getTime()
+    (item) => item.latestDate.getTime() < now.getTime()
   );
+
 
   let visibleItems = activeTab === "current" ? upcoming : archive;
 
+  // Filtrering på tags
   if (selectedCategory) {
     visibleItems = visibleItems.filter((item) =>
       item.tags?.includes(selectedCategory)
@@ -84,7 +90,10 @@ export default function ListFilter({ items }) {
         <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
       </div>
 
-      <ListCardDropDown onFilterChange={handleFilterChange} categories={dynamicCategories} />
+      <ListCardDropDown
+        onFilterChange={handleFilterChange}
+        categories={dynamicCategories}
+      />
 
       {selectedCategory && (
         <div className="flex gap-2 mt-4 ml-4">
@@ -100,11 +109,19 @@ export default function ListFilter({ items }) {
         </div>
       )}
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
-              {visibleItems.map((item) => (
-        <ListCard key={item.id} item={item} />
-              ))}
-      </ul>
+<ul className="flex flex-wrap gap-3 mt-4">
+  {visibleItems.map((item) => (
+    <div
+      key={item.id}
+      className="basis-[calc(33.333%-0.5rem)]" // tilpas gap
+    >
+      <ListCard item={item} />
+    </div>
+  ))}
+</ul>
+
+
+
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import ListFilter from "./ListFilter";
 import { createClient } from "@supabase/supabase-js";
+import SlidingForestillinger from "@/components/landingpage/SlidingForestillinger";
 
 // Supabase client (fungerer som server)
 const supabase = createClient(
@@ -11,20 +12,13 @@ const supabase = createClient(
 
 export default async function ListServer() {
   // Hent data fra Supabase med navn på tabel
-  const { data, error } = await supabase.from("bellevue_items").select("*");
-
-  // Error besked hvis fejl i fetch
-  if (error) {
-    console.error("Supabase error:", error);
-    return <p>Der skete en fejl med at hente data.</p>;
-  }
+  const { data } = await supabase.from("bellevue_items").select("*");
 
   console.log("Fetched data:", data);
 
-  // Returnerer data ellers tomt array
   return (
     <section>
-      <ListFilter items={data || []} />
+      <SlidingForestillinger items={data || []} />
     </section>
   );
 } 
