@@ -14,7 +14,7 @@
   --moerkblaa-100: #d9dfe7;
 
   /* Kobolt blå */
-  --koboltblaa-900: #001d4c; 
+  --koboltblaa-900: #001d4c;
   --koboltblaa-600: #003f9e;
   --koboltblaa-300: #7ea4da;
   --koboltblaa-100: #d7e0f5;
@@ -44,7 +44,7 @@
   --gul-100: #fff1c6;
 
   /*spacing*/
-  --content-width: max(20px, 50% - 80rem / 2);
+  --content-width: max(20px, 50% - 70rem / 2);
 
   /*  =================== STYLING AF HEADING + TEXT ================== */
 
@@ -55,9 +55,10 @@
   /* Font sizes */
   --font-size-hero: clamp(1.25rem, -6.786rem + 21.429vw, 12.5rem);
   --font-size-h1: clamp(4.375rem, 2.8125rem + 5vw, 5.625rem);
-  --font-size-h2: clamp(1.875rem, 0.3125rem + 5vw, 3.125rem);
+  --font-size-h2: clamp(3.75rem, 5.3125rem + -5vw, 2.5rem);
   --font-size-h3: clamp(1.5rem, 0.6406rem + 2.75vw, 2.1875rem);
   --font-size-h4: clamp(1.25rem, 0.8594rem + 1.25vw, 1.5625rem);
+  --font-size-highlighttext: clamp(1.25rem, 1.5625rem + -1vw, 1rem);
 }
 
 h1,
@@ -71,19 +72,23 @@ h4 {
 
 h1 {
   font-size: var(--font-size-h1);
-  line-height:1;
+  line-height: 1;
 }
 h2 {
   font-size: var(--font-size-h2);
-    line-height:1;
+  line-height: 1;
 }
 h3 {
   font-size: var(--font-size-h3);
-  line-height:1.2;
+  line-height: 1.2;
 }
 h4 {
   font-size: var(--font-size-h4);
-    line-height:1.2;
+  line-height: 1.2;
+}
+
+.highlighttext {
+  font-size: var(--font-size-highlighttext);
 }
 
 .display {
@@ -105,7 +110,7 @@ body {
   color: var(--moerkblaa-900);
 }
 
-section{
+section {
   padding-inline: var(--content-width);
 }
 
@@ -132,15 +137,15 @@ section{
   color: var(--moerkblaa-600);
 }
 
-.bellevueblaa-100{
+.bellevueblaa-100 {
   color: var(--bellevueblaa-100);
 }
 
-.padding-top{
+.padding-top {
   padding-top: 40px;
 }
 
-.thin{
+.thin {
   font-weight: 100;
 }
 
