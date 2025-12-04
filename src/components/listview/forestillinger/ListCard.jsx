@@ -56,7 +56,7 @@ export default function ListCard({ item }) {
             </div>
           </div>
            </div>
-           <div className="absolute top-10 left-2.5 w-98 min-h-[455px] border-l-5 border-b-10 border-(--koboltblaa-900) rounded-3xl -z-10
+           <div className="absolute top-0 left-2.5 w-[80%] h-full border-l-5 border-b-10 border-(--koboltblaa-900) rounded-3xl -z-10
           bg-[linear-gradient(to_left,var(--hvid)_95%,var(--koboltblaa-900)_5%,var(--koboltblaa-900)_100%)] drop-shadow-2xl"></div>
         </li>
   );

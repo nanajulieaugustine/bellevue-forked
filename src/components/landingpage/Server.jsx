@@ -1,6 +1,5 @@
-import ListCard from "../listview/forestillinger/ListCard";
 import { createClient } from "@supabase/supabase-js";
-
+import SlidingForestillinger from "./SlidingForestillinger";
 // Supabase client (fungerer som server)
 const supabase = createClient(
   "https://rzwaokiepaobrlrpphia.supabase.co",
@@ -11,20 +10,14 @@ const supabase = createClient(
 
 export default async function Server() {
   // Hent data fra Supabase med navn på tabel
-  const { data, error } = await supabase.from("bellevue_items").select("*");
-
-  // Error besked hvis fejl i fetch
-  if (error) {
-    console.error("Supabase error:", error);
-    return <p>Der skete en fejl med at hente data.</p>;
-  }
+  const { data } = await supabase.from("bellevue_items").select("*");
 
   console.log("Fetched data:", data);
 
   // Returnerer data ellers tomt array
   return (
-    <div>
-      <ListCard item={data || []} />
-    </div>
+    <section>
+              <SlidingForestillinger key={data.id} data={data}/>
+        </section>
   );
 }
