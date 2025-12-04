@@ -40,7 +40,7 @@ export default function ListCard({ item }) {
             <div className="flex justify-between">
               <h4 className="font-bold">{item.name}</h4>
             </div>
-            <p className="font-extralight pt-2 text-2xl">{item.date}</p>
+            <p className="font-extralight pt-2 text-md">{item.date}</p>
             <p className=" font-light">{item.description}</p>
           </div>
 
