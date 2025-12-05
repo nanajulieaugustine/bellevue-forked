@@ -1,4 +1,4 @@
-const KontaktHero = () => (
+const Nyhedsbrev = () => (
     <div className="">
       <div className="text-center m-30">
         <h1 className="text-2xl pb-7">Ledige Stillinger</h1>
@@ -32,5 +32,5 @@ const KontaktHero = () => (
     </div>
   );
   
-  export default KontaktHero;
+  export default Nyhedsbrev;
   
