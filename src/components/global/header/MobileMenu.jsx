@@ -23,7 +23,7 @@ const MobileMenu = ({ isVisible, closeMenu }) => {
         >
           <ul className="p-10 overflow-y-auto grid gap-8">
             {links.map((link) => (
-              <li  className="text-(--hvid)" key={link.href}>
+              <li className="text-(--hvid)" key={link.href}>
                 <Link href={link.href} onClick={closeMenu}>
                   {link.text}
                 </Link>

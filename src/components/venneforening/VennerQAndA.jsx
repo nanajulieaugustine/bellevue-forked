@@ -30,34 +30,36 @@ const QACard = () => {
     },
     {
       id: 3,
-      question: "Hvad gør vi, hvis vi er flere medlemmer, der gerne vil sidde ved siden af hinanden?",
+      question:
+        "Hvad gør vi, hvis vi er flere medlemmer, der gerne vil sidde ved siden af hinanden?",
       answer:
         "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
     },
     {
-    id: 4,
+      id: 4,
       question: "Kan der resikeres at være udsolgt, til et event?",
       answer:
         "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
     },
     {
-    id: 5,
-    question: "Hvad gør jeg, hvis jeg køber flere billetter?",
-    answer:
-    "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
-        },
+      id: 5,
+      question: "Hvad gør jeg, hvis jeg køber flere billetter?",
+      answer:
+        "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
+    },
     {
-    id: 6,
-    question: "Hvad hvis jeg har brug for handicapplads?",
-    answer:
-     "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
-        },     
-        {
-    id: 7,
-    question: "Hvad gør jeg, hvis jeg ikke modtager den første mail efter jeg har indmeldt mig?",
-    answer:
-    "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
-    },  
+      id: 6,
+      question: "Hvad hvis jeg har brug for handicapplads?",
+      answer:
+        "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
+    },
+    {
+      id: 7,
+      question:
+        "Hvad gør jeg, hvis jeg ikke modtager den første mail efter jeg har indmeldt mig?",
+      answer:
+        "Ja, der er gratis parkering ved teatret. Vi anbefaler dog at komme i god tid ved store forestillinger.",
+    },
   ];
 
   return (

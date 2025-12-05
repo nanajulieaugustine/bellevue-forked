@@ -45,7 +45,6 @@ export default function ListFilter({ items }) {
     (item) => item.latestDate.getTime() < now.getTime()
   );
 
-
   let visibleItems = activeTab === "current" ? upcoming : archive;
 
   // Filtrering på tags
@@ -69,7 +68,9 @@ export default function ListFilter({ items }) {
           <h1
             ref={currentRef}
             className={`${
-              activeTab === "current" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"
+              activeTab === "current"
+                ? "text-(--moerkeblaa-900)"
+                : "bellevueblaa-100"
             }`}
           >
             FORESTILLINGER
@@ -80,7 +81,9 @@ export default function ListFilter({ items }) {
           <h1
             ref={archiveRef}
             className={`${
-              activeTab === "archive" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"
+              activeTab === "archive"
+                ? "text-(--moerkeblaa-900)"
+                : "bellevueblaa-100"
             }`}
           >
             ARKIV
@@ -109,19 +112,16 @@ export default function ListFilter({ items }) {
         </div>
       )}
 
-<ul className="flex flex-wrap gap-3 mt-4">
-  {visibleItems.map((item) => (
-    <div
-      key={item.id}
-      className="basis-[calc(33.333%-0.5rem)]" // tilpas gap
-    >
-      <ListCard item={item} />
-    </div>
-  ))}
-</ul>
-
-
-
+      <ul className="flex flex-wrap gap-3 mt-4">
+        {visibleItems.map((item) => (
+          <div
+            key={item.id}
+            className="basis-[calc(33.333%-0.5rem)]" // tilpas gap
+          >
+            <ListCard item={item} />
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }

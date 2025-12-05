@@ -16,7 +16,7 @@ const ResponsiveKarrusel = ({ children, interval = 5000 }) => {
   const [current, setCurrent] = useState(0);
   const [slides, setSlides] = useState([]);
   const [cardsPerSlide, setCardsPerSlide] = useState(3);
-   const timerRef = useRef(null);
+  const timerRef = useRef(null);
 
   // Responsive kort pr. slide
   useEffect(() => {
@@ -77,36 +77,34 @@ const ResponsiveKarrusel = ({ children, interval = 5000 }) => {
   return (
     <div className="relative w-full overflow-hidden">
       <div
-  className="relative w-full overflow-hidden"
-  onMouseEnter={stopAutoSlide}
-  onMouseLeave={startAutoSlide}
->
-  <div
-  className="flex transition-transform duration-500"
-  style={{
-    transform: `translateX(-${current * (100 / slides.length)}%)`,
-    width: `${slides.length * 100}%`,
-  }}
->
-  {slides.map((group, i) => (
-    <div
-      key={i}
-      className="flex gap-3 justify-center pl-20 pb-20 pr-20 shrink-0"
-      style={{ width: `${100 / slides.length}%` }}
-    >
-      {group.map((child, idx) => (
-        <div key={idx} className="flex-1 min-w-0">
-          {child}
+        className="relative w-full overflow-hidden"
+        onMouseEnter={stopAutoSlide}
+        onMouseLeave={startAutoSlide}
+      >
+        <div
+          className="flex transition-transform duration-500"
+          style={{
+            transform: `translateX(-${current * (100 / slides.length)}%)`,
+            width: `${slides.length * 100}%`,
+          }}
+        >
+          {slides.map((group, i) => (
+            <div
+              key={i}
+              className="flex gap-3 justify-center pl-20 pb-20 pr-20 shrink-0"
+              style={{ width: `${100 / slides.length}%` }}
+            >
+              {group.map((child, idx) => (
+                <div key={idx} className="flex-1 min-w-0">
+                  {child}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-  ))}
-</div>
+      </div>
 
-</div>
-
-
-        {/* knapper */}
+      {/* knapper */}
       <button
         className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl font-bold p-10"
         onClick={goToPrev}
@@ -121,7 +119,7 @@ const ResponsiveKarrusel = ({ children, interval = 5000 }) => {
         <ArrowRight className="text-(--roed-600)" size={40} />
       </button>
 
-       {/* prikker */}
+      {/* prikker */}
       <div className="absolute bottom-5 left-0 right-0 flex justify-center gap-3">
         {slides.map((_, index) => (
           <div

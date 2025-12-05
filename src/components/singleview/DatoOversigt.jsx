@@ -9,14 +9,17 @@ import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { format } from "date-fns";
 
 const DatoOversigt = ({ item }) => {
-const [selected, setSelected] = useState()
+  const [selected, setSelected] = useState();
   // --- kun fremtidige datoer ---
   const allowedDates = useMemo(
     () => parseDates(item?.fullDates || [], { onlyFuture: true }),
     [item]
   );
 
-  const allowedSet = useMemo(() => new Set(allowedDates.map((d) => d.getTime())), [allowedDates]);
+  const allowedSet = useMemo(
+    () => new Set(allowedDates.map((d) => d.getTime())),
+    [allowedDates]
+  );
 
   // map dato -> tidspunkter
   const timesByDate = useMemo(() => {
@@ -32,7 +35,8 @@ const [selected, setSelected] = useState()
 
       if (Array.isArray(raw)) {
         raw.forEach((r) => {
-          if (typeof r === "string") slots.push(...r.split(",").map((s) => s.trim()));
+          if (typeof r === "string")
+            slots.push(...r.split(",").map((s) => s.trim()));
         });
       } else if (typeof raw === "string") {
         slots.push(...raw.split(",").map((s) => s.trim()));
@@ -41,7 +45,10 @@ const [selected, setSelected] = useState()
       slots = Array.from(new Set(slots.filter(Boolean)));
       if (slots.length === 0) return;
 
-      map.set(key, map.has(key) ? Array.from(new Set([...map.get(key), ...slots])) : slots);
+      map.set(
+        key,
+        map.has(key) ? Array.from(new Set([...map.get(key), ...slots])) : slots
+      );
     });
 
     return map;
@@ -57,8 +64,12 @@ const [selected, setSelected] = useState()
   // måneder med available dates
   const availableMonths = useMemo(() => {
     const set = new Set();
-    allowedDates.forEach((d) => set.add(new Date(d.getFullYear(), d.getMonth(), 1).getTime()));
-    return Array.from(set).map((t) => new Date(t)).sort((a, b) => a.getTime() - b.getTime());
+    allowedDates.forEach((d) =>
+      set.add(new Date(d.getFullYear(), d.getMonth(), 1).getTime())
+    );
+    return Array.from(set)
+      .map((t) => new Date(t))
+      .sort((a, b) => a.getTime() - b.getTime());
   }, [allowedDates]);
 
   const [visibleMonth, setVisibleMonth] = useState(
@@ -72,22 +83,24 @@ const [selected, setSelected] = useState()
     }
   }, [availableMonths]);
 
-  const findIndex = (date) => availableMonths.findIndex((m) => m.getTime() === date?.getTime());
+  const findIndex = (date) =>
+    availableMonths.findIndex((m) => m.getTime() === date?.getTime());
   const getPrevMonth = (date) => {
     const i = findIndex(date);
     return i > 0 ? availableMonths[i - 1] : null;
   };
   const getNextMonth = (date) => {
     const i = findIndex(date);
-    return i >= 0 && i < availableMonths.length - 1 ? availableMonths[i + 1] : null;
+    return i >= 0 && i < availableMonths.length - 1
+      ? availableMonths[i + 1]
+      : null;
   };
 
   // vælger automatisk første ledige dato
-useEffect(() => {
-  if (allowedDates.length === 0) return;
-  setSelected(allowedDates[0]);
-}, [allowedDates]);
-
+  useEffect(() => {
+    if (allowedDates.length === 0) return;
+    setSelected(allowedDates[0]);
+  }, [allowedDates]);
 
   const CustomNavbar = ({ className, style }) => {
     const prev = getPrevMonth(visibleMonth);
@@ -106,7 +119,9 @@ useEffect(() => {
         </button>
 
         <div className="rdp-caption_label">
-          {visibleMonth ? format(visibleMonth, "LLLL yyyy", { locale: da }) : ""}
+          {visibleMonth
+            ? format(visibleMonth, "LLLL yyyy", { locale: da })
+            : ""}
         </div>
 
         <button
@@ -129,14 +144,24 @@ useEffect(() => {
         selected={selected}
         onSelect={handleSelect}
         locale={da}
-        disabled={(date) => !date || !allowedSet.has(new Date(date).setHours(0, 0, 0, 0))}
+        disabled={(date) =>
+          !date || !allowedSet.has(new Date(date).setHours(0, 0, 0, 0))
+        }
         month={visibleMonth}
         onMonthChange={(m) => {
-          const same = availableMonths.find((am) => am.getTime() === m.getTime());
-          setVisibleMonth(same || availableMonths.find((am) => am.getTime() >= m.getTime()) || availableMonths[availableMonths.length - 1]);
+          const same = availableMonths.find(
+            (am) => am.getTime() === m.getTime()
+          );
+          setVisibleMonth(
+            same ||
+              availableMonths.find((am) => am.getTime() >= m.getTime()) ||
+              availableMonths[availableMonths.length - 1]
+          );
         }}
         modifiers={{ available: allowedDates }}
-        modifiersStyles={{ available: { color: "#1c82c2", borderRadius: "100%" } }}
+        modifiersStyles={{
+          available: { color: "#1c82c2", borderRadius: "100%" },
+        }}
         styles={{
           day_selected: { backgroundColor: "#1c82c2", borderRadius: "9999px" },
           day_selected_hover: { backgroundColor: "#166699" },
@@ -152,7 +177,9 @@ useEffect(() => {
             <ul className="flex flex-col gap-10">
               {(timesByDate.get(selected.getTime()) || []).map((time) => (
                 <li key={time}>
-                  <AnchorTagPrimaryButton href={"/"}>{time}</AnchorTagPrimaryButton>
+                  <AnchorTagPrimaryButton href={"/"}>
+                    {time}
+                  </AnchorTagPrimaryButton>
                 </li>
               ))}
             </ul>

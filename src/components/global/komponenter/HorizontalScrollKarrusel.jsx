@@ -68,7 +68,6 @@ const HorizontalScrollKarruselMedPile = ({ children }) => {
 
   return (
     <div className="relative w-screen h-screen">
-
       {/* Scroll-container */}
       <div
         className="w-full h-full overflow-x-scroll overflow-y-hidden"

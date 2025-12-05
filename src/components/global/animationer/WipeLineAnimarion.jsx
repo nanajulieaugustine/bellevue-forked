@@ -19,7 +19,8 @@ const WipeLineAnimation = ({ activeTab, tabWidths }) => {
         initial={false}
         animate={{
           left: leftPositions[activeTab],
-          width: activeTab === "current" ? tabWidths.current : tabWidths.archive,
+          width:
+            activeTab === "current" ? tabWidths.current : tabWidths.archive,
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       />

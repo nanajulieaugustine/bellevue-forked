@@ -9,7 +9,7 @@ const SnapContainer = ({ item }) => {
 
   // baggrundsparallax
   const { scrollYProgress: pageScroll } = useScroll();
-  const y = useTransform(pageScroll, [0, 1], [0, 1000]); 
+  const y = useTransform(pageScroll, [0, 1], [0, 1000]);
 
   // 2️ Container scroll til overlay
   const { scrollYProgress: containerScroll } = useScroll({
@@ -42,10 +42,9 @@ const SnapContainer = ({ item }) => {
 
       {/* forgrund med container-scroll */}
       <div
-    ref={containerRef}
-    className="relative z-20 h-full w-full overflow-y-auto snap-y snap-mandatory text-(--hvid)"
-    >
-
+        ref={containerRef}
+        className="relative z-20 h-full w-full overflow-y-auto snap-y snap-mandatory text-(--hvid)"
+      >
         {/* uden anmeldelse */}
         <div className="h-[90vh] w-full flex items-center justify-center snap-start" />
 

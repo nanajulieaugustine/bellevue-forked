@@ -1,7 +1,6 @@
 import DropDown from "@/components/global/komponenter/DropDown";
 
 export default function Filters({ onFilterChange, categories = [] }) {
-
   const dates = [];
 
   const children = ["Familieforestilling", "For børn"];
@@ -16,7 +15,7 @@ export default function Filters({ onFilterChange, categories = [] }) {
 
       <DropDown
         label="Kategori"
-        items={categories}   
+        items={categories}
         onSelect={(value) => onFilterChange("category", value)}
       />
 

@@ -43,21 +43,24 @@ const Karrusel = ({ children, interval = 10000 }) => {
 
   return (
     <div className="relative w-full h-full overflow-hidden">
-
       {/* Slides */}
       {slides.map((slide, index) => (
-      <div
-        key={index}
-        className={`
+        <div
+          key={index}
+          className={`
           absolute w-full h-full transition-opacity duration-700
           flex justify-center items-center
-          ${index === current ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+          ${
+            index === current
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }
         `}
-        onMouseEnter={stopAutoSlide}
-        onMouseLeave={startAutoSlide}
-      >
-        {slide}
-      </div>
+          onMouseEnter={stopAutoSlide}
+          onMouseLeave={startAutoSlide}
+        >
+          {slide}
+        </div>
       ))}
 
       {/* knapper */}

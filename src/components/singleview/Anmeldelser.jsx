@@ -5,7 +5,11 @@ const Anmeldelser = ({ review }) => {
   const antalStjerner = Number(review.stjerner); // API giver "5" som string
 
   return (
-    <Link href={review.link} target="_blank" className="text-center p-10 max-w-150">
+    <Link
+      href={review.link}
+      target="_blank"
+      className="text-center p-10 max-w-150"
+    >
       <blockquote className="text-xl font-black italic p-10">
         "{review.tekst}"
       </blockquote>

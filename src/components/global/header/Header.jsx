@@ -11,11 +11,11 @@ import { IoIosMenu, IoMdClose } from "react-icons/io";
 const Header = () => {
   //til burgermenu
 
-    const [showSideMenu, setShowSideMenu] = useState(false);
+  const [showSideMenu, setShowSideMenu] = useState(false);
 
   const toggleSideMenu = () => setShowSideMenu((prev) => !prev);
 
-    const closeSideMenu = () => {
+  const closeSideMenu = () => {
     if (showSideMenu) {
       toggleSideMenu();
     }
@@ -37,7 +37,7 @@ const Header = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-     let lastY = window.scrollY; //definerer brugerens scrolling ad y-aksen
+    let lastY = window.scrollY; //definerer brugerens scrolling ad y-aksen
     let ticking = false;
 
     const onScroll = () => {
@@ -67,8 +67,8 @@ const Header = () => {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [inView]); 
-// Styling af nav, der definerer om den er fixed eller absolute
+  }, [inView]);
+  // Styling af nav, der definerer om den er fixed eller absolute
   const baseNavClasses =
     "px-(--content-width) w-full z-110 backdrop-blur-xs bg-(--moerkblaa-600) transition-transform duration-200 ease-out shadow-md";
   const navPositionClass = inView
@@ -106,7 +106,7 @@ const Header = () => {
                 <Link
                   href="/forestillinger"
                   onClick={() =>
-                    setIsActive(prev =>
+                    setIsActive((prev) =>
                       prev === "/forestillinger" ? null : "/forestillinger"
                     )
                   }
@@ -120,7 +120,8 @@ const Header = () => {
                   Forestillinger
                   {/* papthname definerer den gule cirkel, dukker op når brugeren er på siden */}
                   <AnimatePresence>
-                    {(hovered === "/forestillinger" || active === "/forestillinger") && (
+                    {(hovered === "/forestillinger" ||
+                      active === "/forestillinger") && (
                       <motion.div
                         key="/arrangementer"
                         initial={{ scale: 0 }}
@@ -138,7 +139,9 @@ const Header = () => {
                 <Link
                   href="/kalender"
                   onClick={() =>
-                    setIsActive(prev => (prev === "/kalender" ? null : "/kalender"))
+                    setIsActive((prev) =>
+                      prev === "/kalender" ? null : "/kalender"
+                    )
                   }
                   onMouseEnter={() => setHovered("/kalender")}
                   onMouseLeave={() => setHovered(null)}
@@ -166,7 +169,7 @@ const Header = () => {
                 <Link
                   href="/om-bellevue"
                   onClick={() =>
-                    setIsActive(prev =>
+                    setIsActive((prev) =>
                       prev === "/om-bellevue" ? null : "/om-bellevue"
                     )
                   }
@@ -178,7 +181,8 @@ const Header = () => {
                 >
                   Om Teatret
                   <AnimatePresence>
-                    {(hovered === "/om-bellevue" || active === "/om-bellevue") && (
+                    {(hovered === "/om-bellevue" ||
+                      active === "/om-bellevue") && (
                       <motion.div
                         key="/om-bellevue"
                         initial={{ scale: 0 }}
@@ -196,7 +200,7 @@ const Header = () => {
                 <Link
                   href="/praktisk-info"
                   onClick={() =>
-                    setIsActive(prev =>
+                    setIsActive((prev) =>
                       prev === "/praktisk-info" ? null : "/praktisk-info"
                     )
                   }
@@ -208,7 +212,8 @@ const Header = () => {
                 >
                   Praktisk Info
                   <AnimatePresence>
-                    {(hovered === "/praktisk-info" || active === "/praktisk-info") && (
+                    {(hovered === "/praktisk-info" ||
+                      active === "/praktisk-info") && (
                       <motion.div
                         key="/praktisk-info"
                         initial={{ scale: 0 }}
@@ -226,7 +231,7 @@ const Header = () => {
                 <Link
                   href="/kontakt"
                   onClick={() =>
-                    setIsActive(prev =>
+                    setIsActive((prev) =>
                       prev === "/kontakt" ? null : "/kontakt"
                     )
                   }
@@ -256,7 +261,7 @@ const Header = () => {
                 <Link
                   href="/venneforening"
                   onClick={() =>
-                    setIsActive(prev =>
+                    setIsActive((prev) =>
                       prev === "/venneforening" ? null : "/venneforening"
                     )
                   }
@@ -268,7 +273,8 @@ const Header = () => {
                 >
                   Venneforening
                   <AnimatePresence>
-                    {(hovered === "/venneforening" || active === "/venneforening") && (
+                    {(hovered === "/venneforening" ||
+                      active === "/venneforening") && (
                       <motion.div
                         key="/venneforening"
                         initial={{ scale: 0, opacity: 0 }}
@@ -284,21 +290,18 @@ const Header = () => {
             </ul>
           </li>
         </ul>
-         <button
+        <button
           aria-label="gå til menu"
           className="block md:hidden sticky py-10 cursor-pointer hover:scale-105 transition-all z-100 duration-300 text-(--hvid)"
           onClick={toggleSideMenu}
         >
-          {showSideMenu ? (
-            <IoMdClose size={40} />
-          ) : (
-            <IoIosMenu size={40} />
-          )}
+          {showSideMenu ? <IoMdClose size={40} /> : <IoIosMenu size={40} />}
         </button>
 
         {/* Mobilmenu — vises kun når showSideMenu er true */}
-        {showSideMenu && <MobileMenu isVisible={showSideMenu} closeMenu={closeSideMenu} />}
-
+        {showSideMenu && (
+          <MobileMenu isVisible={showSideMenu} closeMenu={closeSideMenu} />
+        )}
       </motion.nav>
     </>
   );

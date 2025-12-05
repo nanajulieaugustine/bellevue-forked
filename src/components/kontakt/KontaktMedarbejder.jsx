@@ -25,7 +25,9 @@ export default function KontaktMedarbejder({ employees = [] }) {
 
           <div className="pl-3">
             <h4 className=" font-bold pt-2">{employee.name}</h4>
-            <p className="text-(--moerkblaa-900)font-light pt-2">Stilling: {employee.job}</p>
+            <p className="text-(--moerkblaa-900)font-light pt-2">
+              Stilling: {employee.job}
+            </p>
           </div>
         </li>
       ))}

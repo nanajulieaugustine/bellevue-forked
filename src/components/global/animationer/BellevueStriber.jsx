@@ -30,8 +30,8 @@ const BellevueStriber = ({ children }) => {
           key={i}
           className="w-10 h-full bg-(--bellevueblaa-100) absolute top-0 -z-100"
           style={{ left: `${i * 5.5}rem` }}
-          initial={{ y: -300, opacity: 0 }} 
-          animate={isInView ? { y: 0, opacity: 1 } : undefined} 
+          initial={{ y: -300, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : undefined}
           transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
         />
       ))}

@@ -17,7 +17,7 @@ export default async function Server() {
   // Returnerer data ellers tomt array
   return (
     <section>
-              <SlidingForestillinger key={data.id} data={data}/>
-        </section>
+      <SlidingForestillinger key={data.id} data={data} />
+    </section>
   );
 }

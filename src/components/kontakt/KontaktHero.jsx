@@ -1,6 +1,5 @@
 const KontaktHero = () => (
   <div>
-
     {/* HERO SEKTION */}
     <div className="max-h-[600px] px-4 sm:px-10 md:px-20 overflow-hidden">
       <div className="flex flex-col max-w-[600px] pt-20 sm:pt-32 md:pt-40">
@@ -9,10 +8,13 @@ const KontaktHero = () => (
         </h1>
 
         <p className="font-light pt-20">
-        Hos Bellevue Teatret vil vi gerne gøre det nemt for dig at komme i kontakt med os. 
-        Uanset om du har spørgsmål til billetter, arrangementer, praktiske forhold eller blot 
-        er nysgerrig på livet bag kulissen, står vi klar til at hjælpe.  Her finder du både 
-        telefonnumre, mailadresser, vores medarbejdere og information om eventuelle ledige stillinger.</p>
+          Hos Bellevue Teatret vil vi gerne gøre det nemt for dig at komme i
+          kontakt med os. Uanset om du har spørgsmål til billetter,
+          arrangementer, praktiske forhold eller blot er nysgerrig på livet bag
+          kulissen, står vi klar til at hjælpe. Her finder du både telefonnumre,
+          mailadresser, vores medarbejdere og information om eventuelle ledige
+          stillinger.
+        </p>
 
         <p className="font-bold pt-5">
           Tøv endelig ikke med at række ud – vi glæder os til at høre fra dig.
@@ -25,9 +27,9 @@ const KontaktHero = () => (
       <div>
         <p className="text-xl sm:text-2xl font-bold">Administration</p>
         <div className="font-light">
-        <p>39 63 49 00</p>
-        <p>(hverdage 10 - 14)</p>
-        <p>adm@bellevueteatret.dk</p>
+          <p>39 63 49 00</p>
+          <p>(hverdage 10 - 14)</p>
+          <p>adm@bellevueteatret.dk</p>
         </div>
       </div>
 
@@ -41,11 +43,10 @@ const KontaktHero = () => (
       <div>
         <p className="text-xl sm:text-2xl font-bold">Forhus</p>
         <div className="font-light">
-        <p>Forhus@bellevueteatret.dk</p>
+          <p>Forhus@bellevueteatret.dk</p>
         </div>
       </div>
     </div>
-
   </div>
 );
 

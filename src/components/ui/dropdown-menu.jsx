@@ -1,13 +1,17 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
+import * as React from "react";
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
-export const DropdownMenu = DropdownMenuPrimitive.Root
+export const DropdownMenu = DropdownMenuPrimitive.Root;
 
-export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
 
-export function DropdownMenuContent({ className = "", sideOffset = 4, ...props }) {
+export function DropdownMenuContent({
+  className = "",
+  sideOffset = 4,
+  ...props
+}) {
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
@@ -16,7 +20,7 @@ export function DropdownMenuContent({ className = "", sideOffset = 4, ...props }
         {...props}
       />
     </DropdownMenuPrimitive.Portal>
-  )
+  );
 }
 
 export function DropdownMenuLabel({ className = "", ...props }) {
@@ -25,7 +29,7 @@ export function DropdownMenuLabel({ className = "", ...props }) {
       className={`text-sm font-semibold px-[var(--space-xs)] py-[var(--space-2xs)] ${className}`}
       {...props}
     />
-  )
+  );
 }
 
 export function DropdownMenuSeparator({ className = "", ...props }) {
@@ -34,7 +38,7 @@ export function DropdownMenuSeparator({ className = "", ...props }) {
       className={`my-[var(--space-xs)] h-px bg-gray-300 ${className}`}
       {...props}
     />
-  )
+  );
 }
 
 export function DropdownMenuItem({ className = "", ...props }) {
@@ -43,5 +47,5 @@ export function DropdownMenuItem({ className = "", ...props }) {
       className={`cursor-pointer px-[var(--space-xs)] py-[var(--space-2xs)] hover:bg-gray-100 rounded text-sm ${className}`}
       {...props}
     />
-  )
+  );
 }
