@@ -56,7 +56,7 @@ export default function ListCard({ item }) {
                   className="
                     relative flex items-center gap-2 
                     before:content-[''] before:absolute before:left-0 before:right-0 
-                    before:-bottom-0.5 before:h-[2px] 
+                    before:-bottom-0.5 before:h-0.5
                     before:bg-current
                   "
                 >
