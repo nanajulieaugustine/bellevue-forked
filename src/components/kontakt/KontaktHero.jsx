@@ -21,23 +21,28 @@ const KontaktHero = () => (
     </div>
 
     {/* GUL KONTAKT-INFO SEKTION (udenfor max-height!) */}
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-10 pt-10 pb-10 bg-(--gul-600) px-4 sm:px-10 md:px-20">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-10 pt-10 pb-10 bg-(--gul-600) px-4 sm:px-10 md:px-20 text-center">
       <div>
         <p className="text-xl sm:text-2xl font-bold">Administration</p>
+        <div className="font-light">
         <p>39 63 49 00</p>
         <p>(hverdage 10 - 14)</p>
         <p>adm@bellevueteatret.dk</p>
+        </div>
       </div>
 
       <div>
         <p className="text-xl sm:text-2xl font-bold">Billetkontor</p>
+        <div className="font-light"></div>
         <p>Ticketmaster: 38 48 16 30</p>
         <p>(hverdage 10 - 16.30)</p>
       </div>
 
       <div>
         <p className="text-xl sm:text-2xl font-bold">Forhus</p>
+        <div className="font-light">
         <p>Forhus@bellevueteatret.dk</p>
+        </div>
       </div>
     </div>
 
