@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
+import AnchorTagSecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButton";
 
 export default function ListCard({ item }) {
   return (
@@ -42,28 +43,15 @@ export default function ListCard({ item }) {
         </div>
 
         {/* Knapper - altid i bunden */}
-        <div className="p-3 pt-0 pb-10 text-center mt-auto">
-          <div className="flex justify-center gap-10 w-full pt-10">
-            <div className="border-2 border-(--koboltblaa-600) rounded-2xl py-3 px-6 bg-(--bellevueblaa-100)">
+        <div className="p-3 pt-0 pb-10 items-center justify-center mt-auto">
+          <div className="flex justify-center gap-5 w-full pt-10">
+            <div>
               <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
-                <h4>Køb billet</h4>
+                Køb billet
               </AnchorTagPrimaryButton>
             </div>
-            <div className="py-3 px-6">
-              <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
-                <span
-                  className="
-                    relative flex items-center gap-2 
-                    before:content-[''] before:absolute before:left-0 before:right-0 
-                    before:-bottom-0.5 before:h-0.5
-                    before:bg-current
-                  "
-                >
-                  <h4>
-                    Læs mere <span>→</span>
-                  </h4>
-                </span>
-              </AnchorTagPrimaryButton>
+            <div>
+              <AnchorTagSecondaryButton href={`/forestillinger/${item.id}`}/>
             </div>
           </div>
         </div>
