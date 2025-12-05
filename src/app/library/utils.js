@@ -1,6 +1,8 @@
 import { parse } from "date-fns";
 import { da } from "date-fns/locale";
 
+//Udregning af datoer i fortiden
+
 export function parseDates(input, options = {}) {
   const { addLatestDate = false, onlyFuture = false } = options;
   const now = new Date(); // behold hele timestampet
@@ -55,4 +57,12 @@ export function parseDates(input, options = {}) {
   }
 
   return [];
+}
+
+//filtrering af kategorier
+export function extractCategories(data) {
+  if (!Array.isArray(data)) return [];
+
+  const allTags = data.flatMap((item) => item.tags || []);
+  return [...new Set(allTags)];
 }

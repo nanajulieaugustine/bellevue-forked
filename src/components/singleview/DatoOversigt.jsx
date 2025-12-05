@@ -3,7 +3,7 @@ import { useState, useMemo, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { da } from "date-fns/locale";
-import { parseDates } from "@/app/utils";
+import { parseDates } from "@/app/library/utils";
 import AnchorTagPrimaryButton from "../global/knapper/AnchorTagPrimaryButton";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { format } from "date-fns";

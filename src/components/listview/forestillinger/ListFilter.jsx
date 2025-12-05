@@ -1,9 +1,10 @@
 "use client";
 import { useMemo, useState, useRef, useEffect } from "react";
-import { parseDates } from "@/app/utils.js";
+import { parseDates } from "@/app/library/utils.js";
 import ListCard from "./ListCard";
 import ListCardDropDown from "./ListCardDropDown";
 import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
+import { extractCategories } from "@/app/library/utils.js";
 
 export default function ListFilter({ items }) {
   const [activeTab, setActiveTab] = useState("current");
@@ -29,11 +30,11 @@ export default function ListFilter({ items }) {
     [items]
   );
 
-  // Uddrag dynamiske kategorier
-  const dynamicCategories = useMemo(() => {
-    const allTags = items.flatMap((item) => item.tags || []);
-    return [...new Set(allTags)];
-  }, [items]);
+  // Uddrag dynamiske kategorier fra utils
+  const dynamicCategories = useMemo(
+  () => extractCategories(items),
+  [items]
+);
 
   // Upcoming (dato + tidspunkt i fremtiden)
   const upcoming = itemsWithLatestDate.filter(

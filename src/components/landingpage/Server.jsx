@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import SlidingForestillinger from "./SlidingForestillinger";
+import FlipCategories from "./FlipCategories";
 // Supabase client (fungerer som server)
 const supabase = createClient(
   "https://rzwaokiepaobrlrpphia.supabase.co",
@@ -16,6 +17,11 @@ export default async function Server() {
 
   // Returnerer data ellers tomt array
   return (
+    <>
       <SlidingForestillinger key={data.id} data={data} />
+      <div className="relative">
+      <FlipCategories key={data.id} data={data} />
+      </div>
+    </>
   );
 }

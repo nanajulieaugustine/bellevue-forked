@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import ListCard from "../listview/forestillinger/ListCard";
-import { parseDates } from "@/app/utils";
+import { parseDates } from "@/app/library/utils";
 import { useMemo } from "react";
 import ResponsiveKarrusel from "../global/komponenter/ResponsiveKarrusel";
 
