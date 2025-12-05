@@ -1,8 +1,10 @@
-
+import BellevueStriber from "@/components/global/animationer/BellevueStriber";
 
 const HeroVenner = () => (
   <div>
-   <div className="grid grid-cols-2 bg-(--bellevueblaa-300) pt-50 pb-20">
+   <div className=" max-h-[900px] overflow-hidden px-4 sm:px-10 md:px-20" >
+   <BellevueStriber>
+   <div className=" pt-50 pb-20">
     <div>
         <h1>VENNE LOGO</h1>
     </div>
@@ -25,6 +27,8 @@ const HeroVenner = () => (
         <p className="pt-10 italic">-Erik Hamre</p>
         <p className="italic">Formand, Bellevue Teatrets Venner</p>
     </div>
+    </div>
+    </BellevueStriber>
    </div>
   </div>
 );

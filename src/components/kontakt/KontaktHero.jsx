@@ -1,4 +1,3 @@
-import BellevueStriber from "@/components/global/animationer/BellevueStriber";
 
 const KontaktHero = () => (
   <div>
