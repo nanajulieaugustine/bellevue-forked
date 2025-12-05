@@ -15,7 +15,6 @@ export default function ListCard({ item }) {
         "
       >
         <p className="font-extralight text-right text-sm uppercase text-(--koboltblaa-600)">
-          {" "}
           {item.tags}
         </p>
         {/* Billede */}
