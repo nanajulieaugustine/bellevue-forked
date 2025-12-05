@@ -27,13 +27,13 @@ const SlidingForestillinger = ({ data }) => {
 
   return (
     <>
-                <div className="pl-25">
-      <h2>Aktuelle forestillinger</h2>
-      <a href="/forestillinger">
-      <h4 className="underline thin">
-      Se alle forestillinger
-      </h4>
-      </a>
+       <div className="pl-25">
+        <h2>Aktuelle forestillinger</h2>
+        <a href="/forestillinger">
+        <h4 className="underline thin">
+        Se alle forestillinger
+        </h4>
+        </a>
       </div>
   <ResponsiveKarrusel>
   {upcoming.map((item) => (
