@@ -6,11 +6,10 @@ const OmHero = () => {
     <div className="flex flex-col items-center text-center gap-8">
       <h1>OM BELLEVUE TEATRET</h1>
       <Image
-        src="/images/ombellevue1.webp"
+        src="/images/ombellevuehero.webp"
         alt=""
         width={2000}
         height={1200}
-        className="rounded-xl"
       />
       <p className="max-w-3xl">
         Bellevue Teatret er et hovedværk blandt Arne Jacobsens tidlige arbejde

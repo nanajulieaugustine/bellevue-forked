@@ -1,6 +1,4 @@
-import Parking from "../global/ikoner/Parking";
-import Chair from "../global/ikoner/Chair";
-import Catering from "../global/ikoner/Catering";
+import Image from "next/image";
 
 const LejTeatret = () => {
   return (
@@ -13,19 +11,19 @@ const LejTeatret = () => {
         {/* IKONER + GULE TEKSTBOKSE */}
         <div className="flex justify-between">
           <div>
-            <Parking size={90} />
+            <Image src="/svg/parking.svg" alt="" width={100} height={100} />
             <p className="highlighttext bg-(--gul-600) p-6 rounded-2xl">
               Gratis, ubegrænset parkering
             </p>
           </div>
           <div>
-            <Chair size={90} />
+            <Image src="/svg/chair.svg" alt="" width={100} height={100} />
             <p className="highlighttext bg-(--gul-600) p-6 rounded-2xl">
               742 siddepladser
             </p>
           </div>
           <div>
-            <Catering size={90} />
+            <Image src="/svg/catering.svg" alt="" width={100} height={100} />
             <p className="highlighttext bg-(--gul-600) p-6 rounded-2xl">
               Catering, teknik og underholdning
             </p>
