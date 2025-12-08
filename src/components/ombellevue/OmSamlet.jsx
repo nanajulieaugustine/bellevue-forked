@@ -7,7 +7,7 @@ import LejTeatret from "./LejTeatret";
 const OmSamlet = () => {
   return (
     // ========================= WRAPPER FOR ALLE COMPONENTS ==========================
-    <div className="flex flex-col gap-30">
+    <div className="flex flex-col gap-30 py-40">
       <Intro />
       <RundvisningInfo />
       <BilledeSektion />
