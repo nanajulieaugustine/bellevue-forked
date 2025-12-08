@@ -18,9 +18,6 @@ const Nyhedsbrev = () => (
 </div>
 
 
-
-
-
 <div className="
     p-0            /* MOBILE: ingen padding udenom */
     md:p-30         /* DESKTOP: padding udenom */

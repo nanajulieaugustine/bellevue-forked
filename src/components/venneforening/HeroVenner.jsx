@@ -2,9 +2,9 @@ import BellevueStriber from "@/components/global/animationer/BellevueStriber";
 
 const HeroVenner = () => (
   <div>
-    <div className=" max-h-[900px] overflow-hidden px-4 sm:px-10 md:px-20">
+    <div className=" max-h-[900px]">
       <BellevueStriber>
-        <div className=" pt-50 pb-20">
+        <div className=" pt-50 pb-20 sm:px-10 md:px-20">
           <div>
             <h1>VENNE LOGO</h1>
           </div>
@@ -18,14 +18,14 @@ const HeroVenner = () => (
                 12 måneders medlemsskab
               </p>
             </div>
-            <p className="text-(--beige-100) pt-15">
+            {/* <p className="text-(--beige-100) pt-15">
               Bellevue Teatrets Venner er en støtteforening for Bellevue
               Teatret, der giver medlemmerne en række eksklusive tilbud til
               teatrets forestillinger og arrangementer. Som medlem støtter du
               teatret og får samtidig adgang til særlige medlemsfordele.
-            </p>
+            </p> */}
           </div>
-          <div className="text-(--beige-100) font-bold ">
+          {/* <div className="text-(--beige-100) font-bold ">
             <p className="text-(--bellevueblaa-100) text-4xl">
               "Sammen om scenekunsten"
             </p>
@@ -38,7 +38,7 @@ const HeroVenner = () => (
             </p>
             <p className="pt-10 italic">-Erik Hamre</p>
             <p className="italic">Formand, Bellevue Teatrets Venner</p>
-          </div>
+          </div> */}
         </div>
       </BellevueStriber>
     </div>
