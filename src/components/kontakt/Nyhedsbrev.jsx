@@ -1,11 +1,21 @@
 const Nyhedsbrev = () => (
-  <div className="">
-    <div className="text-center m-30">
-      <h1 className="text-2xl pb-7">Ledige Stillinger</h1>
-      <p className="pb-4">Der er i øjeblikket ingen ledige stillinger.</p>
-      <p>Uopfordrede ansøgninger kan sendes til adm@bellevueteatret.dk​. </p>
-      <p>For forhus: forhus@bellevueteatret.dk</p>
+  <div>
+    <div className="text-center text-(--beige-100) bg-(--moerkblaa-600)">
+      <p className="text-5xl pb-7 font-bold pt-10">Ledige Stillinger</p>
+        <div className="font-extralight ml-50 mr-50">
+          <p className="pb-4"> Der er i øjeblikket ingen ledige stillinger
+          men vi hører altid gerne fra dig. Hvis du brænder for kultur, 
+          formidling og gode gæsteoplevelser, er du meget velkommen til at 
+          sende en uopfordret ansøgning.</p>
+          <p>Administration: adm@bellevueteatret.dk</p>
+          <p>Forhus: forhus@bellevueteatret.dk</p>
+        </div>
+      <p className="font-bold pb-15 pt-5">Vi glæder os til at høre fra dig.</p>
     </div>
+
+
+
+
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-10 p-5">
       <div className="col-span-2 bg-(--bellevueblaa-600) rounded-2xl text-(--beige-600) p-10">
