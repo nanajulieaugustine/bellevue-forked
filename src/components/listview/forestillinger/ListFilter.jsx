@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { parseDates } from "@/app/library/utils.js";
 import ListCard from "./ListCard";
 import ListCardDropDown from "./ListCardDropDown";
@@ -7,8 +8,10 @@ import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion
 import { extractCategories } from "@/app/library/utils.js";
 
 export default function ListFilter({ items }) {
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get("category"); //denne del modtager searchparams fra forsidens kategorifiltrering
   const [activeTab, setActiveTab] = useState("current");
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
   const currentRef = useRef(null);
   const archiveRef = useRef(null);
@@ -20,6 +23,12 @@ export default function ListFilter({ items }) {
       archive: archiveRef.current?.offsetWidth || 0,
     });
   }, [activeTab]);
+
+  //UI opdaterer kategorien hvis den er sendt videre
+  useEffect(() => {
+  setSelectedCategory(initialCategory);
+}, [initialCategory]);
+
 
   // Behold hele datoen + tidspunktet
   const now = new Date();
@@ -95,9 +104,11 @@ export default function ListFilter({ items }) {
       </div>
 
       <ListCardDropDown
-        onFilterChange={handleFilterChange}
-        categories={dynamicCategories}
-      />
+      onFilterChange={handleFilterChange}
+      categories={dynamicCategories}
+      value={selectedCategory}
+    />
+
 
       {selectedCategory && (
         <div className="flex gap-2 mt-4 ml-4">

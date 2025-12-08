@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import ListCard from "../listview/forestillinger/ListCard";
 import { parseDates } from "@/app/library/utils";
 import { useMemo } from "react";
@@ -13,6 +12,7 @@ const chunk = (arr, size) => {
 };
 
 const SlidingForestillinger = ({ data }) => {
+
   const now = new Date();
 
   const itemsWithLatestDate = useMemo(
@@ -29,7 +29,7 @@ const SlidingForestillinger = ({ data }) => {
                 <div className="pl-25">
       <h2>Aktuelle forestillinger</h2>
       <a href="/forestillinger">
-      <h4 className="underline thin">
+      <h4 className="thin">
       Se alle forestillinger
       </h4>
       </a>

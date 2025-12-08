@@ -95,7 +95,7 @@ const ResponsiveKarrusel = ({ children, interval = 5000 }) => {
               style={{ width: `${100 / slides.length}%` }}
             >
               {group.map((child, idx) => (
-                <div key={idx} className="flex-1 min-w-0">
+                <div key={idx} className="flex-1 min-w-0 px-5">
                   {child}
                 </div>
               ))}

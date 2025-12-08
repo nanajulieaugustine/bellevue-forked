@@ -8,8 +8,8 @@ import Cirkel from "../global/ikoner/Cirkel";
 const FlipCard = ({ matchedItem, current }) => {
   return (
     <div
-      style={{ perspective: "800px" }}
-      className=" w-1/2 flex" // Halvdelen af containeren
+      style={{ perspective: "600px" }}
+      className="flex" // Halvdelen af containeren
     >
       <AnimatePresence initial={false} mode="wait">
         <motion.div
