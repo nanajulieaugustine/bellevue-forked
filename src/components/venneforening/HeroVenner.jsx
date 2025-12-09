@@ -15,7 +15,7 @@ const HeroVenner = () => (
           {/* PARKERING */}
           <div className="relative flex-1">
             <div className="absolute -top-16 left-6">
-              <Image src="ikoner/Billet.svg" alt="" width={100} height={100} />
+              <Image src="/svg/billet.svg" alt="" width={100} height={100} />
             </div>
             <p className="highlighttext bg-(--gul-600) rounded-2xl px-6 py-10 h-full flex items-center justify-center text-center">
               Gratis billetter
@@ -25,7 +25,7 @@ const HeroVenner = () => (
           {/* STOL */}
           <div className="relative flex-1">
             <div className="absolute -top-16 left-6">
-              <Image src="/svg/chair.svg" alt="" width={80} height={80} />
+              <Image src="/svg/exclusiv.svg" alt="" width={80} height={80} />
             </div>
 
             <p className="highlighttext bg-(--gul-600) rounded-2xl px-6 py-10 h-full flex items-center justify-center text-center">
@@ -36,7 +36,7 @@ const HeroVenner = () => (
           {/* CATERING */}
           <div className="relative flex-1">
             <div className="absolute -top-16 left-6">
-              <Image src="/svg/catering.svg" alt="" width={100} height={100} />
+              <Image src="/svg/people.svg" alt="" width={100} height={100} />
             </div>
 
             <p className="highlighttext bg-(--gul-600) rounded-2xl px-6 py-10 h-full flex items-center justify-center text-center">
