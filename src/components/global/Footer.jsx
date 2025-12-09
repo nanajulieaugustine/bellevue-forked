@@ -8,13 +8,13 @@ const Footer = () => {
         <div>{/* logo af some */}</div>
 
         <div className="pt-10 md:pt-40">
-          <p className="font-extrabold pb-2 text-white">Administration:</p>
+          <p className="font-bold pb-2 text-white">Administration:</p>
           <p>39 63 49 00 </p>
           <p> (hverdage 10 - 14)</p>
         </div>
 
         <div className="pt-10">
-          <p className="font-extrabold pb-2 text-white">Billettelefon:</p>
+          <p className="font-bold pb-2 text-white">Billettelefon:</p>
           <p>Ticketmaster: 38 48 16 30 </p>
           <p> (hverdage 10 - 16.30)</p>
           <p>Kørestol- og ledsagerpladser:</p>
@@ -24,9 +24,9 @@ const Footer = () => {
 
       {/* --- Kolonne 2 --- */}
       <div className="pt-10 md:pt-40 flex flex-col items-center text-center">
-        <p className="font-extrabold pb-4 text-white text-2xl">
+        <h3 className=" pb-4 text-white text-2xl beige-100">
           Hold dig opdateret
-        </p>
+        </h3>
         <p className="text-(--beige-600)">
           Tilmeld dig vores nyhedsbrev og modtag de seneste nyheder direkte i
           din indbakke
@@ -46,7 +46,7 @@ const Footer = () => {
 
       {/* --- Kolonne 3 --- */}
       <div className="pt-10 md:pt-40 flex flex-col items-center md:items-end text-center md:text-right">
-        <p className="font-extrabold pb-2 text-white">Praktisk</p>
+        <p className="font-bold pb-2 text-white">Praktisk</p>
         <div className="flex flex-col items-center md:items-end gap-2">
           <button>Handelsbetingelser</button>
           <button>CVR</button>
