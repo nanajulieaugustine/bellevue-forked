@@ -11,11 +11,27 @@ export function parseDates(input, options = {}) {
     if (!entry?.date) return null;
 
     // Hvis tiden findes, kombinér "03/12/2025 11.00"
-    if (entry.time) {
-      const combined = `${entry.date} ${entry.time}`;
-      const d = parse(combined, "dd/MM/yyyy HH.mm", new Date(), { locale: da });
-      return isNaN(d) ? null : d;
-    }
+    function parseWithDateAndTime(entry) {
+  if (!entry?.date) return null;
+
+  // Hvis tiden er en ARRAY, parse kun datoen
+  if (Array.isArray(entry.time)) {
+    const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
+    return isNaN(d) ? null : d;
+  }
+
+  // Hvis tiden er en string, parse dato + tid
+  if (typeof entry.time === "string" && entry.time.trim() !== "") {
+    const combined = `${entry.date} ${entry.time}`;
+    const d = parse(combined, "dd/MM/yyyy HH.mm", new Date(), { locale: da });
+    return isNaN(d) ? null : d;
+  }
+
+  // Hvis der slet ikke er tid, parse kun datoen
+  const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
+  return isNaN(d) ? null : d;
+}
+
 
     // Ellers parse kun datoen (fallback)
     const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });

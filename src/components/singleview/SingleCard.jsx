@@ -1,37 +1,29 @@
 "use client";
-import Image from "next/image";
 import StickyInfo from "./StickyInfo";
 import DatoOversigt from "./DatoOversigt";
-import SolBaggrund from "../global/ikoner/SolBaggrund";
 import BellevueStriber from "../global/animationer/BellevueStriber";
-import SnapContainer from "./SnapContainer";
-import Cirkel from "../global/ikoner/Cirkel";
+import SnapWrapper from "../global/komponenter/SnapWrapper";
 import BilledKarrusel from "./BilledKarrusel";
 import HorizontalScrollKarrusel from "../global/komponenter/HorizontalScrollKarrusel";
 import AddOns from "./AddOns";
 import Karrusel from "../global/komponenter/Karrusel";
 import Medvirkende from "./Medvirkende";
+import Anmeldelser from "./Anmeldelser";
 
 export default function SingleCard({ item }) {
   if (!item) return <p>Item ikke fundet</p>;
 
   return (
     <div>
-      <SnapContainer item={item} />
+    <SnapWrapper image={item.image?.[0]}>
+      {item.anmeldelser?.map((review) => (
+        <Anmeldelser key={review.anmelder} review={review} />
+      ))}
+    </SnapWrapper>
+
       <div className="flex items-start">
         {/* højre kolonne */}
         <div className="w-2/3">
-          {/* <div className="w-full h-full mx-auto pl-6">
-          {item.image?.[0]?.url && (
-              <Image
-              src={item.image[0].url}
-              alt={item.image[0].alt || item.name}
-              width={1000}
-              height={1000}
-              className="object-cover rounded-lg mb-6"
-              />
-            )}
-        </div> */}
           <DatoOversigt item={item} />
           <BellevueStriber>
             <div className="p-10 flex gap-10">

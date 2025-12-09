@@ -21,18 +21,18 @@ const DatoOversigt = ({ item }) => {
     [allowedDates]
   );
 
-  // map dato -> tidspunkter
+  // map dato og tidspunkter
   const timesByDate = useMemo(() => {
     const map = new Map();
     (item?.fullDates || []).forEach((entry) => {
       if (!entry?.date) return;
-      const dt = parseDates([entry])[0]; // brug utils til parsing
+      const dt = parseDates([entry])[0]; // bruger utils til parsing
       if (!dt) return;
       const key = dt.getTime();
 
       let raw = entry?.time;
       let slots = [];
-
+      //denne del sørger for at datoer filtreres korrekt ift. api'et
       if (Array.isArray(raw)) {
         raw.forEach((r) => {
           if (typeof r === "string")
@@ -49,7 +49,7 @@ const DatoOversigt = ({ item }) => {
         key,
         map.has(key) ? Array.from(new Set([...map.get(key), ...slots])) : slots
       );
-    });
+    }); 
 
     return map;
   }, [item]);
@@ -59,7 +59,7 @@ const DatoOversigt = ({ item }) => {
     const d = new Date(date);
     d.setHours(0, 0, 0, 0);
     if (allowedSet.has(d.getTime())) setSelected(d);
-  };
+  }; 
 
   // måneder med available dates
   const availableMonths = useMemo(() => {
@@ -96,11 +96,14 @@ const DatoOversigt = ({ item }) => {
       : null;
   };
 
-  // vælger automatisk første ledige dato
-  useEffect(() => {
-    if (allowedDates.length === 0) return;
+  // vælger automatisk første ledige dato, kun ved initialization
+useEffect(() => {
+  if (allowedDates.length === 0) return;
+  if (!selected) {
     setSelected(allowedDates[0]);
-  }, [allowedDates]);
+  }
+}, [allowedDates, selected]);
+
 
   const CustomNavbar = ({ className, style }) => {
     const prev = getPrevMonth(visibleMonth);
