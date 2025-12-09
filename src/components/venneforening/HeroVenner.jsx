@@ -7,9 +7,9 @@ const HeroVenner = () => (
       <BellevueStriber>
         <div className=" pt-50 pb-60 sm:px-10 md:px-20">
           <div>
-            <h1>Venneforening</h1>
+            <h1 className="pb-20">Venneforening</h1>
           </div>
-          <section>
+          <section className="pt-60">
             {/* IKONER + GULE TEKSTBOKSE */}
         <div className="flex flex-col gap-16 items-stretch sm:flex-row sm:justify-between sm:gap-8">
           {/* PARKERING */}
