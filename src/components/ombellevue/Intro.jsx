@@ -3,15 +3,19 @@ import Image from "next/image";
 const OmHero = () => {
   return (
     // =============================== HERO SECTION ================================
-    <div className="flex flex-col items-center text-center gap-8">
-      <h1>OM BELLEVUE TEATRET</h1>
+    <div className="flex flex-col gap-8">
+      <section>
+        <h1>OM BELLEVUE TEATRET</h1>
+      </section>
+
       <Image
         src="/images/ombellevuehero.webp"
         alt=""
         width={2000}
         height={1200}
       />
-      <p className="max-w-3xl">
+
+      <p className="max-w-3xl text-center self-center">
         Bellevue Teatret er et hovedværk blandt Arne Jacobsens tidlige arbejde
         og den funktionalistiske arkitektur i Danmark. Sommerteatret er det
         tredje i rækken af byggerier med glatte, hvidpudsede facader, som Arne

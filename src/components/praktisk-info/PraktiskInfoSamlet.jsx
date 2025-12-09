@@ -8,7 +8,7 @@ import SlutBox from "./SlutBox";
 const PraktiskInfoSamlet = () => {
   return (
     // ========================= WRAPPER FOR ALLE COMPONENTS ==========================
-    <div className="flex flex-col gap-40 py-40">
+    <div className="flex flex-col gap-40">
       <HeroSektion />
       <InfoBokse />
       <FAQ />

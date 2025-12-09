@@ -2,7 +2,7 @@ import PraktiskInfoSamlet from "@/components/praktisk-info/PraktiskInfoSamlet";
 
 const PraktiskInfo = () => {
   return (
-    <div>
+    <div className="py-50">
       <PraktiskInfoSamlet />
     </div>
   );

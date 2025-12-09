@@ -5,20 +5,20 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import ArrowXPositionRight from "../animationer/ArrowXPosition";
 
-const AnchorTagSecondaryButton = ({ href }) => {
+const AnchorTagSecondaryButton = ({ children, href }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <Link
       href={href}
-      className="flex items-center gap-1 uppercase text-nowrap"
+      className="flex items-center gap-1 text-nowrap"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setHovered(true)}
       onBlur={() => setHovered(false)}
     >
       <p className="hover:scale-102 transition-all duration-300 font-light">
-        Læs mere
+        {children}
       </p>
 
       <div className="w-[26px] h-[26px] flex items-center justify-center overflow-hidden">

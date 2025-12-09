@@ -5,45 +5,26 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuItem,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/global/komponenter/DropdownInner";
 
-/**
- * ReusableDropdown
- * --------------------------
- * Props:
- * - label: Tekst på knappen
- * - items: Liste med valg
- * - onSelect: Funktion der køres når man vælger noget
- *
- * Eksempel:
- * <ReusableDropdown
- *   label="Dato"
- *   items={["Januar", "Februar"]}
- *   onSelect={(value) => console.log(value)}
- * />
- */
 export default function ReusableDropdown({ label, items = [], onSelect }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <DropdownMenu open={open} onOpenChange={(o) => setOpen(o)}>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
+      {/* ================================  KATEGORI BUTTON STYLING  ============================== */}
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-2xl border-2 border-blue-400 text-blue-400 hover:bg-amber-200">
+        <button className="flex items-center gap-2 px-4 py-2 rounded-2xl border-2 border-(--bellevueblaa-600) text-(--bellevueblaa-600) hover:border-(--bellevueblaa-900) hover:text-(--bellevueblaa-900)">
           {label}
           <IoIosArrowDown
-            className={`transition-transform ${
-              open ? "rotate-180" : "rotate-0"
-            }`}
+            className={`transition-transform ${open ? "rotate-180" : ""}`}
           />
         </button>
       </DropdownMenuTrigger>
 
+      {/* ==============================  DROPDOWN WRAPPER FOR INNER  ============================= */}
       <DropdownMenuContent className="bg-white">
-        <DropdownMenuLabel>{label}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         {items.map((item) => (
           <DropdownMenuItem key={item} onClick={() => onSelect?.(item)}>
             {item}

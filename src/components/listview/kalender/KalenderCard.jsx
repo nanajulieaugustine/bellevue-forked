@@ -35,7 +35,7 @@ const KalenderCard = ({ item, time }) => {
       <div className="transition-colors duration-300">
         {/* ============================= CARD ============================= */}
         <div
-          className={`flex justify-between p-10 transition-colors duration-300 gap-15 ${
+          className={`flex justify-between p-10 transition-colors duration-300 gap-15 shadow-md ${
             isOpen ? "bg-(--beige-300)" : "bg-(--beige-100)"
           } ${
             noBottomRadius ? "rounded-t-2xl" : "rounded-2xl"
@@ -74,7 +74,7 @@ const KalenderCard = ({ item, time }) => {
         <div
           className={`
             overflow-hidden transition-all duration-300 ease-in-out 
-            px-10 bg-(--beige-300) rounded-b-2xl
+            px-10 bg-(--beige-300) rounded-b-2xl shadow-md
             ${isOpen ? "max-h-[900px] pt-5 pb-10" : "max-h-0 py-0"}
           `}
           onTransitionEnd={() => {
