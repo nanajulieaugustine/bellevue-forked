@@ -6,6 +6,7 @@ import ListCard from "./ListCard";
 import ListCardDropDown from "./ListCardDropDown";
 import { parseDates, extractCategories } from "@/app/library/utils";
 import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
+import { filterItemsByStatus } from "@/app/library/utils.js";
 
 export default function ListFilterClient({ items }) {
   const searchParams = useSearchParams();
@@ -17,6 +18,7 @@ export default function ListFilterClient({ items }) {
   const currentRef = useRef(null);
   const archiveRef = useRef(null);
   const [tabWidths, setTabWidths] = useState({ current: 0, archive: 0 });
+
 
   useEffect(() => {
     setTabWidths({
@@ -35,13 +37,9 @@ export default function ListFilterClient({ items }) {
     [items]
   );
 
-  const upcoming = itemsWithLatestDate.filter(
-    (item) => item.latestDate.getTime() >= now.getTime()
-  );
-
-  const archive = itemsWithLatestDate.filter(
-    (item) => item.latestDate.getTime() < now.getTime()
-  );
+//Filtrerer fra utilsfunktion
+  const upcoming = filterItemsByStatus(itemsWithLatestDate, "current");
+const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
 
   let visibleItems = activeTab === "current" ? upcoming : archive;
 

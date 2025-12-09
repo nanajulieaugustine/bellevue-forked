@@ -8,6 +8,7 @@ const LineAnimation = ({ isHovered, color }) => {
       animate={{ width: isHovered ? "100%" : "0%" }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{ borderTop: `1px solid ${color}` }}
+      className="max-w-full"
     />
   );
 };

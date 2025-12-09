@@ -141,3 +141,38 @@ export function groupShowsByDate(items, { onlyFuture = false } = {}) {
       shows,
     }));
 }
+
+// ========================== Arkiverede versus aktive forestillinger =============================
+
+ /* Beregn seneste dato og arkiveret status for et item*/
+export function getItemStatus(item) {
+  if (!item?.fullDates || !Array.isArray(item.fullDates)) {
+    return { latestDate: null, isArchived: false };
+  }
+
+  const parsed = parseDates([item], { addLatestDate: true })[0];
+  if (!parsed?.latestDate) return { latestDate: null, isArchived: false };
+
+  const now = new Date();
+  const isArchived = parsed.latestDate.getTime() < now.getTime();
+
+  return { latestDate: parsed.latestDate, isArchived };
+}
+
+/**
+ * Filtrér en liste af items baseret på status
+ * @param {Array} items  listen af items
+ * @param {string} status "current" eller "archive"
+ */
+export function filterItemsByStatus(items, status = "current") {
+  const now = new Date();
+
+  return items.filter((item) => {
+    const { latestDate } = getItemStatus(item);
+    if (!latestDate) return false;
+
+    return status === "current"
+      ? latestDate.getTime() >= now.getTime()
+      : latestDate.getTime() < now.getTime();
+  });
+}

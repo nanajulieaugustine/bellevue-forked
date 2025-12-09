@@ -44,7 +44,7 @@ export default function ListCard({ item }) {
 
         {/* Knapper - altid i bunden */}
         <div className="p-3 pt-0 pb-10 items-center justify-center mt-auto">
-          <div className="flex justify-between w-full pt-10">
+          <div className="flex justify-center items-center gap-10 w-full pt-10">
             <div>
               <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
                 Køb billet

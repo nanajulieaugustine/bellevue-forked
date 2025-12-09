@@ -3,6 +3,8 @@ import ListCard from "../listview/forestillinger/ListCard";
 import { parseDates } from "@/app/library/utils";
 import { useMemo } from "react";
 import ResponsiveKarrusel from "../global/komponenter/ResponsiveKarrusel";
+import ArrowXPositionRight from "../global/animationer/ArrowXPosition";
+import PrimaryLink from "../global/knapper/PrimaryLink";
 
 const chunk = (arr, size) => {
   return arr.reduce((acc, _, i) => {
@@ -28,11 +30,9 @@ const SlidingForestillinger = ({ data }) => {
     <>
                 <div className="pl-25">
       <h2>Aktuelle forestillinger</h2>
-      <a href="/forestillinger">
-      <h4 className="thin">
-      Se alle forestillinger
-      </h4>
-      </a>
+      <PrimaryLink href="/forestillinger">
+        <h4 className="thin">Se alle forestillinger</h4>
+      </PrimaryLink>
       </div>
       <ResponsiveKarrusel>
         {upcoming.map((item) => (

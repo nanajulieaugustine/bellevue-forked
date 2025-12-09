@@ -1,7 +1,10 @@
 import Image from "next/image";
 import AnchorTagPrimaryButton from "../global/knapper/AnchorTagPrimaryButton";
+import { getItemStatus } from "@/app/library/utils.js";
 
 const AddOns = ({ addOn }) => {
+   const { isArchived } = getItemStatus(addOn);
+
   return (
     <div
       className="flex gap-20 p-30 w-full h-full justify-center"
@@ -40,10 +43,10 @@ const AddOns = ({ addOn }) => {
             className="object-cover rounded-lg mb-6 w-full h-full"
           />
         )}
-        <AnchorTagPrimaryButton
-          target="_blank"
+        {!isArchived ? ( <AnchorTagPrimaryButton target="_blank"
           href={addOn.billet}
-        >{`Køb ${addOn.titel}`}</AnchorTagPrimaryButton>
+        >{`Køb ${addOn.titel}`}</AnchorTagPrimaryButton>) : null }
+        
       </div>
     </div>
   );
