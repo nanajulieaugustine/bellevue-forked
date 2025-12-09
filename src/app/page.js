@@ -7,7 +7,7 @@ export default async function Home() {
     <div>
       <Hero />
       <Server />
-      <FindRundt/>
+      <FindRundt />
     </div>
   );
 }

@@ -16,7 +16,7 @@ export function DropdownMenuContent({
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
         sideOffset={sideOffset}
-        className={`bg-white text-[var(--textcolor)] shadow-md border border-red-400 rounded p-[var(--space-xs)] z-50 min-w-[8rem] ${className}`}
+        className={`bg-white text-(--textcolor)] shadow-md border border-red-400 rounded p-(--space-xs) z-50 min-w-32 ${className}`}
         {...props}
       />
     </DropdownMenuPrimitive.Portal>
@@ -26,7 +26,7 @@ export function DropdownMenuContent({
 export function DropdownMenuLabel({ className = "", ...props }) {
   return (
     <DropdownMenuPrimitive.Label
-      className={`text-sm font-semibold px-[var(--space-xs)] py-[var(--space-2xs)] ${className}`}
+      className={`text-sm font-semibold px-(--space-xs)] py-(--space-2xs)] ${className}`}
       {...props}
     />
   );
@@ -35,7 +35,7 @@ export function DropdownMenuLabel({ className = "", ...props }) {
 export function DropdownMenuSeparator({ className = "", ...props }) {
   return (
     <DropdownMenuPrimitive.Separator
-      className={`my-[var(--space-xs)] h-px bg-gray-300 ${className}`}
+      className={`my-(--space-xs)] h-px bg-gray-300 ${className}`}
       {...props}
     />
   );
@@ -44,7 +44,7 @@ export function DropdownMenuSeparator({ className = "", ...props }) {
 export function DropdownMenuItem({ className = "", ...props }) {
   return (
     <DropdownMenuPrimitive.Item
-      className={`cursor-pointer px-[var(--space-xs)] py-[var(--space-2xs)] hover:bg-gray-100 rounded text-sm ${className}`}
+      className={`cursor-pointer px-(--space-xs)] py-(--space-2xs)] hover:bg-gray-100 rounded text-sm ${className}`}
       {...props}
     />
   );

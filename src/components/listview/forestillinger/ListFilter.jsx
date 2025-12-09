@@ -26,9 +26,8 @@ export default function ListFilter({ items }) {
 
   //UI opdaterer kategorien hvis den er sendt videre
   useEffect(() => {
-  setSelectedCategory(initialCategory);
-}, [initialCategory]);
-
+    setSelectedCategory(initialCategory);
+  }, [initialCategory]);
 
   // Behold hele datoen + tidspunktet
   const now = new Date();
@@ -39,25 +38,23 @@ export default function ListFilter({ items }) {
     [items]
   );
 
-  
-  
   // Upcoming (dato + tidspunkt i fremtiden)
   const upcoming = itemsWithLatestDate.filter(
     (item) => item.latestDate.getTime() >= now.getTime()
   );
-  
+
   // Archive (dato + tidspunkt i fortiden)
   const archive = itemsWithLatestDate.filter(
     (item) => item.latestDate.getTime() < now.getTime()
   );
-  
+
   let visibleItems = activeTab === "current" ? upcoming : archive;
   // Uddrag dynamiske kategorier fra utils - viser kun kategorier for forestillinger, der er aktive
-const categoriesForActiveTab = useMemo(() => {
-  const base = activeTab === "current" ? upcoming : archive;
-  return extractCategories(base);
-}, [activeTab, upcoming, archive]);
-  
+  const categoriesForActiveTab = useMemo(() => {
+    const base = activeTab === "current" ? upcoming : archive;
+    return extractCategories(base);
+  }, [activeTab, upcoming, archive]);
+
   // Filtrering på tags
   if (selectedCategory) {
     visibleItems = visibleItems.filter((item) =>
@@ -105,12 +102,10 @@ const categoriesForActiveTab = useMemo(() => {
       </div>
 
       <ListCardDropDown
-  onFilterChange={handleFilterChange}
-  categories={categoriesForActiveTab}
-  value={selectedCategory}
-/>
-
-
+        onFilterChange={handleFilterChange}
+        categories={categoriesForActiveTab}
+        value={selectedCategory}
+      />
 
       {selectedCategory && (
         <div className="flex gap-2 mt-4 ml-4">

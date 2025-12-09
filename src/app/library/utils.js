@@ -1,7 +1,7 @@
 import { parse } from "date-fns";
 import { da } from "date-fns/locale";
 
-//Udregning af datoer i fortiden
+// ================================= Udregning af datoer i fortiden =========================================
 
 export function parseDates(input, options = {}) {
   const { addLatestDate = false, onlyFuture = false } = options;
@@ -59,10 +59,69 @@ export function parseDates(input, options = {}) {
   return [];
 }
 
-//filtrering af kategorier
+// ===================================== filtrering af kategorier ==========================================
+
 export function extractCategories(data) {
   if (!Array.isArray(data)) return [];
 
   const allTags = data.flatMap((item) => item.tags || []);
   return [...new Set(allTags)];
+}
+
+// ========================== Gruppér kalender-items pr. dato og split tider ud =============================
+
+// Gruppér forestillinger efter dato og split tider ud pr. tidspunkt
+export function groupShowsByDate(items, { onlyFuture = false } = {}) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // bruges til filtrering af fortiden
+
+  const map = new Map(); // ts -> shows[]
+
+  items.forEach((item) => {
+    item.fullDates?.forEach((entry) => {
+      // Parse dato + evt. tid via parseDates
+      const parsed = parseDates([entry])[0];
+      if (!parsed) return;
+
+      // Brug ren dato som key (ikke tidspunkt)
+      const dateKey = new Date(parsed);
+      dateKey.setHours(0, 0, 0, 0);
+
+      // Filtrér fortid fra hvis onlyFuture === true
+      if (onlyFuture && dateKey < today) return;
+
+      const ts = dateKey.getTime();
+
+      // Split tider ud i et array
+      const rawTimes = Array.isArray(entry.time)
+        ? entry.time.join(",")
+        : entry.time || "";
+
+      const times = rawTimes
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean);
+
+      // Sikr at datoen findes i map
+      if (!map.has(ts)) map.set(ts, []);
+
+      // Tilføj et show pr. tidspunkt
+      if (times.length === 0) {
+        // ingen tid angivet → push uden tid
+        map.get(ts).push({ item, time: null });
+      } else {
+        times.forEach((time) => {
+          map.get(ts).push({ item, time });
+        });
+      }
+    });
+  });
+
+  // Sortér datoerne og returnér som array
+  return [...map.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([ts, shows]) => ({
+      date: new Date(ts),
+      shows,
+    }));
 }
