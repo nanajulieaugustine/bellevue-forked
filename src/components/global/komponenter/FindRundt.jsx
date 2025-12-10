@@ -5,7 +5,30 @@ import { useGLTF, OrbitControls } from "@react-three/drei";
 import { useState } from "react";
 
 // Liste over interaktive objekters ID'er
-const interactiveIds = ["Cube002", "Cube005", "Cube004", "Cube028", "Cube039", "Cube042", "Cube043", "Cube045", "Cube046"]; 
+const interactiveIds = [
+  "foyerbar",
+  "billetten",
+  "salen",
+  "nordbar",
+  "sydbar",
+  "øvrebar",
+  "teresse",
+  "balkon",
+  "nordtoilet",
+  "sydtoilet",
+  "handicaptoilet",
+  "sydgarderobe",
+  "nordgarderobe"
+];
+
+const nonInteractiveIds = [
+  "facade",
+  "facade.001",
+  "facade.002",
+  "facade.003"
+];
+
+
 
 function Model({ onMeshClick, setHoveredId }) {
   const { scene } = useGLTF("/kort/bellevue.glb");
@@ -17,7 +40,6 @@ function Model({ onMeshClick, setHoveredId }) {
     const isGlass = child.material.name.includes("Glass");
 
     if (isGlass) {
-      //  Kun glas-materialet
       child.material.transparent = true;
       child.material.opacity = 1;
       child.material.transmission = 1;
@@ -25,47 +47,52 @@ function Model({ onMeshClick, setHoveredId }) {
       child.material.ior = 1.45;
       child.material.thickness = 1;
     } else {
-      //  Alle ikke-glas materialer
       child.material.flatShading = true;
       child.material.transparent = true;
       child.material.opacity = 0.8;
       child.material.depthWrite = false;
     }
 
-    // Interaktiv logik
-    if (child.name === "Cube001") child.raycast = () => {};
-    if (!interactiveIds.includes(child.name)) child.raycast = () => {};
+    //  Deaktiver klik for facade-objekter
+    if (nonInteractiveIds.includes(child.name)) {
+      child.raycast = () => {};
+      return;
+    }
+
+    // Deaktiver klik for alt der ikke er interaktivt
+    if (!interactiveIds.includes(child.name)) {
+      child.raycast = () => {};
+    }
   }
 });
-
 
 
   return (
     <primitive
       object={scene}
-      onPointerDown={(e) => {
+     onPointerDown={(e) => {
+            e.stopPropagation();
+            const clickedId = e.object.userData.id;
+            if (clickedId && interactiveIds.includes(clickedId)) {
+                onMeshClick(clickedId);
+            }
+            }}    
+      onPointerOver={(e) => {
         e.stopPropagation();
-        const clickedId = e.object.userData.id;
-        if (clickedId && interactiveIds.includes(clickedId)) {
-          onMeshClick(clickedId);
+        const id = e.object.userData.id;
+        if (id && interactiveIds.includes(id)) {
+          setHoveredId(id);
+       
         }
       }}
-    //   onPointerOver={(e) => {
-    //     e.stopPropagation();
-    //     const id = e.object.userData.id;
-    //     if (id && interactiveIds.includes(id)) {
-    //       setHoveredId(id);
-    //       e.object.material.color.set("#ffcc00"); // Highlight farve
-    //     }
-    //   }}
-    //   onPointerOut={(e) => {
-    //     e.stopPropagation();
-    //     const id = e.object.userData.id;
-    //     if (id && interactiveIds.includes(id)) {
-    //       setHoveredId(null);
-    //       e.object.material.color.set("#bfbfbf"); // Tilbage til grå
-    //     }
-    //   }}
+      onPointerOut={(e) => {
+        e.stopPropagation();
+        const id = e.object.userData.id;
+        if (id && interactiveIds.includes(id)) {
+          setHoveredId(null);
+       
+        }
+      }}
     />
   );
 }
