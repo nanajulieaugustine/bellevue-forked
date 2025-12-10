@@ -58,7 +58,9 @@ const FlipCategories = ({ data }) => {
   };
 
   const handlePrev = () => {
-    setStartIndex((prev) => (prev - visibleCount >= 0 ? prev - visibleCount : 0));
+    setStartIndex((prev) =>
+      prev - visibleCount >= 0 ? prev - visibleCount : 0
+    );
   };
 
   return (
@@ -76,7 +78,10 @@ const FlipCategories = ({ data }) => {
       <div className="flex flex-col gap-5">
         <h1 className="thin bellevueblaa-600 mb-4">Jeg er mest til</h1>
         <div className="flex justify-between">
-          <div style={{ perspective: "800px" }} className="relative w-64 h-12 flex justify-center">
+          <div
+            style={{ perspective: "800px" }}
+            className="relative w-64 h-12 flex justify-center"
+          >
             <AnimatePresence initial={false} mode="wait">
               <motion.div
                 key={current}
@@ -95,7 +100,9 @@ const FlipCategories = ({ data }) => {
             </AnimatePresence>
           </div>
 
-          {matchedItem && <FlipCard matchedItem={matchedItem} current={current} />}
+          {matchedItem && (
+            <FlipCard matchedItem={matchedItem} current={current} />
+          )}
         </div>
       </div>
 

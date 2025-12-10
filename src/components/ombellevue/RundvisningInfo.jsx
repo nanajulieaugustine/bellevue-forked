@@ -9,85 +9,66 @@ import Price from "../global/ikoner/Price";
 const RundvisningInfo = () => {
   return (
     <BellevueStriber>
-      <section className="flex flex-col gap-20">
-        <div className="pt-20 grid gap-15">
-          <h2>Rundvisning</h2>
-          {/* =============================== TEXT + VIDEO ================================ */}
+      <section className="pt-20 grid gap-15">
+        <h2>Rundvisning</h2>
+        {/* =============================== TEXT + VIDEO ================================ */}
 
-          <div className="grid md:grid-cols-2 gap-10">
-            {/* ========= VENSTRE INDHOLD ======== */}
+        <div className="grid md:grid-cols-2 gap-10">
+          {/* ========= VENSTRE INDHOLD ======== */}
 
-            <div className="flex flex-col gap-18">
-              {/* CONTAINER FOR IKONER */}
-              <div className="flex flex-col gap-6">
-                <div className="flex gap-4 items-center">
-                  <Clock size={30} className={"text-(--moerkblaa-300)"} />
-                  <p className="highlighttext">45 minutters varighed</p>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <Chat size={25} className={"text-(--moerkblaa-300)"} />
-                  <p className="highlighttext">
-                    Tilbydes på dansk eller engelsk
-                  </p>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <Calender size={25} className={"text-(--moerkblaa-300)"} />
-                  <p className="highlighttext">
-                    Arrangeres på hverdage mellem 9-16
-                  </p>
-                </div>
-                <div className="flex gap-4 items-center">
-                  <Price size={25} className={"text-(--moerkblaa-300)"} />
-                  <p className="highlighttext">
-                    135 kr. per person (min. 10 pers)
-                  </p>
-                </div>
+          <div className="flex flex-col gap-18">
+            {/* CONTAINER FOR IKONER */}
+            <div className="flex flex-col gap-6">
+              <div className="flex gap-4 items-center">
+                <Clock size={30} className={"text-(--moerkblaa-300)"} />
+                <p className="highlighttext">45 minutters varighed</p>
               </div>
-
-              {/* CONTAINER FOR TEKST */}
-              <div className="grid gap-6">
-                <p>Rundvisninger er arrangeret på faste dage.</p>
-                <p>
-                  For grupper på 10 personer eller flere, kontakt Marianne på
-                  marianne@bellevueteatret.dk.
+              <div className="flex gap-4 items-center">
+                <Chat size={25} className={"text-(--moerkblaa-300)"} />
+                <p className="highlighttext">Tilbydes på dansk eller engelsk</p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <Calender size={25} className={"text-(--moerkblaa-300)"} />
+                <p className="highlighttext">
+                  Arrangeres på hverdage mellem 9-16
+                </p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <Price size={25} className={"text-(--moerkblaa-300)"} />
+                <p className="highlighttext">
+                  135 kr. per person (min. 10 pers)
                 </p>
               </div>
             </div>
 
-            {/* ======== HØJRE INDHOLD ======== */}
-            <div className="flex flex-col gap-8">
-              <BellevueVideo />
-
-              <div className="grid gap-6">
-                <p>
-                  Arne Jacobsens ikoniske teater fra 1936 ligger elegant på
-                  Strandvejen i Klampenborg ved Dyrehavens sydøstlige hjørne og
-                  med smuk udsigt til Øresund og sandstrand med moler og
-                  udkigstårne. Alt i området er designet af Arne Jacobsen - også
-                  den smukke boligrække Bellevista, der støder til Bellevue
-                  Teatret mod syd.
-                </p>
-                <p>
-                  I får hele historien i en guidet rundvisning. Vi skyder
-                  teatrets tag til side for rundvisninger, når den blå himmel
-                  tillader det.
-                </p>
-              </div>
+            {/* CONTAINER FOR TEKST */}
+            <div className="grid gap-6">
+              <p>Rundvisninger er arrangeret på faste dage.</p>
+              <p>
+                For grupper på 10 personer eller flere, kontakt Marianne på
+                marianne@bellevueteatret.dk.
+              </p>
             </div>
           </div>
-        </div>
 
-        {/* =============================== BEIGE CONTAINER ================================ */}
-        <div className="flex justify-center items-center text-center">
-          <div className="max-w-3xl p-20 bg-(--beige-100) rounded-2xl border-2 border-(--beige-300)">
-            <p className="pb-10">
-              Din rundvisning kan suppleres med smørrebrød eller kaffe og kage i
-              teatrets bar. Spørg til mulighederne ved forudbestilling.
-            </p>
+          {/* ======== HØJRE INDHOLD ======== */}
+          <div className="flex flex-col gap-8">
+            <BellevueVideo />
 
-            <AnchorTagPrimaryButton href={`/om-bellevue`}>
-              Læs mere
-            </AnchorTagPrimaryButton>
+            <div className="grid gap-6">
+              <p>
+                Arne Jacobsens ikoniske teater fra 1936 ligger elegant på
+                Strandvejen i Klampenborg ved Dyrehavens sydøstlige hjørne og
+                med smuk udsigt til Øresund og sandstrand med moler og
+                udkigstårne. Alt i området er designet af Arne Jacobsen - også
+                den smukke boligrække Bellevista, der støder til Bellevue
+                Teatret mod syd.
+              </p>
+              <p>
+                I får hele historien i en guidet rundvisning. Vi skyder teatrets
+                tag til side for rundvisninger, når den blå himmel tillader det.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -20,7 +20,7 @@ export default function ListCard({ item }) {
         </p>
         {/* Billede */}
         <Link href={`/forestillinger/${item.id}`}>
-          {item.image?.[0] && (
+          {item.image?.[0]?.url && (
             <div className="flex">
               <Image
                 src={item.image[0].url}
@@ -51,7 +51,9 @@ export default function ListCard({ item }) {
               </AnchorTagPrimaryButton>
             </div>
             <div>
-              <AnchorTagSecondaryButton href={`/forestillinger/${item.id}`}>Læs Mere</AnchorTagSecondaryButton>
+              <AnchorTagSecondaryButton href={`/forestillinger/${item.id}`}>
+                Læs Mere
+              </AnchorTagSecondaryButton>
             </div>
           </div>
         </div>

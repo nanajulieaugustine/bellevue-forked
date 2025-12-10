@@ -14,7 +14,6 @@ const chunk = (arr, size) => {
 };
 
 const SlidingForestillinger = ({ data }) => {
-
   const now = new Date();
 
   const itemsWithLatestDate = useMemo(
@@ -28,11 +27,11 @@ const SlidingForestillinger = ({ data }) => {
 
   return (
     <>
-                <div className="pl-25">
-      <h2>Aktuelle forestillinger</h2>
-      <PrimaryLink href="/forestillinger">
-        <h4 className="thin">Se alle forestillinger</h4>
-      </PrimaryLink>
+      <div className="pl-25">
+        <h2>Aktuelle forestillinger</h2>
+        <PrimaryLink href="/forestillinger">
+          <h4 className="thin">Se alle forestillinger</h4>
+        </PrimaryLink>
       </div>
       <ResponsiveKarrusel>
         {upcoming.map((item) => (

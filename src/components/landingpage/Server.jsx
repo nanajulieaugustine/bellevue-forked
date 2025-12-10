@@ -20,7 +20,7 @@ export default async function Server() {
     <>
       <SlidingForestillinger key={data.id} data={data} />
       <div className="relative">
-      <FlipCategories key={data.id} data={data} />
+        <FlipCategories key={data.id} data={data} />
       </div>
     </>
   );

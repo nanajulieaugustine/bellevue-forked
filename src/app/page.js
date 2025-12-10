@@ -8,7 +8,6 @@ export default async function Home() {
       <Hero />
       <Server />
       <FindRundt />
-      
     </div>
   );
 }

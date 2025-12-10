@@ -1,9 +1,9 @@
-import Image from "next/image";
 import AnchorTagPrimaryButton from "../global/knapper/AnchorTagPrimaryButton";
+import FindRundt from "../global/komponenter/FindRundt";
 
 const InteraktivtKort = () => {
   return (
-    <div className="flex flex-col gap-10">
+    <div>
       {/* =========================== WRAPPER BLÅ CONTAINER ============================ */}
       <div className="bg-(--moerkblaa-600) py-20">
         <section className="flex flex-col gap-8 items-center">
@@ -17,14 +17,8 @@ const InteraktivtKort = () => {
       </div>
 
       {/* ============================ INTERAKTIVT KORT ============================= */}
-      <section className="flex flex-col gap-8">
-        <Image
-          src="/bellevue-salen.webp"
-          alt=""
-          width={2000}
-          height={1200}
-          className="rounded-xl"
-        />
+      <section>
+        <FindRundt />
 
         <div className="flex justify-end">
           <AnchorTagPrimaryButton href={`/om-bellevue`}>

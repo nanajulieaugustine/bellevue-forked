@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -24,11 +24,9 @@ const FlipCard = ({ matchedItem, current }) => {
             width: "100%", // Fylder div'ens bredde (50% af containeren)
           }}
         >
-            <Link href={`/forestillinger/${matchedItem.id}`}> 
-          <div className="w-50 h-50 bg-amber-400">
-
-          </div>
-            </Link>
+          <Link href={`/forestillinger/${matchedItem.id}`}>
+            <div className="w-50 h-50 bg-amber-400"></div>
+          </Link>
         </motion.div>
       </AnimatePresence>
     </div>
