@@ -6,13 +6,13 @@ import AnchorTagSecondaryButton from "@/components/global/knapper/AnchorTagSecon
 
 export default function ListCard({ item }) {
   return (
-    <li className="relative ml-4 mr-4 mt-10">
+    <li className="relative ml-4 mr-4 mt-10 ">
       <div
         className="
           relative flex flex-col bg-white rounded-3xl p-2 min-h-[450px]
           before:content-[''] before:absolute before:inset-0
           before:rounded-3xl before:border-l-6 before:border-b-6 before:border-blue-900
-          before:pointer-events-none
+          before:pointer-events-none shadow-md
         "
       >
         <p className="font-extralight text-right text-sm uppercase text-(--koboltblaa-600)">
