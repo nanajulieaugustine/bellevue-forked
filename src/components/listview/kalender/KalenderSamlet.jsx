@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import KalenderCard from "./KalenderCard";
 import KalenderDropdown from "./KalenderDropdown";
 import { groupShowsByDate, extractCategories } from "@/app/library/utils.js";
+import Image from "next/image";
 
 // ======================================= KALENDER-KOMPONENT ============================================
 const KalenderSamlet = ({ items }) => {
@@ -126,6 +127,9 @@ const KalenderSamlet = ({ items }) => {
       {!filteredGrouped.length && (
         <p>Ingen forestillinger matcher dine filtre.</p>
       )}
+      {/* <div className="absolute -right-2">
+        <Image src="/svg/snoerkel-top-left.svg" alt="" width={400} height={900} />
+      </div> */}
     </div>
   );
 };
