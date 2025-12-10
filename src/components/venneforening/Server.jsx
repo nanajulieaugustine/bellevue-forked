@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import SlidingForestillinger from "../landingpage/SlidingForestillinger";;
+import VennerKarrusel from "./VennerKarrusel";
 
 // Supabase client (fungerer som server)
 const supabase = createClient(
@@ -18,7 +18,7 @@ export default async function Server() {
   // Returnerer data ellers tomt array
   return (
     <>
-      <SlidingForestillinger key={data.id} data={data} />
+      <VennerKarrusel key={data.id} data={data} />
     </>
   );
 }

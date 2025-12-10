@@ -27,11 +27,15 @@ const VennerKarrusel = ({ data }) => {
   return (
     <>
         <div className="pl-25">
-          <h2>Aktuelle medlemsfordele</h2>
+          <h2>
+            Aktuelle medlemstilbud
+          </h2>
         </div>
         <ResponsiveKarrusel>
           {upcoming.map((item) => (
+            <section>
             <ListCard key={item.id} item={item} />
+            </section>
           ))}
         </ResponsiveKarrusel>
     </>

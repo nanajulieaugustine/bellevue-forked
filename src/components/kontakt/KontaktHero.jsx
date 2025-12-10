@@ -4,9 +4,8 @@ import Image from "next/image";
 const KontaktHero = () => (
   <div>
     {/* HERO SEKTION */}
-    <div className="max-h-[600px] px-4 sm:px-10 md:px-20 overflow-hidden">
-      <div className="flex flex-col max-w-[600px] pt-20 sm:pt-32 md:pt-40">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl text-(--bellevueblaa-600)">
+      <section className="max-w-[1000px]">
+        <h1 className="text-(--bellevueblaa-600)">
           KONTAKT
         </h1>
 
@@ -22,8 +21,7 @@ const KontaktHero = () => (
         <p className="font-medium pt-5">
           Tøv endelig ikke med at række ud – vi glæder os til at høre fra dig.
         </p>
-      </div>
-    </div>
+      </section>
 
     {/* GUL KONTAKT-INFO SEKTION (udenfor max-height!) */}
     <div className="absolute -left-10">

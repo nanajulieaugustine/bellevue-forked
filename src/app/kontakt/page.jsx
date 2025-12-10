@@ -5,7 +5,7 @@ import Nyhedsbrev from "@/components/kontakt/Nyhedsbrev";
 
 export default function Kontakt() {
   return (
-    <div>
+    <div className="py-50">
       <KontaktHero />
       <KontaktServer />
       <Nyhedsbrev />
