@@ -7,6 +7,7 @@ import ListCardDropDown from "./ListCardDropDown";
 import { parseDates, extractCategories } from "@/app/library/utils";
 import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
 import { filterItemsByStatus } from "@/app/library/utils.js";
+import Image from "next/image";
 
 export default function ListFilterClient({ items }) {
   const searchParams = useSearchParams();
@@ -87,6 +88,10 @@ const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
         </button>
 
         <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
+      </div>
+
+      <div className="absolute -right-2">
+        <Image src="/svg/watertower-red.svg" alt="" width={400} height={900} />
       </div>
 
       <ListCardDropDown
