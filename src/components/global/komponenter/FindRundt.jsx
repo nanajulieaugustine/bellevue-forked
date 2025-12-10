@@ -8,31 +8,37 @@ import { useState } from "react";
 const interactiveIds = ["Cube002", "Cube005", "Cube004", "Cube028", "Cube039", "Cube042", "Cube043", "Cube045", "Cube046"]; 
 
 function Model({ onMeshClick, setHoveredId }) {
-  const { scene } = useGLTF("/kort/foyer_stueplan.glb");
+  const { scene } = useGLTF("/kort/bellevue.glb");
 
   scene.traverse((child) => {
-    if (child.isMesh) {
-      // Materialer
+  if (child.isMesh) {
+    child.userData.id = child.name;
+
+    const isGlass = child.material.name.includes("Glass");
+
+    if (isGlass) {
+      //  Kun glas-materialet
+      child.material.transparent = true;
+      child.material.opacity = 1;
+      child.material.transmission = 1;
+      child.material.roughness = 0;
+      child.material.ior = 1.45;
+      child.material.thickness = 1;
+    } else {
+      //  Alle ikke-glas materialer
       child.material.flatShading = true;
       child.material.transparent = true;
       child.material.opacity = 0.8;
       child.material.depthWrite = false;
-      child.material.color.set("#bfbfbf");
-
-      // Gem ID
-      child.userData.id = child.name;
-
-      // Cube001 skal ignoreres
-      if (child.name === "Cube001") {
-        child.raycast = () => {};
-      }
-
-      // Hvis objektet ikke er interaktivt, ignorer pointer-events
-      if (!interactiveIds.includes(child.name)) {
-        child.raycast = () => {};
-      }
     }
-  });
+
+    // Interaktiv logik
+    if (child.name === "Cube001") child.raycast = () => {};
+    if (!interactiveIds.includes(child.name)) child.raycast = () => {};
+  }
+});
+
+
 
   return (
     <primitive
@@ -69,7 +75,7 @@ export default function FindRundt() {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <section className="h-screen relative">
+    <div className="h-screen relative">
 
       {/* Infoboks */}
       {activeId && (
@@ -85,8 +91,8 @@ export default function FindRundt() {
         </div>
       )}
 
-      <div className="absolute left-20 h-full w-full">
-        <Canvas camera={{ position: [150, 20, 90], fov: 45 }}>
+      <div className="absolute h-full w-full">
+        <Canvas camera={{ position: [200, 70, 100], fov: 50 }}>
           <ambientLight intensity={1} />
           <directionalLight position={[50, 50, 50]} intensity={10} />
           <directionalLight position={[-50, 50, -50]} intensity={10} />
@@ -98,6 +104,6 @@ export default function FindRundt() {
           />
         </Canvas>
       </div>
-    </section>
+    </div>
   );
 }
