@@ -7,6 +7,8 @@ import Image from "next/image";
 // Imports af komponentet
 import PrimaryButton from "@/components/global/knapper/PrimaryButton";
 import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
+import SecondaryButton from "@/components/global/knapper/SecondaryButton";
+import AnchorTagSecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButton";
 
 const KalenderCard = ({ item, time }) => {
   const [openId, setOpenId] = useState(null);
@@ -63,10 +65,14 @@ const KalenderCard = ({ item, time }) => {
             <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
               Køb billet
             </AnchorTagPrimaryButton>
-
-            <PrimaryButton onClick={() => toggle(item.id)}>
-              {isOpen ? "Luk" : "Læs mere"}
-            </PrimaryButton>
+            {!isOpen ? (<SecondaryButton onClick={() => toggle(item.id)}>
+              Læs Mere
+            </SecondaryButton>): (
+              <button onClick={() => toggle(item.id)}>
+                X
+              </button>
+            ) }
+            
           </div>
         </div>
 
@@ -100,9 +106,9 @@ const KalenderCard = ({ item, time }) => {
               <p>{item.description_short}</p>
 
               <div className="self-start sm:self-end">
-                <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
+                <AnchorTagSecondaryButton href={`/forestillinger/${item.id}`}>
                   Læs mere
-                </AnchorTagPrimaryButton>
+                </AnchorTagSecondaryButton>
               </div>
             </div>
           </div>

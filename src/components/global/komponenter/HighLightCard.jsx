@@ -27,10 +27,10 @@ const HighlightCards = ({ items, textAs = "p" }) => {
         // Hvis der er en link-prop, wrap med Link, ellers bare div
         return item.link ? (
           <Link key={index} href={item.link}>
-            <span className="relative flex-1">{cardContent}</span>
+            <span className="relative flex-1 cursor-pointer">{cardContent}</span>
           </Link>
         ) : (
-          <div key={index} className="relative flex-1 cursor-pointer">
+          <div key={index} className="relative flex-1">
             {cardContent}
           </div>
         );

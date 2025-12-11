@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const AnchorTagPrimaryButton = ({ children, href, style }) => {
+const AnchorTagPrimaryButton = ({ children, href, style, target }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -12,6 +12,7 @@ const AnchorTagPrimaryButton = ({ children, href, style }) => {
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
+      target={target}
     >
       {/* Selve knappen */}
       <span className="block text-(--bellevueblaa-600) hover:scale-101 hover:text-(--bellevueblaa-900) transition-all duration-300 border-2 border-(--bellevueblaa-600) py-2 px-8 rounded-2xl text-center text-nowrap" style={style}>
