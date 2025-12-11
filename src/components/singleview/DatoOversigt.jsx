@@ -141,7 +141,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="w-2xl p-10 flex gap-15">
+    <div className="w-md md:w-lg p-10 flex flex-col gap-15">
       <DayPicker
         mode="single"
         selected={selected}
@@ -177,7 +177,7 @@ useEffect(() => {
         <h3>Book billetter</h3>
         <div className="flex">
           {selected ? (
-            <ul className="flex flex-col gap-10">
+            <ul className="flex gap-10">
               {(timesByDate.get(selected.getTime()) || []).map((time) => (
                 <li key={time}>
                   <AnchorTagPrimaryButton href={"/"}>

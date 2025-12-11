@@ -6,7 +6,7 @@ import AnchorTagPrimaryButton from "../global/knapper/AnchorTagPrimaryButton";
 
 const StickyInfo = ({ item }) => {
   return (
-    <div className="flex flex-col gap-20 max-w-200 p-10 backdrop-blur-3xl rounded-2xl">
+    <div className="flex flex-col gap-20 max-w-200 p-10">
       <div className="h-full z-10 flex gap-20">
         <div className="flex flex-col gap-20">
           <div className="flex flex-col items-center">

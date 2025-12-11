@@ -67,7 +67,7 @@ const HorizontalScrollKarruselMedPile = ({ children }) => {
   }, []);
 
   return (
-    <div className="relative w-screen h-screen">
+    <div className="relative w-screen md:h-screen">
       {/* Scroll-container */}
       <div
         className="w-full h-full overflow-x-scroll overflow-y-hidden"
@@ -83,10 +83,16 @@ const HorizontalScrollKarruselMedPile = ({ children }) => {
           {slides.map((child, index) => (
             <div
               key={index}
-              className="shrink-0 w-[170vh] h-full snap-center flex justify-center items-center"
+              className="
+                shrink-0 
+                w-screen          
+                lg:w-[170vh]         
+                snap-center 
+                flex justify-center items-center
+              "
             >
               {child}
-            </div>
+            </div>  
           ))}
         </div>
       </div>

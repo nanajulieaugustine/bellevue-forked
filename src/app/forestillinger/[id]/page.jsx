@@ -28,10 +28,10 @@ export default async function SingleItem({ params }) {
   }
 
   return (
-    <div>
+    <div className="relative">
       <SingleCard item={data} />
 
-      <div className="absolute -left-8 top-300 -z-5 hidden lg:block">
+      <div className="absolute right-0 top-230 -z-5 hidden lg:block rotate-180">
           <Image
             src="/svg/snoerkel-left.svg"
             alt=""

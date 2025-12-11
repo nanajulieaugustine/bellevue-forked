@@ -36,7 +36,7 @@ const SlidingForestillinger = ({ data }) => {
             height={350}
           />
     </div>
-      <div className="pl-25">
+      <div className="pl-25 mt-10">
         <h2>Aktuelle forestillinger</h2>
         <PrimaryLink href="/forestillinger">
           <h4 className="thin">Se alle forestillinger</h4>

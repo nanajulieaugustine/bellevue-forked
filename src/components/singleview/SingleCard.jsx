@@ -25,30 +25,30 @@ export default function SingleCard({ item }) {
         ))}
       </SnapWrapper>
 
-      <div className="flex items-start">
-        {/* Højre kolonne */}
-        <div className="w-2/3 max-h--150">
-          {!isArchived && <DatoOversigt item={item} />}
+      <section className="flex flex-col md:flex-row w-full">
+            {!isArchived && <DatoOversigt item={item} />}
+      <StickyInfo item={item}/>
+      </section>
 
-          <BellevueStriber>
-            <div className="p-10 flex gap-10">
-              {item.description_long && (
-                <p className="max-w-100">{item.description_long}</p>
-              )}
 
-              {item.quote && (
-                <div className="flex gap-5 items-start">
-                  <span className="font-black text-7xl italic font-serif">
-                    "
-                  </span>
-                  <blockquote>{item.quote}</blockquote>
-                </div>
-              )}
-            </div>
-          </BellevueStriber>
+      <BellevueStriber>
+  {/* Højre kolonne */}
+  <section className="flex flex-col md:flex-row p-10 gap-10">
+        {item.description_long && (
+          <p className="max-w-100">{item.description_long}</p>
+        )}
+        {item.quote && (
+          <div className="flex gap-5 items-start min-w-100">
+            <span className="font-black text-7xl italic font-serif">"</span>
+            <blockquote>{item.quote}</blockquote>
+          </div>
+        )}
+        </section>
+         </BellevueStriber>
+     
 
           {item.add_ons?.length > 0 && (
-            <div className="h-screen w-screen overflow-hidden">
+            <div className="h-[210vh] lg:h-screen w-screen">
               {item.add_ons.length > 1 ? (
                 <HorizontalScrollKarrusel>
                   {item.add_ons.map((addOn) => (
@@ -66,7 +66,7 @@ export default function SingleCard({ item }) {
           {item.spisning && <SpisPaaTeatret />}
 
           {item.embed ? (
-            <div className="flex h-screen w-screen p-10 gap-10">
+            <div className="flex flex-col md:flex-row h-screen w-screen pt-10 md:p-10 gap-10">
               {item.billeder && (
                 <div
                   className="h-full w-screen rounded-4xl"
@@ -109,14 +109,5 @@ export default function SingleCard({ item }) {
             </section>
           )}
         </div>
-
-        {/* Sticky kolonne (venstre) */}
-        <aside className="h-[90vh]">
-          <div className="sticky top-40">
-            <StickyInfo item={item} />
-          </div>
-        </aside>
-      </div>
-    </div>
   );
 }

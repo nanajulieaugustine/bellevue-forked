@@ -80,7 +80,7 @@ const FlipCategories = ({ data }) => {
         <div className="flex justify-between">
           <div
             style={{ perspective: "800px" }}
-            className="relative w-64 h-12 flex justify-center"
+            className="relative w-64 h-12 mt-10flex justify-center"
           >
             <AnimatePresence initial={false} mode="wait">
               <motion.div
