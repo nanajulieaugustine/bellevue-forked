@@ -25,8 +25,8 @@ export default function ReusableDropdown({ label, items = [], onSelect }) {
 
       {/* ==============================  DROPDOWN WRAPPER FOR INNER  ============================= */}
       <DropdownMenuContent className="bg-white">
-        {items.map((item, index) => (
-          <DropdownMenuItem key={index} onClick={() => onSelect?.(item)}>
+        {items.map((item) => (
+          <DropdownMenuItem key={item} onClick={() => onSelect?.(item)}>
             {item}
           </DropdownMenuItem>
         ))}
