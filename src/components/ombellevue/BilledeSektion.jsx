@@ -3,7 +3,7 @@ import AnchorTagPrimaryButton from "../global/knapper/AnchorTagPrimaryButton";
 
 const BilledeSektion = () => {
   return (
-    <section className="grid md:grid-cols-2 gap-10 items-center">
+    <section className="relative grid md:grid-cols-2 gap-10 items-center">
       <div className="flex flex-col gap-8">
         {/* =============================== STORST BILLEDE ================================ */}
         <Image
@@ -35,12 +35,21 @@ const BilledeSektion = () => {
 
       {/* =============================== BEIGE CONTAINER ================================ */}
 
+      <div className="absolute -left-8 top-1 -z-5 hidden lg:block">
+  <Image
+    src="/svg/snoerkel-left.svg"
+    alt=""
+    width={350}
+    height={350}
+  />
+</div>
       <div className="flex flex-col gap-8">
         <p>
           Din rundvisning kan suppleres med smørrebrød eller kaffe og kage i
           teatrets bar. Spørg til mulighederne ved forudbestilling.
         </p>
         <p>Ved spørgsmål bedes du kontakte os på mail:</p>
+
 
         <div className="self-center">
           <AnchorTagPrimaryButton href={`/om-bellevue`}>
@@ -53,3 +62,4 @@ const BilledeSektion = () => {
 };
 
 export default BilledeSektion;
+ 
