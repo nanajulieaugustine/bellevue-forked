@@ -19,7 +19,7 @@ export default async function Server() {
   return (
     <>
       <SlidingForestillinger key={data.id} data={data} />
-      <div className="relative">
+      <div className="relative py-30">
         <FlipCategories key={data.id} data={data} />
       </div>
     </>

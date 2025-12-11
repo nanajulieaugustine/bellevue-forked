@@ -1,9 +1,9 @@
 import HeroSektion from "./HeroSektion";
 import InfoBokse from "./InfoBokse";
 import FAQ from "./FAQ";
-import InteraktivtKort from "../ombellevue/InteraktivtKort";
 import KontaktInfo from "./KontaktInfo";
 import SlutBox from "./SlutBox";
+import FindVej from "../global/komponenter/FindVej";
 
 const PraktiskInfoSamlet = () => {
   return (
@@ -12,7 +12,7 @@ const PraktiskInfoSamlet = () => {
       <HeroSektion />
       <InfoBokse />
       <FAQ />
-      <InteraktivtKort />
+      <FindVej />
       <KontaktInfo />
       <SlutBox />
     </div>

@@ -2,6 +2,7 @@ import KontaktServer from "@/components/kontakt/KontaktServer";
 // import KontaktMedarbejder from "./KontaktMedarbejder";
 import KontaktHero from "@/components/kontakt/KontaktHero";
 import Nyhedsbrev from "@/components/kontakt/Nyhedsbrev";
+import LedigeStillinger from "@/components/kontakt/LedigeStillinger";
 
 export default function Kontakt() {
   return (
@@ -14,6 +15,7 @@ export default function Kontakt() {
   ">
       <KontaktHero />
       <KontaktServer />
+      <LedigeStillinger/>
       <Nyhedsbrev />
     </div>
   );

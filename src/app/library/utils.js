@@ -80,9 +80,13 @@ export function parseDates(input, options = {}) {
 export function extractCategories(data) {
   if (!Array.isArray(data)) return [];
 
-  const allTags = data.flatMap((item) => item.tags || []);
-  return [...new Set(allTags)];
+  const allTags = data.flatMap((item) => item.tags || [])
+    .flatMap(tag => tag.split(',').map(t => t.trim())) // splitter på komma og fjerner mellemrum
+    .filter(Boolean); // fjerner tomme strenge
+
+  return [...new Set(allTags)]; // fjerner dubletter
 }
+
 
 // ========================== Gruppér kalender-items pr. dato og split tider ud =============================
 
