@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import ResponsiveKarrusel from "../global/komponenter/ResponsiveKarrusel";
 import ArrowXPositionRight from "../global/animationer/ArrowXPosition";
 import PrimaryLink from "../global/knapper/PrimaryLink";
+import Image from "next/image";
 
 const chunk = (arr, size) => {
   return arr.reduce((acc, _, i) => {
@@ -27,6 +28,14 @@ const SlidingForestillinger = ({ data }) => {
 
   return (
     <>
+      <div className="absolute -left-1 top-400 -z-5 hidden lg:block">
+          <Image
+            src="/svg/snoerkel-left.svg"
+            alt=""
+            width={350}
+            height={350}
+          />
+    </div>
       <div className="pl-25">
         <h2>Aktuelle forestillinger</h2>
         <PrimaryLink href="/forestillinger">

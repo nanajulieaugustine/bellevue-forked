@@ -3,17 +3,24 @@ import Image from "next/image";
 
 const Kalender = () => {
   return (
-    <div className="
-    py-50
-    bg-none               /* Mobile: ingen baggrund */
-    lg:bg-[url('/svg/snoerkel-top-right.svg')]   /* Tablet+ */
-    lg:bg-no-repeat
-    lg:bg-position-[right_-20px_top_-200px]
-  ">
+    <div className="relative py-50">
+    <div className="absolute -right-1 top-20 -z-10 hidden lg:block">
+          <Image
+            src="/svg/snoerkel-top-right.svg"
+            alt=""
+            width={600}
+            height={350}
+          />
+    </div>
       <KalenderServer />
-      <div className="absolute -right-2">
-        <Image src="/svg/snoerkel-buttom-right.svg" alt="" width={400} height={900} />
-      </div>
+      <div className="absolute -left-1 bottom-1 -z-10 hidden lg:block">
+          <Image
+            src="/svg/snoerkel-left.svg"
+            alt=""
+            width={300}
+            height={350}
+          />
+    </div>
     </div>
   );
 };

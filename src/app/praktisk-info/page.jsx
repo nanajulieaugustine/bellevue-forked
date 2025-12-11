@@ -1,15 +1,26 @@
 import PraktiskInfoSamlet from "@/components/praktisk-info/PraktiskInfoSamlet";
+import Image from "next/image";
 
 const PraktiskInfo = () => {
   return (
-    <div className="
-    py-50
-    bg-none               /* Mobile: ingen baggrund */
-    lg:bg-[url('/svg/snoerkel-top-right.svg')]   /* Tablet+ */
-    lg:bg-no-repeat
-    lg:bg-position-[right_-20px_top_-200px]
-  ">
+    <div className="py-50">
+    <div className="absolute -right-1 top-20 -z-10 hidden lg:block">
+          <Image
+            src="/svg/snoerkel-top-right.svg"
+            alt=""
+            width={500}
+            height={350}
+          />
+    </div>
       <PraktiskInfoSamlet />
+      <div className="absolute -left-1 -z-10 hidden lg:block">
+          <Image
+            src="/svg/snoerkel-one.svg"
+            alt=""
+            width={600}
+            height={350}
+          />
+    </div>
     </div>
   );
 };

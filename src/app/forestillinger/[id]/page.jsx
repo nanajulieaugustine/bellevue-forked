@@ -1,6 +1,7 @@
 import BellevueStriber from "@/components/global/animationer/BellevueStriber";
 import SingleCard from "@/components/singleview/SingleCard";
 import { createClient } from "@supabase/supabase-js";
+import Image from "next/image";
 
 // Brug præcis samme opsætning som ListServer
 const supabase = createClient(
@@ -29,6 +30,15 @@ export default async function SingleItem({ params }) {
   return (
     <div>
       <SingleCard item={data} />
+
+      <div className="absolute -left-8 top-300 -z-5 hidden lg:block">
+          <Image
+            src="/svg/snoerkel-left.svg"
+            alt=""
+            width={350}
+            height={350}
+          />
+    </div>
     </div>
   );
 }
