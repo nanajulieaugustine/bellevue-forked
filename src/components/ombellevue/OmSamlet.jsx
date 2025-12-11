@@ -3,6 +3,7 @@ import RundvisningInfo from "./RundvisningInfo";
 import BilledeSektion from "./BilledeSektion";
 import InteraktivtKort from "./InteraktivtKort";
 import LejTeatret from "./LejTeatret";
+import FindRundt from "../global/komponenter/FindRundt";
 
 const OmSamlet = () => {
   return (
@@ -12,7 +13,7 @@ const OmSamlet = () => {
       <div className="flex flex-col gap-30">
         <RundvisningInfo />
         <BilledeSektion />
-        <InteraktivtKort />
+        <FindRundt/>
         <LejTeatret />
       </div>
     </div>
