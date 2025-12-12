@@ -63,7 +63,7 @@ const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
   const removeCategoryFilter = () => setSelectedCategory(null);
 
   return (
-    <div className="pt-40">
+    <div>
       {/* Tabs */}
       <div className="flex gap-6 mb-6 pb-3 relative w-full">
         <button onClick={() => setActiveTab("current")}>
