@@ -13,8 +13,8 @@ import HighlightCards from "../global/komponenter/HighLightCard";
     return (
       <div>
         <BellevueStriber>
-          <section className="pt-60">
-          <h1 className="pb-20 text-center">BELLEVUE TEATRETS VENNER</h1>
+          <section className="pt-50">
+          <h1 className="pb-20">BELLEVUE TEATRETS VENNER</h1>
           <div className="absolute -right-10 -top-10 hidden lg:block">
         <Image src="/svg/venneforening-logo-stor.svg" alt="" width={700} height={350} />
       </div>

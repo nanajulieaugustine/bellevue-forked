@@ -1,25 +1,28 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
+import {
+  parseDates,
+  extractCategories,
+  filterItemsByStatus,
+} from "@/app/library/utils";
 import ListCard from "./ListCard";
 import ListCardDropDown from "./ListCardDropDown";
-import { parseDates, extractCategories } from "@/app/library/utils";
 import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
-import { filterItemsByStatus } from "@/app/library/utils.js";
 import Image from "next/image";
 
 export default function ListFilterClient({ items }) {
-  const searchParams = useSearchParams();
-  const initialCategory = searchParams.get("category");
-
   const [activeTab, setActiveTab] = useState("current");
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
+  // Dropdown states
+  const [selectedDate, setSelectedDate] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedChildren, setSelectedChildren] = useState("all");
+
+  // Animation refs
   const currentRef = useRef(null);
   const archiveRef = useRef(null);
   const [tabWidths, setTabWidths] = useState({ current: 0, archive: 0 });
-
 
   useEffect(() => {
     setTabWidths({
@@ -28,39 +31,96 @@ export default function ListFilterClient({ items }) {
     });
   }, [activeTab]);
 
-  useEffect(() => {
-    setSelectedCategory(initialCategory);
-  }, [initialCategory]);
+  // Tilføj parsed datoer → item.latestDate
+  const itemsWithDates = useMemo(() => {
+    return parseDates(items, { addLatestDate: true });
+  }, [items]);
 
-  const now = new Date();
-  const itemsWithLatestDate = useMemo(
-    () => parseDates(items, { addLatestDate: true }),
-    [items]
-  );
+  // Tab-baseret filtrering (current / archive)
+  const upcoming = filterItemsByStatus(itemsWithDates, "current");
+  const archive = filterItemsByStatus(itemsWithDates, "archive");
 
-//Filtrerer fra utilsfunktion
-  const upcoming = filterItemsByStatus(itemsWithLatestDate, "current");
-const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
+  const baseItems = activeTab === "current" ? upcoming : archive;
 
-  let visibleItems = activeTab === "current" ? upcoming : archive;
+  // ========= DATO-LOGIK =========
 
-  const categoriesForActiveTab = useMemo(() => {
-    const base = activeTab === "current" ? upcoming : archive;
-    return extractCategories(base);
-  }, [activeTab, upcoming, archive]);
+  // Udtræk *kun unikke* datoer fra active tab
+  const uniqueDates = useMemo(() => {
+    const set = new Set();
 
-  if (selectedCategory) {
-    visibleItems = visibleItems.filter((item) =>
-      item.tags?.includes(selectedCategory)
-    );
-  }
-  
+    baseItems.forEach((item) => {
+      if (item.latestDate instanceof Date) {
+        set.add(item.latestDate.getTime());
+      }
+    });
+
+    return [...set]
+      .map((time) => new Date(time))
+      .sort((a, b) => a - b);
+  }, [baseItems]);
+
+  // Formatér datoer til dropdown
+  const formatDate = (date) =>
+    date
+      .toLocaleDateString("da-DK", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+      .replace(",", "")
+      .replace(" den ", " d. ")
+      .replace(/^\w/, (c) => c.toUpperCase());
+
+  const dateOptions = uniqueDates.map((d) => formatDate(d));
+
+  // ========= ANDRE DROPDOWN-VÆRDIER =========
+  const categories = useMemo(() => extractCategories(items), [items]);
+
+  const childrenOptions = ["Familieforestilling", "For børn"];
+
+  // ========= DROPDOWN HANDLER =========
   const handleFilterChange = (type, value) => {
-    if (type === "category") setSelectedCategory(value);
+    const normalized = value === "Alle" ? "all" : value;
+
+    if (type === "date") setSelectedDate(normalized);
+    if (type === "category") setSelectedCategory(normalized);
+    if (type === "children") setSelectedChildren(normalized);
   };
 
-  
-  const removeCategoryFilter = () => setSelectedCategory(null);
+  // ========= ANVENDELSE AF ALLE FILTRE =========
+  const filteredItems = baseItems.filter((item) => {
+    const tags = item.tags || [];
+
+    // Filter: DATO
+    const matchDate =
+      selectedDate === "all" ||
+      (item.latestDate &&
+        formatDate(item.latestDate) === selectedDate);
+
+    // Filter: KATEGORI
+    const matchCategory =
+      selectedCategory === "all" || tags.includes(selectedCategory);
+
+    // Filter: BØRN
+    const matchChildren =
+      selectedChildren === "all" || tags.includes(selectedChildren);
+
+    return matchDate && matchCategory && matchChildren;
+  });
+
+  // ========= VISNING AF AKTIVE FILTRE =========
+  const activeFilters = [
+    { type: "date", label: selectedDate, value: selectedDate },
+    { type: "category", label: selectedCategory, value: selectedCategory },
+    { type: "children", label: selectedChildren, value: selectedChildren },
+  ].filter((f) => f.value !== "all");
+
+  const removeFilter = (type) => {
+    if (type === "date") setSelectedDate("all");
+    if (type === "category") setSelectedCategory("all");
+    if (type === "children") setSelectedChildren("all");
+  };
 
   return (
     <div>
@@ -69,9 +129,11 @@ const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
         <button onClick={() => setActiveTab("current")}>
           <h1
             ref={currentRef}
-            className={`${
-              activeTab === "current" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"
-            }`}
+            className={
+              activeTab === "current"
+                ? "text-(--moerkeblaa-900)"
+                : "bellevueblaa-100"
+            }
           >
             FORESTILLINGER
           </h1>
@@ -80,9 +142,11 @@ const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
         <button onClick={() => setActiveTab("archive")}>
           <h1
             ref={archiveRef}
-            className={`${
-              activeTab === "archive" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"
-            }`}
+            className={
+              activeTab === "archive"
+                ? "text-(--moerkeblaa-900)"
+                : "bellevueblaa-100"
+            }
           >
             ARKIV
           </h1>
@@ -91,37 +155,51 @@ const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
         <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
       </div>
 
+      {/* Grafik */}
       <div className="absolute -right-2 hidden lg:block">
         <Image src="/svg/watertower-red.svg" alt="" width={400} height={900} />
       </div>
 
+      {/* DROPDOWNS MED DATO + KATEGORI + BØRN */}
       <ListCardDropDown
+        dates={dateOptions}
+        categories={categories}
+        children={childrenOptions}
         onFilterChange={handleFilterChange}
-        categories={categoriesForActiveTab}
-        value={selectedCategory}
       />
 
-      {selectedCategory && (
-        <div className="flex gap-2 mt-4 ml-4">
-          <span className="flex items-center gap-2 border-2 border-blue-400 text-blue-400 px-3 py-1 rounded-2xl text-sm">
-            {selectedCategory}
-            <button
-              onClick={removeCategoryFilter}
-              className="font-bold text-blue-400 hover:text-blue-800"
+      {/* AKTIVE FILTRE */}
+      {activeFilters.length > 0 && (
+        <div className="flex gap-2 mt-4 ml-4 flex-wrap">
+          {activeFilters.map((filter) => (
+            <span
+              key={filter.type}
+              className="flex items-center gap-2 border-2 border-blue-400 text-blue-400 px-3 py-1 rounded-2xl text-sm"
             >
-              ×
-            </button>
-          </span>
+              {filter.label}
+              <button
+                onClick={() => removeFilter(filter.type)}
+                className="font-bold hover:text-blue-800"
+              >
+                ×
+              </button>
+            </span>
+          ))}
         </div>
       )}
 
+      {/* LISTE AF KORT */}
       <ul className="flex flex-wrap gap-3 mt-4">
-        {visibleItems.map((item) => (
-          <div key={item.id} className="basis-[calc(33.333%-0.5rem)]">
+        {filteredItems.map((item) => (
+          <li key={item.id} className="basis-[calc(33.333%-0.5rem)]">
             <ListCard item={item} />
-          </div>
+          </li>
         ))}
       </ul>
+
+      {filteredItems.length === 0 && (
+        <p className="mt-6">Ingen forestillinger matcher dine filtre.</p>
+      )}
     </div>
   );
 }

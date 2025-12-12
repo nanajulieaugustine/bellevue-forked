@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
-import AnchorTagSecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButton";
+import SecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButton";
 
 export default function ListCard({ item }) {
   return (
@@ -33,10 +33,10 @@ export default function ListCard({ item }) {
           )}
         </Link>
 
-        {/* Indhold */}
+        {/* Indhold  line-clamp-1=maks en linje */}
         <div className="p-3">
           <div className="flex justify-between">
-            <h4 className="font-bold">{item.name}</h4>
+            <h4 className="font-medium line-clamp-1">{item.name}</h4>
           </div>
           <p className="font-extralight pt-2 text-md">{item.date}</p>
           <p className=" font-light">{item.description}</p>
@@ -51,9 +51,9 @@ export default function ListCard({ item }) {
               </AnchorTagPrimaryButton>
             </div>
             <div>
-              <AnchorTagSecondaryButton href={`/forestillinger/${item.id}`}>
+              <SecondaryButton href={`/forestillinger/${item.id}`}>
                 Læs Mere
-              </AnchorTagSecondaryButton>
+              </SecondaryButton>
             </div>
           </div>
         </div>

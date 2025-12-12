@@ -1,15 +1,20 @@
 import DropDown from "@/components/global/komponenter/DropDown";
 
-export default function Filters({ onFilterChange, categories = [] }) {
-  const dates = [];
 
-  const children = ["Familieforestilling", "For børn"];
-
+// Er en præsentationskomponent
+// Modtager bare de færdige options som props
+// Sender valg tilbage til parent (KalenderSamlet) via onFilterChange
+export default function Filters({
+  dates = [],
+  categories = [],
+  children = [],
+  onFilterChange,
+}) {
   return (
     <div className="flex gap-4">
       <DropDown
         label="Dato"
-        items={dates}
+        items={["Alle", ...dates]}
         onSelect={(value) => onFilterChange("date", value)}
       />
 
@@ -21,7 +26,7 @@ export default function Filters({ onFilterChange, categories = [] }) {
 
       <DropDown
         label="Børn"
-        items={children}
+        items={["Alle", ...children]}
         onSelect={(value) => onFilterChange("children", value)}
       />
     </div>
