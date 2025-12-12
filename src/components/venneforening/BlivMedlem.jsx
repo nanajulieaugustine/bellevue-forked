@@ -50,7 +50,7 @@ const BlivMedlem = () => {
     <div className="">
       <section className="pt-20 pb-20">
         <h2 className="text-center">Bliv medlem - og få et særligt godt tilbud</h2>
-        <p className="text-center pt-10 text-2xl max-w-2xl">
+        <p className="text-center pt-10 text-2xl">
           Tilmeld dig Bellevue Teatrets Venner i dag og få adgang til eksklusive fordele, unikke billetpriser og særlige arrangementer.
         </p>
 
