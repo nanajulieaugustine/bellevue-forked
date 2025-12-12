@@ -24,7 +24,7 @@ const KontaktHero = () => (
       </section>
 
     {/* GUL KONTAKT-INFO SEKTION (udenfor max-height!) */}
-    <div className="absolute -left-10">
+    <div className="absolute -left-10 hidden lg:block">
         <Image src="/svg/phone.svg" alt="" width={350} height={350} />
       </div>
     <div className="bg-(--gul-600)">
