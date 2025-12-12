@@ -81,7 +81,7 @@ const Nyhedsbrev = () => {
 
               <button
                 onClick={handleTilmeldClick}
-                className="self-center font-bold border-3 border-(--beige-600) w-full pt-4 pb-4 rounded-xl mt-4"
+                className="self-center font-bold border-3 border-(--beige-600) w-full pt-4 pb-4 rounded-xl"
               >
                 Tilmeld
               </button>
