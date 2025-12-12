@@ -91,7 +91,7 @@ const archive = filterItemsByStatus(itemsWithLatestDate, "archive");
         <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
       </div>
 
-      <div className="absolute -right-2">
+      <div className="absolute -right-2 hidden lg:block">
         <Image src="/svg/watertower-red.svg" alt="" width={400} height={900} />
       </div>
 
