@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import PopupNyhedsbrev from "../global/komponenter/PopupNyhedsbrev";
+import Tilmeld from "../global/knapper/Tilmeld";
 
 const Nyhedsbrev = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -77,12 +78,8 @@ const Nyhedsbrev = () => {
                 )}
               </div>
 
-              <button
-                onClick={handleTilmeldClick}
-                className="self-center font-bold border-3 border-(--beige-600) w-full pt-4 pb-4 rounded-xl"
-              >
-                Tilmeld
-              </button>
+              <Tilmeld onClick={handleTilmeldClick} />
+
             </div>
           </div>
         </div>

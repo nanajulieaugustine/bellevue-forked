@@ -3,6 +3,7 @@
 import { useState } from "react";
 import PopupNyhedsbrev from "../global/komponenter/PopupNyhedsbrev";
 import Image from "next/image";
+import Tilmeld from "../global/knapper/Tilmeld";
 
 const BlivMedlem = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -103,12 +104,8 @@ const BlivMedlem = () => {
                 )}
               </div>
 
-              <button
-                onClick={handleTilmeldClick}
-                className="self-center font-bold border-3 border-(--beige-600) w-full pt-4 pb-4 rounded-xl mt-4"
-              >
-                Tilmeld
-              </button>
+              <Tilmeld onClick={handleTilmeldClick} />
+
 
               <p className="text-center mb-6 text-xl font-bold mt-4">
                 Lige nu: Få et særligt medlemstilbud, når du tilmelder dig!

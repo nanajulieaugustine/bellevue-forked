@@ -66,7 +66,7 @@ export default function ListCard({ item, medlemstilbud }) {
                 Læs Mere
               </SecondaryButton>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
     </li>
