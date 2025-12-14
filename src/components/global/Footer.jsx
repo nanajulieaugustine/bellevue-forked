@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import PopupNyhedsbrev from "../global/komponenter/PopupNyhedsbrev";
+import Tilmeld from "./knapper/Tilmeld";
 
 const Footer = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -57,12 +58,8 @@ const Footer = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="bg-(--beige-600) rounded-xl p-4 w-full text-(--moerkblaa-900) border-2 border-(--beige-900) focus:outline-none"
           />
-          <button
-            onClick={handleTilmeldClick}
-            className="bg-(--beige-900) self-center font-bold border-3 border-(--beige-600) w-full pt-4 pb-4 rounded-xl text-(--moerkblaa-900)"
-          >
-            Tilmeld
-          </button>
+          <Tilmeld onClick={handleTilmeldClick} />
+
         </div>
       </div>
 
