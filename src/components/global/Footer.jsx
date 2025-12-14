@@ -78,9 +78,26 @@ const Footer = () => {
 
         <div className="pt-10 flex flex-col items-center md:items-end">
           <div className="pb-4">
-            <button className="text-(--koboltblaa-600) border-2 border-(--koboltblaa-600) bg-(--bellevueblaa-100) pt-3 pb-3 pl-15 pr-15 rounded-xl">
+            {/* <button className="text-(--koboltblaa-600) border-2 border-(--koboltblaa-600) bg-(--bellevueblaa-100) pt-3 pb-3 pl-15 pr-15 rounded-xl">
               Find vej
-            </button>
+            </button> */}
+                    <a
+          href="https://www.google.com/maps/search/?api=1&query=Strandvejen+451+2930+Klampenborg"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+          text-(--koboltblaa-600)
+          border-2 border-(--koboltblaa-600)
+          bg-(--bellevueblaa-100)
+          pt-3 pb-3 pl-15 pr-15
+          rounded-xl
+          transition-colors duration-300
+          hover:bg-(--koboltblaa-600)
+          hover:text-(--bellevueblaa-100)
+            "
+          >
+          Find vej
+        </a>
           </div>
           <p className="text-center font-bold md:text-right max-w-49">
             Strandvejen 451​ 2930 Klampenborg
