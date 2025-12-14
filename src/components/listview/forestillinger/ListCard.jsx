@@ -43,7 +43,7 @@ export default function ListCard({ item, medlemstilbud }) {
           ):(
             <p className="font-extralight pt-2 text-md">{item.date}</p>
           )}
-          <p className=" font-light">{item.description_short}</p>
+          <p className=" font-light line-clamp-2">{item.description_short}</p>
         </div>
 
         {/* Knapper - altid i bunden */}
