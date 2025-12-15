@@ -90,11 +90,11 @@ const Header = () => {
           <li>
             <a href="/">
               <Image
-                src="/"
+                src="/svg/vandtaarn_hvid.svg"
                 alt="submark"
-                width={70}
-                height={70}
-                className="cursor-pointer"
+                width={20}
+                height={20}
+                className="cursor-pointer mb-2"
               />
             </a>
           </li>

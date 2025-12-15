@@ -10,7 +10,8 @@ const supabase = createClient(
 );
 
 export default async function SingleItem({ params }) {
-  const { id } = await params; // hvis params er promise i din Next-version
+  const { id } = await params; 
+
 
   const { data, error } = await supabase
     .from("bellevue_items")

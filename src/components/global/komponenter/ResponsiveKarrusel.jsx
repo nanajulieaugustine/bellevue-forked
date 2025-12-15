@@ -23,8 +23,8 @@ const ResponsiveKarrusel = ({ children, interval = 5000 }) => {
     const updateCardsPerSlide = () => {
       const width = window.innerWidth;
       if (width < 640) setCardsPerSlide(1);
-      else if (width < 1024) setCardsPerSlide(2);
-      else setCardsPerSlide(3);
+      else if (width < 1024) setCardsPerSlide(1);
+      else setCardsPerSlide(2);
     };
 
     updateCardsPerSlide();

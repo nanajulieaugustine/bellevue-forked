@@ -243,23 +243,18 @@ export default function FindRundt() {
 
   return (
     <>
-          <div className="bg-(--moerkblaa-600) py-20 mt-20">
-        <section className="flex flex-col gap-8 items-center">
-          <h3 className="beige-100">Find rundt - helt enkelt</h3>
-          <p className="text-(--beige-100) text-center max-w-xl">
-            Gå på opdagelse i vores interaktive kort og se Bellevue Teatret
-            hjemmefra. Her kan du nemt orientere dig, finde din plads og få et
-            trygt overblik, før du ankommer.
-          </p>
-        </section>
-      </div>
     <div className="h-screen relative flex">
       <div className="flex flex-col w-fit gap-10 sticky p-15">
-        {buttons.map(({ id, label }) => (
-            <PrimaryButton key={id} onClick={() => setSelected(id)}>
-            {label}
-            </PrimaryButton>
-        ))}
+       {buttons.map(({ id, label }) => (
+        <PrimaryButton
+          key={id}
+          onClick={() => setSelected(id)}
+          active={formatIdLabel(id) === formatIdLabel(select)}
+        >
+          {label}
+        </PrimaryButton>
+      ))}
+
         </div>
 
 

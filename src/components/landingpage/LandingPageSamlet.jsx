@@ -19,12 +19,6 @@ const LandingPageSamlet = () => {
       <Hero />
       <Server />
       <div className="absolute -right-1 top-650 -z-5 hidden lg:block">
-          <Image
-            src="/svg/snoerkel-buttom-right.svg"
-            alt=""
-            width={700}
-            height={350}
-          />
     </div>
     <div className="flex flex-col gap-30">
     <FindVej/>

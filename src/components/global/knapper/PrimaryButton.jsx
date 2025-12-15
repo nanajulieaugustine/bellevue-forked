@@ -2,22 +2,34 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const PrimaryButton = ({ children, onClick, disabled }) => {
+const PrimaryButton = ({ children, onClick, disabled, active }) => {
     const [isHovered, setIsHovered] = useState(false);
 
   return (
     <button
       onClick={onClick}
       disabled={disabled}
+      active={active}
       className="relative inline-block group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
     >
-      <span className="block text-(--bellevueblaa-600) hover:scale-101 hover:text-(--bellevueblaa-900) transition-all duration-300 border-2 border-(--bellevueblaa-600) py-2 px-8 rounded-2xl text-center text-nowrap">
-        {children}
-      </span>
+      <span
+      className={`
+        block py-2 px-8 rounded-2xl text-center text-nowrap
+        border-2 transition-all duration-300
+        ${
+          active
+            ? "bg-(--bellevueblaa-600) text-(--hvid) border-(--bellevueblaa-600)"
+            : "bg-transparent text-(--bellevueblaa-600) border-(--bellevueblaa-600) hover:text-(--bellevueblaa-900)"
+        }
+      `}
+    >
+      {children}
+    </span>
+
 
       {/* Animeret mørkeblå border-linje */}
       <motion.span

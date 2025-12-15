@@ -125,7 +125,7 @@ export default function ListFilterClient({ items }) {
   return (
     <div>
       {/* Tabs */}
-      <div className="flex gap-6 mb-6 pb-3 relative w-full">
+      <div className="flex flex-col md:flex-row gap-6 mb-15 pb-3 relative w-full">
         <button onClick={() => setActiveTab("current")}>
           <h1
             ref={currentRef}
@@ -157,11 +157,9 @@ export default function ListFilterClient({ items }) {
   <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
 </div>      </div>
 
-      {/* Grafik */}
-      <div className="absolute -right-2 hidden lg:block">
-        <Image src="/svg/watertower-red.svg" alt="" width={400} height={900} />
-      </div>
-
+<div className="max-w-150 flex flex-col gap-5">
+  <h3>Se vores fulde program</h3>
+      <p>Her får du et samlet overblik over alle aktuelle og kommende forestillinger. Sortér efter genre eller målgruppe og find præcis det, der passer til jeres aften i teatret.</p>
       {/* DROPDOWNS MED DATO + KATEGORI + BØRN */}
       <ListCardDropDown
         dates={dateOptions}
@@ -169,6 +167,13 @@ export default function ListFilterClient({ items }) {
         children={childrenOptions}
         onFilterChange={handleFilterChange}
       />
+</div>
+
+      {/* Grafik */}
+      <div className="relative -top-80 left-180 -z-100 hidden lg:block">
+        <Image src="/svg/watertower-red.svg" className="absolute opacity-80" alt="" width={250} height={300} />
+      </div>
+
 
       {/* AKTIVE FILTRE */}
       {activeFilters.length > 0 && (
@@ -194,7 +199,7 @@ export default function ListFilterClient({ items }) {
       <ul className="flex flex-wrap gap-3 mt-4">
         {filteredItems.map((item) => (
           <li key={item.id} className="basis-[calc(33.333%-0.5rem)]">
-            <ListCard item={item} />
+            <ListCard archive={archive} item={item} />
           </li>
         ))}
       </ul>
