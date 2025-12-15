@@ -20,13 +20,16 @@ const Footer = () => {
     setShowPopup(false);
   };
 
+  const praktiskLinks = ["Handelsbetingelser", "CVR", "Privatdatapolitik", "Årsrapporter", "Vedtægter", "Egnsaftale", "Presse"];
+
+
   return (
     <div className="bg-(--moerkblaa-600) text-(--moerkblaa-100) grid grid-cols-1 md:grid-cols-3 gap-8 p-5">
       {/* --- Kolonne 1 --- */}
       <div className="flex flex-col items-center md:items-start text-center md:text-left">
         <div>{/* logo af some */}</div>
 
-        <div className="pt-10 md:pt-40">
+        <div className="md:pt-40">
           <p className="font-bold pb-2 text-white">Administration:</p>
           <p>39 63 49 00 </p>
           <p> (hverdage 10 - 14)</p>
@@ -98,13 +101,9 @@ const Footer = () => {
       <div className="pt-10 md:pt-40 flex flex-col items-center md:items-end text-center md:text-right">
         <p className="font-bold pb-2 text-white">Praktisk</p>
         <div className="flex flex-col items-center md:items-end gap-2">
-          <button>Handelsbetingelser</button>
-          <button>CVR</button>
-          <button>Privatdatapolitik</button>
-          <button>Årsrapporter</button>
-          <button>Vedtægter</button>
-          <button>Egnsaftale</button>
-          <button>Presse</button>
+          {praktiskLinks.map((link) => (
+            <button key={link}>{link}</button>
+          ))}
         </div>
 
         <div className="pt-10 flex flex-col items-center md:items-end">
