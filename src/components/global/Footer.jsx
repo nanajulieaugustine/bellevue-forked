@@ -3,6 +3,7 @@
 import { useState } from "react";
 import PopupNyhedsbrev from "../global/komponenter/PopupNyhedsbrev";
 import Tilmeld from "./knapper/Tilmeld";
+import Image from "next/image";
 
 const Footer = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -38,6 +39,36 @@ const Footer = () => {
           <p>Kørestol- og ledsagerpladser:</p>
           <p> 38 48 16 33</p>
         </div>
+
+        <div className="flex gap-7 pt-10 items-center">
+          <a
+            href="https://www.instagram.com/bellevueteatret/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/svg/insta-icon.svg"
+              alt="Instagram"
+              width={60}
+              height={80}
+            />
+          </a>
+
+          <a
+            href="https://www.facebook.com/BellevueTeatret?locale=da_DK"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/svg/facebook-icon.svg"
+              alt="Facebook"
+              width={40}
+              height={80}
+            />
+          </a>
+        </div>
+
+
       </div>
 
       {/* --- Kolonne 2 --- */}
