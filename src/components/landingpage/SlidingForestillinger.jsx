@@ -7,17 +7,11 @@ import ArrowXPositionRight from "../global/animationer/ArrowXPosition";
 import PrimaryLink from "../global/knapper/PrimaryLink";
 import Image from "next/image";
 
-const chunk = (arr, size) => {
-  return arr.reduce((acc, _, i) => {
-    if (i % size === 0) acc.push(arr.slice(i, i + size));
-    return acc;
-  }, []);
-};
 
 const SlidingForestillinger = ({ data }) => {
-  const now = new Date();
-  const threeMonthsAhead = new Date();
-  threeMonthsAhead.setMonth(threeMonthsAhead.getMonth() + 3);
+const now = new Date();
+const threeMonthsAhead = new Date();
+threeMonthsAhead.setMonth(threeMonthsAhead.getMonth() + 3);
 
   const itemsWithLatestDate = useMemo(
     () => parseDates(data, { addLatestDate: true }),
@@ -30,7 +24,7 @@ const SlidingForestillinger = ({ data }) => {
   });
 
   return (
-    <>
+    <section>
       <div className="absolute -left-1 top-400 -z-5 hidden lg:block">
         <Image
           src="/svg/snoerkel-left.svg"
@@ -50,7 +44,7 @@ const SlidingForestillinger = ({ data }) => {
           <ListCard key={item.id} item={item} />
         ))}
       </ResponsiveKarrusel>
-    </>
+    </section>
   );
 };
 

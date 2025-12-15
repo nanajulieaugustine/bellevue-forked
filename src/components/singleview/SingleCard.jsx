@@ -11,11 +11,13 @@ import Medvirkende from "./Medvirkende";
 import Anmeldelser from "./Anmeldelser";
 import { getItemStatus } from "@/app/library/utils.js";
 import SpisPaaTeatret from "./SpisPaaTeatret";
+import Pause from "./Pause";
 
 export default function SingleCard({ item }) {
   if (!item) return <p>Item ikke fundet</p>;
 
   const { isArchived } = getItemStatus(item);
+
 
   return (
     <div>
@@ -45,7 +47,11 @@ export default function SingleCard({ item }) {
         )}
         </section>
          </BellevueStriber>
-     
+     <div>
+      {item.pause?(
+        <Pause item={item}/>
+      ):null}
+     </div>
 
           {item.add_ons?.length > 0 && (
             <div className="h-[210vh] lg:h-screen w-screen">

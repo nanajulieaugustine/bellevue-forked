@@ -4,6 +4,7 @@ import FAQ from "./FAQ";
 import KontaktInfo from "./KontaktInfo";
 import SlutBox from "./SlutBox";
 import FindVej from "../global/komponenter/FindVej";
+import InteraktivtKort from "../ombellevue/InteraktivtKort";
 
 const PraktiskInfoSamlet = () => {
   return (
@@ -12,6 +13,7 @@ const PraktiskInfoSamlet = () => {
       <HeroSektion />
       <InfoBokse />
       <FAQ />
+      <InteraktivtKort/>
       <FindVej />
       <KontaktInfo />
       <SlutBox />

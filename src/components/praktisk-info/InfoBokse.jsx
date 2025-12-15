@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 const InfoBokse = () => {
+
   return (
     <section>
       <div className="flex flex-col gap-16 items-stretch md:flex-row md:justify-between md:gap-8">

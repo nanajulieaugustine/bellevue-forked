@@ -80,13 +80,31 @@ export function parseDates(input, options = {}) {
 export function extractCategories(data) {
   if (!Array.isArray(data)) return [];
 
-  const allTags = data.flatMap((item) => item.tags || [])
-    .flatMap(tag => tag.split(',').map(t => t.trim())) // splitter på komma og fjerner mellemrum
-    .filter(Boolean); // fjerner tomme strenge
+  const allTags = data.flatMap((item) => {
+    if (!item.tags) return [];
 
-  return [...new Set(allTags)]; // fjerner dubletter
+    // Hvis tags er en string: "drama, komedie"
+    if (typeof item.tags === "string") {
+      return item.tags
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean);
+    }
+
+    // Hvis tags er et array
+    if (Array.isArray(item.tags)) {
+      return item.tags.flatMap((tag) =>
+        typeof tag === "string"
+          ? tag.split(",").map((t) => t.trim())
+          : []
+      );
+    }
+
+    return [];
+  });
+
+  return [...new Set(allTags)];
 }
-
 
 // ========================== Gruppér kalender-items pr. dato og split tider ud =============================
 

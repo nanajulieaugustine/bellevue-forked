@@ -58,7 +58,6 @@
   --font-size-h2: clamp(3.75rem, 5.3125rem + -5vw, 2.5rem);
   --font-size-h3: clamp(1.5rem, 0.6406rem + 2.75vw, 2.1875rem);
   --font-size-h4: clamp(1.25rem, 0.8594rem + 1.25vw, 1.5625rem);
-  --font-size-highlighttext: clamp(1.25rem, 1.5625rem + -1vw, 1rem);
 }
 
 h1,
@@ -85,10 +84,6 @@ h3 {
 h4 {
   font-size: var(--font-size-h4);
   line-height: 1.2;
-}
-
-.highlighttext {
-  font-size: var(--font-size-highlighttext);
 }
 
 .display {

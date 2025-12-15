@@ -4,10 +4,10 @@ import Link from "next/link";
 import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
 import SecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButton";
 
-export default function ListCard({ item, medlemstilbud }) {
+export default function ListCard({ item, medlemstilbud, archive }) {
 
   return (
-    <li className="relative ml-4 mr-4 mt-10 ">
+    <div className="relative ml-4 mr-4 mt-10 ">
       <div
         className="
           relative flex flex-col bg-white rounded-3xl p-2 min-h-[450px]
@@ -39,16 +39,19 @@ export default function ListCard({ item, medlemstilbud }) {
           <div className="flex justify-between">
             <h4 className="font-medium line-clamp-1">{item.name}</h4>
           </div>
-          {medlemstilbud ? (<p className="font-extralight pt-2 text-md">{item.venne_fordele.date}</p>
+          {medlemstilbud ? (
+            <div>
+            <p className="font-extralight pt-2 text-md"> {item.venne_fordele[0]?.dato}</p>
+          <p className="pt-2 text-md"> {item.venne_fordele[0]?.billet_antal}</p>
+          </div>
           ):(
             <p className="font-extralight pt-2 text-md">{item.date}</p>
           )}
-          <p className=" font-light">{item.description_short}</p>
         </div>
 
         {/* Knapper - altid i bunden */}
-        <div className="p-3 pt-0 pb-10 items-center justify-center mt-auto">
-          <div className="flex justify-center items-center gap-10 w-full pt-10">
+        <div className="p-2 pt-0 pb-10 items-center justify-center mt-auto">
+          <div className="flex flex-wrap justify-center items-center gap-10 w-full pt-10">
             <div>
             {medlemstilbud ? (
               // Note: Skal være scroll to anchor tag
@@ -60,6 +63,9 @@ export default function ListCard({ item, medlemstilbud }) {
                 Køb billet
               </AnchorTagPrimaryButton>
             )}
+         
+
+            
             </div>
             <div>
               <SecondaryButton href={`/forestillinger/${item.id}`}>
@@ -69,6 +75,6 @@ export default function ListCard({ item, medlemstilbud }) {
           </div>
         </div>
       </div>
-    </li>
+    </div>
   );
 }
