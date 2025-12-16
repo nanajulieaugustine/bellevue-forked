@@ -6,7 +6,7 @@ import Image from "next/image";
 // Brug præcis samme opsætning som ListServer
 const supabase = createClient(
   "https://rzwaokiepaobrlrpphia.supabase.co",
-  process.env.SUPABASE_ANON_KEY
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
 export default async function SingleItem({ params }) {

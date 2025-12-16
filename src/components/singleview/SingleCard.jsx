@@ -12,6 +12,7 @@ import Anmeldelser from "./Anmeldelser";
 import { getItemStatus } from "@/app/library/utils.js";
 import SpisPaaTeatret from "./SpisPaaTeatret";
 import Pause from "./Pause";
+import GoBackArrow from "../global/navigation/GoBackArrow";
 
 export default function SingleCard({ item }) {
   if (!item) return <p>Item ikke fundet</p>;
@@ -27,11 +28,11 @@ export default function SingleCard({ item }) {
         ))}
       </SnapWrapper>
 
+        <GoBackArrow/>
       <section className="flex flex-col md:flex-row w-full">
             {!isArchived && <DatoOversigt item={item} />}
       <StickyInfo item={item}/>
       </section>
-
 
       <BellevueStriber>
   {/* Højre kolonne */}

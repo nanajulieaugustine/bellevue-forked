@@ -7,7 +7,7 @@ import LedigeStillinger from "@/components/kontakt/LedigeStillinger";
 export default function Kontakt() {
   return (
     <div className="
-    py-50
+    py-40
     bg-none               /* Mobile: ingen baggrund */
     lg:bg-[url('/svg/snoerkel-top-right.svg')]   /* Tablet+ */
     lg:bg-no-repeat

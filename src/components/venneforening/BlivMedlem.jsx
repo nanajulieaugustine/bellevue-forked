@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const BlivMedlem = () => {
   return (
-    <section className="pt-20 pb-20">
+    <section className="pt-20 pb-20" id="blivmedlem">
       <h2 className="text-center">Bliv medlem - og få et særligt godt tilbud</h2>
       <p className="text-center pt-10 text-2xl">
         Tilmeld dig Bellevue Teatrets Venner i dag og få adgang til eksklusive fordele, unikke billetpriser og særlige arrangementer.

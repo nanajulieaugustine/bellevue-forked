@@ -1,4 +1,4 @@
-import FindRundt from "../global/komponenter/FindRundt";
+import FindRundt from "../global/komponenter/interaktivtkort/FindRundt";
 const Pause = ({item}) => {
     return ( 
         <div className="text-center p-10 flex flex-col gap-5">

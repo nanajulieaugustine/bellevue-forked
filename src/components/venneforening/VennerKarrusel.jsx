@@ -27,7 +27,7 @@ const VennerKarrusel = ({ data }) => {
   const medlemstilbud = upcoming.filter((tilbud)=>tilbud.venneforening === true);
 
   return (
-    <>
+    <section>
         <div className="pl-25">
           <h2>
             Aktuelle medlemstilbud
@@ -35,12 +35,11 @@ const VennerKarrusel = ({ data }) => {
         </div>
         <ResponsiveKarrusel>
           {medlemstilbud.map((item) => (
-            <section>
             <ListCard key={item.id} item={item} medlemstilbud={medlemstilbud} />
-            </section>
+         
           ))}
         </ResponsiveKarrusel>
-    </>
+    </section>
   );
 };
 

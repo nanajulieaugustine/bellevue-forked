@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
 import SecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButton";
+import ScrollToPrimaryButton from "@/components/global/knapper/ScrollToPrimaryButton";
 
 export default function ListCard({ item, medlemstilbud, archive }) {
 
@@ -56,9 +57,9 @@ export default function ListCard({ item, medlemstilbud, archive }) {
             <div>
             {medlemstilbud ? (
               // Note: Skal være scroll to anchor tag
-              <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
-                Find billet
-              </AnchorTagPrimaryButton>
+               <ScrollToPrimaryButton scrollToId="bookbilletter">
+        Find billetter
+        </ScrollToPrimaryButton>
             ):(
               <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
                 Køb billet

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import PopupNyhedsbrev from "./PopupNyhedsbrev";
-import Tilmeld from "../knapper/Tilmeld";
+import Tilmeld from "../knapper/TertiaryButton";
 
 const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
   const [values, setValues] = useState({});

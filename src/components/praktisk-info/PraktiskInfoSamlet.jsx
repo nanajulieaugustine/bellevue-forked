@@ -4,7 +4,7 @@ import FAQ from "./FAQ";
 import KontaktInfo from "./KontaktInfo";
 import SlutBox from "./SlutBox";
 import FindVej from "../global/komponenter/FindVej";
-import InteraktivtKort from "../ombellevue/InteraktivtKort";
+import InteraktivtKort from "../global/komponenter/interaktivtkort/InteraktivtKort";
 
 const PraktiskInfoSamlet = () => {
   return (

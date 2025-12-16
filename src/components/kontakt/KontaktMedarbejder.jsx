@@ -26,6 +26,12 @@ export default function KontaktMedarbejder({ employees = [] }) {
             <p className="text-(--moerkblaa-900)font-light pt-2">
               {employee.job}
             </p>
+             <a href={`mailto:${employee.mail}`} className="text-(--moerkblaa-900)font-light pt-2">
+              {employee.mail}
+            </a>
+             <p className="text-(--moerkblaa-900)font-light pt-2">
+              {employee.tlf}
+            </p>
           </div>
         </li>
       ))}

@@ -1,8 +1,12 @@
 "use client";
-
+import { motion } from "framer-motion";
 const PopupNyhedsbrev = ({ onClose }) => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <motion.div
+    initial={{y: 100}}
+    animate={{y: 0}}
+    transition={{type: "easeInOut", duration: 0.5}}
+    className="fixed inset-0 flex items-center justify-center z-50">
       {/* Sløret baggrund */}
       <div
         className="absolute inset-0 backdrop-blur-sm"
@@ -24,7 +28,7 @@ const PopupNyhedsbrev = ({ onClose }) => {
           Tak for din tilmelding – vi glæder os til at byde dig velkommen i fællesskabet. Hold øje med din mail – dit medlemstilbud er på vej!
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

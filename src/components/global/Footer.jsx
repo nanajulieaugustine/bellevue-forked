@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PopupNyhedsbrev from "../global/komponenter/PopupNyhedsbrev";
-import Tilmeld from "./knapper/Tilmeld";
+import Tilmeld from "./knapper/TertiaryButton";
 import Image from "next/image";
 
 const Footer = () => {

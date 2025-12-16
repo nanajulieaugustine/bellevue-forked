@@ -52,7 +52,7 @@ const BilledeSektion = () => {
 
 
         <div className="self-center">
-          <AnchorTagPrimaryButton href={`/om-bellevue`}>
+          <AnchorTagPrimaryButton href={`/kontakt`}>
             Kontakt os
           </AnchorTagPrimaryButton>
         </div>

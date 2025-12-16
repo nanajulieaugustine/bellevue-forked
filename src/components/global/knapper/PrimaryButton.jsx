@@ -9,7 +9,6 @@ const PrimaryButton = ({ children, onClick, disabled, active }) => {
     <button
       onClick={onClick}
       disabled={disabled}
-      active={active}
       className="relative inline-block group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

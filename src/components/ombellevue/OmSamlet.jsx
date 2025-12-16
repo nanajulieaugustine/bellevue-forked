@@ -1,9 +1,8 @@
 import Intro from "./Intro";
 import RundvisningInfo from "./RundvisningInfo";
 import BilledeSektion from "./BilledeSektion";
-import InteraktivtKort from "./InteraktivtKort";
 import LejTeatret from "./LejTeatret";
-import FindRundt from "../global/komponenter/FindRundt";
+import InteraktivtKort from "../global/komponenter/interaktivtkort/InteraktivtKort";
 
 const OmSamlet = () => {
   return (

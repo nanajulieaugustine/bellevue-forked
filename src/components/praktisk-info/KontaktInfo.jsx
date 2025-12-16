@@ -24,7 +24,7 @@ const KontaktInfo = () => {
           <div className="font-light pt-5">
             <p>39 63 49 00</p>
             <p>(hverdage 10 - 14)</p>
-            <p>adm@bellevueteatret.dk</p>
+            <a href="mailto:adm@bellevueteatret.dk">adm@bellevueteatret.dk</a>
           </div>
         </div>
 
@@ -39,7 +39,7 @@ const KontaktInfo = () => {
         <div>
           <h4>Forhus</h4>
           <div className="font-light pt-5">
-            <p>Forhus@bellevueteatret.dk</p>
+            <a href="mailto:forhus@bellevueteatret.dk">Forhus@bellevueteatret.dk</a>
           </div>
         </div>
       </section>
