@@ -10,7 +10,7 @@ import PrimaryButton from "../../knapper/PrimaryButton";
 const interactiveIds = [
   "foyerbar", "billetkontor", "gulv", "nordbar", "sydbar", "balkon", "tagteresse",
   "øvrebar", "nordtoilet", "sydtoilet",
-  "handicaptoilet", "sydgarderobe", "nordgarderobe"
+  "handicaptoilet", "sydgarderobe", "nordgarderobe", "merch", "foyeren", "cafeen"
 ];
 //blokerer facaderne, så interactiveIds bliver klikbare
 const nonInteractiveIds = ["facade", "facade.001", "facade.002", "facade.003"];
@@ -157,28 +157,34 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
 }
 
 
+const idToLabelMap = {
+  nordbar: "Barer",
+  sydbar: "Barer",
+  foyerbar: "Barer",
+  øvrebar: "Barer",
+
+  gulv: "Salen",
+  balkon: "Salen",
+  tagteresse: "Salen",
+
+  nordtoilet: "Toiletter",
+  sydtoilet: "Toiletter",
+  handicaptoilet: "Toiletter",
+
+  nordgarderobe: "Garderobe",
+  sydgarderobe: "Garderobe",
+
+  billetkontor: "Billetkontor",
+  merch: "Merch",
+  foyeren: "Foyeren",
+  cafeen: "Cafeen"
+};
 
 
 function formatIdLabel(id) {
-  switch(id) {
-    case "nordbar":
-    case "sydbar":
-    case "foyerbar":
-    case "øvrebar": return "Barer";
-
-    case "gulv":
-    case "balkon": return "Salen";
-
-    case "nordtoilet":
-    case "sydtoilet":
-    case "handicaptoilet": return "Toiletter";
-
-    case "nordgarderobe":
-    case "sydgarderobe": return "Garderobe";
-
-    case "billetkontor": return "Billetkontor";
-  }
+  return idToLabelMap[id] || null;
 }
+
 
 //  array med unikke knapper baseret på formatIdLabel
 const buttons = interactiveIds.reduce((acc, id) => {
@@ -246,7 +252,7 @@ function TrackHeading({ setActiveHeading }) {
     <>
     <div className="h-screen relative flex">
       <div className="flex flex-col w-fit gap-10 sticky p-15">
-       {buttons.map(({ id, label }) => (
+       {/* {buttons.map(({ id, label }) => (
         <PrimaryButton
           key={id}
           onClick={() => setSelected(id)}
@@ -254,7 +260,7 @@ function TrackHeading({ setActiveHeading }) {
         >
           {label}
         </PrimaryButton>
-      ))}
+      ))} */}
 
         </div>
 
