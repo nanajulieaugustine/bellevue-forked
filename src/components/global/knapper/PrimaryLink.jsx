@@ -3,7 +3,7 @@ import Link from "next/link";
 import LineAnimation from "../animationer/LineAnimation";
 import { useState } from "react";
 
-const PrimaryLink = ({ children, href }) => {
+const PrimaryLink = ({ children, href, ariaLabel }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <Link

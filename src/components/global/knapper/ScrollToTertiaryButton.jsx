@@ -9,6 +9,7 @@ const ScrollToTertiaryButton = ({
   scrollToId,
   style,
   target,
+  ariaLabel,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 

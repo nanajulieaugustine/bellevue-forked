@@ -60,18 +60,25 @@ const KalenderCard = ({ item, time }) => {
 
           {/* KNAPPER */}
           <div className="flex gap-6 shrink-0 whitespace-nowrap">
-            <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
+            <AnchorTagPrimaryButton
+              href={`/forestillinger/${item.id}`}
+              ariaLabel={"Køb billet"}
+            >
               Køb billet
             </AnchorTagPrimaryButton>
 
             {!isOpen ? (
-              <SecondaryButton onClick={() => toggle(item.id)}>
+              <SecondaryButton
+                onClick={() => toggle(item.id)}
+                ariaLabel={"Læs Mere"}
+              >
                 Læs Mere
               </SecondaryButton>
             ) : (
               <button
                 className="text-(--roed-600)"
                 onClick={() => toggle(item.id)}
+                aria-label="Luk igen"
               >
                 Luk igen
               </button>
@@ -109,7 +116,10 @@ const KalenderCard = ({ item, time }) => {
               <p>{item.description_short}</p>
 
               <div className="self-start sm:self-end">
-                <AnchorTagSecondaryButton href={`/forestillinger/${item.id}`}>
+                <AnchorTagSecondaryButton
+                  href={`/forestillinger/${item.id}`}
+                  ariaLabel={"Køb billet"}
+                >
                   Læs mere
                 </AnchorTagSecondaryButton>
               </div>

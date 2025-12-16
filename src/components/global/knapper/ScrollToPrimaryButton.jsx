@@ -9,6 +9,7 @@ const ScrollToPrimaryButton = ({
   scrollToId,
   style,
   target,
+  ariaLabel,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 

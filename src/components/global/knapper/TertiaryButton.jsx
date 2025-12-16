@@ -7,6 +7,7 @@ const TertiaryButton = ({
   onClick,
   disabled = false,
   style,
+  ariaLabel,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 

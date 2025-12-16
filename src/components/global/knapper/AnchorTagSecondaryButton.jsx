@@ -3,7 +3,6 @@ import Link from "next/link";
 import { MdArrowRightAlt } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ArrowXPositionRight from "../animationer/ArrowXPosition";
 
 const AnchorTagSecondaryButton = ({ children, href, ariaLabel }) => {
   const [hovered, setHovered] = useState(false);

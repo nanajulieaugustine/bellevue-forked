@@ -1,11 +1,9 @@
 "use client";
-import Link from "next/link";
 import { MdArrowRightAlt } from "react-icons/md";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ArrowXPositionRight from "../animationer/ArrowXPosition";
 
-const SecondaryButton = ({ children, onClick }) => {
+const SecondaryButton = ({ children, onClick, ariaLabel }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
