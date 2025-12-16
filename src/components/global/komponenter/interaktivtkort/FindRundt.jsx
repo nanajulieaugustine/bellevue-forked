@@ -261,7 +261,7 @@ export default function FindRundt({ item }) {
     <>
     <div className="h-screen relative flex">
       <div className="flex flex-col w-fit gap-10 sticky p-15">
-       {buttons.map(({ id, label }) => (
+       {/* {buttons.map(({ id, label }) => (
         <PrimaryButton
           key={id}
           onClick={() => setSelected(id)}
@@ -269,7 +269,7 @@ export default function FindRundt({ item }) {
         >
           {label}
         </PrimaryButton>
-      ))}
+      ))} */}
 
         </div>
 
@@ -296,7 +296,7 @@ export default function FindRundt({ item }) {
 
         {/* Syd */}
         <button
-          className="absolute bottom-20 left-70 -rotate-90 z-50"
+          className="absolute bottom-20 left-20 -rotate-90 z-50"
           onClick={() => setDirection("south")}
         >
           <h3

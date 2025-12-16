@@ -66,7 +66,7 @@ const FAQ = () => {
     <section className="flex flex-col gap-12">
       <h2>Ofte stillede spørgsmål</h2>
 
-      <ul className="space-y-4">
+      <ul className="space-y-4 cursor-pointer">
         {qaItems.map((item) => {
           const isOpen = openId === item.id;
           const isClosing = closingId === item.id;

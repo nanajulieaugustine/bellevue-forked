@@ -101,7 +101,7 @@ const Header = () => {
 
           {/* Navigation */}
           <li>
-            <ul className="rounded-full flex h-8 p-1 gap-10 items-center">
+            <ul className="rounded-full flex h-8 p-1 justify-between items-center w-screen px-(--content-width)">
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
                   href="/forestillinger"

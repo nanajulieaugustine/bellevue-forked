@@ -20,7 +20,7 @@ const HeroVenner = () => {
   return (
     <div>
       <BellevueStriber>
-        <section className="pt-50">
+        <section className="pt-40">
           <h1 className="pb-20">BELLEVUE TEATRETS VENNER</h1>
           <div className="absolute -right-10 -top-10 hidden lg:block">
             <Image

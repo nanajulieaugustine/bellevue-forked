@@ -170,15 +170,14 @@ export default function ListFilterClient({ items }) {
       </div>
 
       {/* Grafik */}
-      <div className="relative -top-80 left-180 -z-100 hidden lg:block">
-        <Image
-          src="/svg/watertower-red.svg"
-          className="absolute opacity-80"
-          alt=""
-          width={250}
-          height={300}
-        />
-      </div>
+     <div className="absolute -right-5 top-20 rotate-90 -z-10 hidden lg:block">
+             <Image
+               src="/svg/snoerkel-top-right.svg"
+               alt=""
+               width={500}
+               height={350}
+             />
+           </div>
 
       {/* AKTIVE FILTRE */}
       {activeFilters.length > 0 && (

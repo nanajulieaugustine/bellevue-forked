@@ -63,7 +63,7 @@ const QACard = () => {
   ];
 
   return (
-    <ul className="space-y-4">
+    <ul className="space-y-4 cursor-pointer">
       {qaItems.map((item) => {
         const isOpen = openId === item.id;
         const isClosing = closingId === item.id;
