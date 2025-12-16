@@ -3,8 +3,8 @@ import ListServer from "@/components/listview/forestillinger/ListServer";
 
 export default function Forestillinger() {
   return (
-  <div className="py-40">
-    <ListServer />;
+    <div className="py-40">
+      <ListServer />;
     </div>
-  )
+  );
 }

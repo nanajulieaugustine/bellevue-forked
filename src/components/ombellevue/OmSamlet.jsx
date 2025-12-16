@@ -12,7 +12,7 @@ const OmSamlet = () => {
       <div className="flex flex-col gap-30">
         <RundvisningInfo />
         <BilledeSektion />
-        <InteraktivtKort/>
+        <InteraktivtKort />
         <LejTeatret />
       </div>
     </div>

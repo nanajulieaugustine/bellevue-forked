@@ -20,8 +20,15 @@ const Footer = () => {
     setShowPopup(false);
   };
 
-  const praktiskLinks = ["Handelsbetingelser", "CVR", "Privatdatapolitik", "Årsrapporter", "Vedtægter", "Egnsaftale", "Presse"];
-
+  const praktiskLinks = [
+    "Handelsbetingelser",
+    "CVR",
+    "Privatdatapolitik",
+    "Årsrapporter",
+    "Vedtægter",
+    "Egnsaftale",
+    "Presse",
+  ];
 
   return (
     <div className="bg-(--moerkblaa-600) text-(--moerkblaa-100) grid grid-cols-1 md:grid-cols-3 gap-8 p-5">
@@ -70,8 +77,6 @@ const Footer = () => {
             />
           </a>
         </div>
-
-
       </div>
 
       {/* --- Kolonne 2 --- */}
@@ -93,7 +98,6 @@ const Footer = () => {
             className="bg-(--beige-600) rounded-xl p-4 w-full text-(--moerkblaa-900) border-2 border-(--beige-900) focus:outline-none"
           />
           <Tilmeld onClick={handleTilmeldClick} />
-
         </div>
       </div>
 
@@ -111,11 +115,11 @@ const Footer = () => {
             {/* <button className="text-(--koboltblaa-600) border-2 border-(--koboltblaa-600) bg-(--bellevueblaa-100) pt-3 pb-3 pl-15 pr-15 rounded-xl">
               Find vej
             </button> */}
-                    <a
-          href="https://www.google.com/maps/search/?api=1&query=Strandvejen+451+2930+Klampenborg"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Strandvejen+451+2930+Klampenborg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
           text-(--koboltblaa-600)
           border-2 border-(--koboltblaa-600)
           bg-(--bellevueblaa-100)
@@ -125,9 +129,9 @@ const Footer = () => {
           hover:bg-(--koboltblaa-600)
           hover:text-(--bellevueblaa-100)
             "
-          >
-          Find vej
-        </a>
+            >
+              Find vej
+            </a>
           </div>
           <p className="text-center font-bold md:text-right max-w-49">
             Strandvejen 451​ 2930 Klampenborg

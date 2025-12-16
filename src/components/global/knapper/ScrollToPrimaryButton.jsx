@@ -33,9 +33,7 @@ const ScrollToPrimaryButton = ({
         className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-(--bellevueblaa-900)"
         initial={{ clipPath: "inset(0 100% 0 0)" }}
         animate={{
-          clipPath: isHovered
-            ? "inset(0 0% 0 0)"
-            : "inset(0 100% 0 0)",
+          clipPath: isHovered ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       />
@@ -53,6 +51,7 @@ const ScrollToPrimaryButton = ({
         onMouseLeave={() => setIsHovered(false)}
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
+        aria-label={ariaLabel || undefined}
       >
         {ButtonContent}
       </Link>
@@ -68,6 +67,7 @@ const ScrollToPrimaryButton = ({
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
+      aria-label={ariaLabel || undefined}
     >
       {ButtonContent}
     </button>

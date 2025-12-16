@@ -10,8 +10,7 @@ const supabase = createClient(
 );
 
 export default async function SingleItem({ params }) {
-  const { id } = await params; 
-
+  const { id } = await params;
 
   const { data, error } = await supabase
     .from("bellevue_items")
@@ -33,13 +32,8 @@ export default async function SingleItem({ params }) {
       <SingleCard item={data} />
 
       <div className="absolute right-0 top-230 -z-5 hidden lg:block rotate-180">
-          <Image
-            src="/svg/snoerkel-left.svg"
-            alt=""
-            width={350}
-            height={350}
-          />
-    </div>
+        <Image src="/svg/snoerkel-left.svg" alt="" width={350} height={350} />
+      </div>
     </div>
   );
 }

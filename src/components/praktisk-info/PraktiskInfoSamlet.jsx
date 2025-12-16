@@ -13,7 +13,7 @@ const PraktiskInfoSamlet = () => {
       <HeroSektion />
       <InfoBokse />
       <FAQ />
-      <InteraktivtKort/>
+      <InteraktivtKort />
       <FindVej />
       <KontaktInfo />
       <SlutBox />

@@ -1,5 +1,5 @@
 const LedigeStillinger = () => {
-    return ( 
+  return (
     <div className="text-center text-(--beige-100) bg-(--moerkblaa-600)">
       <h3 className="pb-7 font-light pt-15 beige-100">Ledige Stillinger</h3>
 
@@ -12,8 +12,10 @@ const LedigeStillinger = () => {
           ansøgning.
         </p>
         <div className="flex flex-col md:flex-row gap-10 justify-center">
-        <a href="mailto:adm@bellevueteatret.dk">adm@bellevueteatret.dk</a>
-         <a href="mailto:forhus@bellevueteatret.dk">Forhus@bellevueteatret.dk</a>
+          <a href="mailto:adm@bellevueteatret.dk">adm@bellevueteatret.dk</a>
+          <a href="mailto:forhus@bellevueteatret.dk">
+            Forhus@bellevueteatret.dk
+          </a>
         </div>
       </div>
 
@@ -21,7 +23,7 @@ const LedigeStillinger = () => {
         Vi glæder os til at høre fra dig.
       </p>
     </div>
-     );
-}
- 
+  );
+};
+
 export default LedigeStillinger;

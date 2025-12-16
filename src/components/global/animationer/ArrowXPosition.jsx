@@ -13,7 +13,7 @@ const ArrowXPositionRight = ({ className, disabled, onClick }) => {
       className={className}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-       onFocus={() => setHovered(true)}
+      onFocus={() => setHovered(true)}
       onBlur={() => setHovered(false)}
       animate={{ x: hovered ? 5 : 0 }}
       transition={{ duration: 0.25, ease: "easeOut" }}

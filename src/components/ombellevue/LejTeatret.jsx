@@ -2,11 +2,15 @@ import Image from "next/image";
 import AnchorTagPrimaryButton from "../global/knapper/AnchorTagPrimaryButton";
 import HighlightCards from "../global/komponenter/HighLightCard";
 
-
 const LejTeatret = () => {
   const highlightItems = [
     { icon: "/svg/parking.svg", text: "Gratis, ubegrænset parkering" },
-    { icon: "/svg/chair.svg", text: "742 siddepladser", iconWidth: 80, iconHeight: 80 },
+    {
+      icon: "/svg/chair.svg",
+      text: "742 siddepladser",
+      iconWidth: 80,
+      iconHeight: 80,
+    },
     { icon: "/svg/catering.svg", text: "Catering, teknik og underholdning" },
   ];
 

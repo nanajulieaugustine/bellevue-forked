@@ -4,7 +4,7 @@ import PrimaryButton from "../../knapper/PrimaryButton";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
 
-const PopOverFindRundt = ({  setActiveId, item }) => {
+const PopOverFindRundt = ({ setActiveId, item }) => {
   if (!item) return null;
 
   return (
@@ -17,7 +17,10 @@ const PopOverFindRundt = ({  setActiveId, item }) => {
         transition={{ type: "spring", stiffness: 120, damping: 15 }}
         className="absolute flex flex-col gap-5 top-50 right-10 bg-(--beige-600) p-10 min-w-110 min-h-100 shadow-lg rounded-xl z-50"
       >
-        <button className="font-black text-2xl relative left-1/2 hover:scale-110 transition-all duration-300" onClick={() => setActiveId(null)}>
+        <button
+          className="font-black text-2xl relative left-1/2 hover:scale-110 transition-all duration-300"
+          onClick={() => setActiveId(null)}
+        >
           X
         </button>
         <h2 className="mb-2 uppercase">{item.objekt}</h2>

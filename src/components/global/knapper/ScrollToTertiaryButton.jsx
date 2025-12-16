@@ -22,7 +22,7 @@ const ScrollToTertiaryButton = ({
 
   const ButtonContent = (
     <>
-     <span
+      <span
         className="block text-(--beige-600) hover:scale-101 hover:text-(--beige-600)
                    transition-all duration-300 border-2 border-(--beige-600)
                    py-4 px-6 rounded-xl text-center font-bold"
@@ -35,9 +35,7 @@ const ScrollToTertiaryButton = ({
         className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-(--beige-900)"
         initial={{ clipPath: "inset(0 100% 0 0)" }}
         animate={{
-          clipPath: isHovered
-            ? "inset(0 0% 0 0)"
-            : "inset(0 100% 0 0)",
+          clipPath: isHovered ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       />
@@ -55,6 +53,7 @@ const ScrollToTertiaryButton = ({
         onMouseLeave={() => setIsHovered(false)}
         onFocus={() => setIsHovered(true)}
         onBlur={() => setIsHovered(false)}
+        aria-label={ariaLabel || undefined}
       >
         {ButtonContent}
       </Link>
@@ -70,6 +69,7 @@ const ScrollToTertiaryButton = ({
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
+      aria-label={ariaLabel || undefined}
     >
       {ButtonContent}
     </button>

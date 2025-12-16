@@ -13,8 +13,9 @@ export default async function ListServer() {
   const { data } = await supabase.from("bellevue_items").select("*");
 
   // Filtrér items, så "event" ikke medtages
-  const filteredData = data?.filter(item => !item.tags?.includes("Event")) || [];
-  
+  const filteredData =
+    data?.filter((item) => !item.tags?.includes("Event")) || [];
+
   console.log("Fetched data (filtered):", filteredData);
 
   return (

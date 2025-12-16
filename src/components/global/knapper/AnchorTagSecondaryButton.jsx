@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import ArrowXPositionRight from "../animationer/ArrowXPosition";
 
-const AnchorTagSecondaryButton = ({ children, href }) => {
+const AnchorTagSecondaryButton = ({ children, href, ariaLabel }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -16,6 +16,7 @@ const AnchorTagSecondaryButton = ({ children, href }) => {
       onMouseLeave={() => setHovered(false)}
       onFocus={() => setHovered(true)}
       onBlur={() => setHovered(false)}
+      aria-label={ariaLabel || undefined}
     >
       <p className="hover:scale-102 transition-all duration-300 font-light">
         {children}

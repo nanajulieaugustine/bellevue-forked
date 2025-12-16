@@ -12,6 +12,7 @@ const PrimaryLink = ({ children, href }) => {
       onMouseLeave={() => setIsHovered(false)}
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
+      aria-label={ariaLabel || undefined}
       className="text-(--roed-900) font-semithin inline-block"
     >
       <span className="hover:scale-102 transition-all duration-300 hover:font-medium relative">

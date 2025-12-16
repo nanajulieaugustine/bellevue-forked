@@ -3,10 +3,11 @@ import { motion } from "framer-motion";
 const PopupNyhedsbrev = ({ onClose }) => {
   return (
     <motion.div
-    initial={{y: 100}}
-    animate={{y: 0}}
-    transition={{type: "easeInOut", duration: 0.5}}
-    className="fixed inset-0 flex items-center justify-center z-50">
+      initial={{ y: 100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "easeInOut", duration: 0.5 }}
+      className="fixed inset-0 flex items-center justify-center z-50"
+    >
       {/* Sløret baggrund */}
       <div
         className="absolute inset-0 backdrop-blur-sm"
@@ -25,7 +26,8 @@ const PopupNyhedsbrev = ({ onClose }) => {
 
         <h2 className=" mb-4 text-center">Tak for din tilmelding!</h2>
         <p className="text-center text-(--moerkblaa-900) pt-10 font-light ">
-          Tak for din tilmelding – vi glæder os til at byde dig velkommen i fællesskabet. Hold øje med din mail – dit medlemstilbud er på vej!
+          Tak for din tilmelding – vi glæder os til at byde dig velkommen i
+          fællesskabet. Hold øje med din mail – dit medlemstilbud er på vej!
         </p>
       </div>
     </motion.div>

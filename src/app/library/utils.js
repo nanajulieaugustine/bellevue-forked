@@ -12,26 +12,27 @@ export function parseDates(input, options = {}) {
 
     // Hvis tiden findes, kombinér "03/12/2025 11.00"
     function parseWithDateAndTime(entry) {
-  if (!entry?.date) return null;
+      if (!entry?.date) return null;
 
-  // Hvis tiden er en ARRAY, parse kun datoen
-  if (Array.isArray(entry.time)) {
-    const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
-    return isNaN(d) ? null : d;
-  }
+      // Hvis tiden er en ARRAY, parse kun datoen
+      if (Array.isArray(entry.time)) {
+        const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
+        return isNaN(d) ? null : d;
+      }
 
-  // Hvis tiden er en string, parse dato + tid
-  if (typeof entry.time === "string" && entry.time.trim() !== "") {
-    const combined = `${entry.date} ${entry.time}`;
-    const d = parse(combined, "dd/MM/yyyy HH.mm", new Date(), { locale: da });
-    return isNaN(d) ? null : d;
-  }
+      // Hvis tiden er en string, parse dato + tid
+      if (typeof entry.time === "string" && entry.time.trim() !== "") {
+        const combined = `${entry.date} ${entry.time}`;
+        const d = parse(combined, "dd/MM/yyyy HH.mm", new Date(), {
+          locale: da,
+        });
+        return isNaN(d) ? null : d;
+      }
 
-  // Hvis der slet ikke er tid, parse kun datoen
-  const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
-  return isNaN(d) ? null : d;
-}
-
+      // Hvis der slet ikke er tid, parse kun datoen
+      const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
+      return isNaN(d) ? null : d;
+    }
 
     // Ellers parse kun datoen (fallback)
     const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
@@ -94,9 +95,7 @@ export function extractCategories(data) {
     // Hvis tags er et array
     if (Array.isArray(item.tags)) {
       return item.tags.flatMap((tag) =>
-        typeof tag === "string"
-          ? tag.split(",").map((t) => t.trim())
-          : []
+        typeof tag === "string" ? tag.split(",").map((t) => t.trim()) : []
       );
     }
 
@@ -166,7 +165,7 @@ export function groupShowsByDate(items, { onlyFuture = false } = {}) {
 
 // ========================== Arkiverede versus aktive forestillinger =============================
 
- /* Beregn seneste dato og arkiveret status for et item*/
+/* Beregn seneste dato og arkiveret status for et item*/
 export function getItemStatus(item) {
   if (!item?.fullDates || !Array.isArray(item.fullDates)) {
     return { latestDate: null, isArchived: false };

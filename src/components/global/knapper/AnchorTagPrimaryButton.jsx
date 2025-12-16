@@ -3,7 +3,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const AnchorTagPrimaryButton = ({ children, href, style, target }) => {
+const AnchorTagPrimaryButton = ({
+  children,
+  href,
+  style,
+  target,
+  ariaLabel,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -15,6 +21,7 @@ const AnchorTagPrimaryButton = ({ children, href, style, target }) => {
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
       target={target}
+      aria-label={ariaLabel || undefined}
     >
       {/* Selve knappen */}
       <span
@@ -28,10 +35,10 @@ const AnchorTagPrimaryButton = ({ children, href, style, target }) => {
       <motion.span
         className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-(--bellevueblaa-900)"
         style={{ borderWidth: 2 }}
-        initial={{ clipPath: "inset(0 100% 0 0)" }} // 0% synlig (fra venstre)
+        initial={{ clipPath: "inset(0 100% 0 0)" }}
         animate={{
           clipPath: isHovered ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
-        }} // 100% — hele linjen tegnet
+        }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       />
     </Link>

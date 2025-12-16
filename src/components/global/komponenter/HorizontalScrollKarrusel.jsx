@@ -92,7 +92,7 @@ const HorizontalScrollKarruselMedPile = ({ children }) => {
               "
             >
               {child}
-            </div>  
+            </div>
           ))}
         </div>
       </div>

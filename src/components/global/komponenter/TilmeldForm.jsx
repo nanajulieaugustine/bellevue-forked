@@ -43,7 +43,9 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
       {fields.map((field) => (
         <div
           key={field.name}
-          className={`relative ${shake[field.name] ? "animate-shake" : ""} mb-4`}
+          className={`relative ${
+            shake[field.name] ? "animate-shake" : ""
+          } mb-4`}
         >
           <input
             type={field.type || "text"}
@@ -68,11 +70,21 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
 
       <style jsx>{`
         @keyframes shake {
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          50% { transform: translateX(5px); }
-          75% { transform: translateX(-5px); }
-          100% { transform: translateX(0); }
+          0% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(-5px);
+          }
+          50% {
+            transform: translateX(5px);
+          }
+          75% {
+            transform: translateX(-5px);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
         .animate-shake {
           animation: shake 0.3s;

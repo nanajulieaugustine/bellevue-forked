@@ -39,7 +39,9 @@ const KontaktInfo = () => {
         <div>
           <h4>Forhus</h4>
           <div className="font-light pt-5">
-            <a href="mailto:forhus@bellevueteatret.dk">Forhus@bellevueteatret.dk</a>
+            <a href="mailto:forhus@bellevueteatret.dk">
+              Forhus@bellevueteatret.dk
+            </a>
           </div>
         </div>
       </section>

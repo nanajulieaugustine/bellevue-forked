@@ -7,7 +7,6 @@ const ArrowXPositionLeft = ({ className, disabled, onClick }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
-
     <motion.button
       onClick={onClick}
       disabled={disabled}
@@ -18,7 +17,7 @@ const ArrowXPositionLeft = ({ className, disabled, onClick }) => {
       onBlur={() => setHovered(false)}
       animate={{ x: hovered ? -5 : 0 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      >
+    >
       <HiArrowLongLeft size={26} />
     </motion.button>
   );

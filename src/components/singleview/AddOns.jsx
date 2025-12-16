@@ -14,10 +14,7 @@ const AddOns = ({ addOn }) => {
       style={{ backgroundColor: addOn.baggrund_hex }}
     >
       {/* Tekstkolonne */}
-      <div
-        className="flex flex-col gap-10"
-        style={{ color: addOn.text_hex }}
-      >
+      <div className="flex flex-col gap-10" style={{ color: addOn.text_hex }}>
         <h1 style={{ color: addOn.text_hex }}>{addOn.titel}</h1>
 
         <p className="max-w-100">{addOn.beskrivelse}</p>
@@ -29,8 +26,15 @@ const AddOns = ({ addOn }) => {
                 <div className="flex gap-10 justify-between items-center w-full">
                   <p className="max-w-80">{item.text}</p>
                   <div className="flex flex-col items-end">
-                    <h4 style={{ color: addOn.text_hex }}className="font-thin">{item.secondaryheading}</h4>
-                    <h4 style={{ color: addOn.text_hex }} className="flex flex-end items-end">{item.heading}</h4>
+                    <h4 style={{ color: addOn.text_hex }} className="font-thin">
+                      {item.secondaryheading}
+                    </h4>
+                    <h4
+                      style={{ color: addOn.text_hex }}
+                      className="flex flex-end items-end"
+                    >
+                      {item.heading}
+                    </h4>
                   </div>
                 </div>
               </li>
@@ -56,7 +60,11 @@ const AddOns = ({ addOn }) => {
         )}
 
         {!isArchived ? (
-          <AnchorTagPrimaryButton style={{ color: addOn.text_hex }} target="blank" href={addOn.billet}>
+          <AnchorTagPrimaryButton
+            style={{ color: addOn.text_hex }}
+            target="blank"
+            href={addOn.billet}
+          >
             {`Køb ${addOn.titel}`}
           </AnchorTagPrimaryButton>
         ) : null}

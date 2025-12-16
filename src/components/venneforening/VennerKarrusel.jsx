@@ -12,7 +12,6 @@ const chunk = (arr, size) => {
 };
 
 const VennerKarrusel = ({ data }) => {
-
   const now = new Date();
 
   const itemsWithLatestDate = useMemo(
@@ -24,24 +23,22 @@ const VennerKarrusel = ({ data }) => {
     (item) => item.latestDate.getTime() >= now.getTime()
   );
 
-  const medlemstilbud = upcoming.filter((tilbud)=>tilbud.venneforening === true);
+  const medlemstilbud = upcoming.filter(
+    (tilbud) => tilbud.venneforening === true
+  );
 
   return (
     <section>
-        <div className="pl-25">
-          <h2>
-            Aktuelle medlemstilbud
-          </h2>
-        </div>
-        <ResponsiveKarrusel>
-          {medlemstilbud.map((item) => (
-            <ListCard key={item.id} item={item} medlemstilbud={medlemstilbud} />
-         
-          ))}
-        </ResponsiveKarrusel>
+      <div className="pl-25">
+        <h2>Aktuelle medlemstilbud</h2>
+      </div>
+      <ResponsiveKarrusel>
+        {medlemstilbud.map((item) => (
+          <ListCard key={item.id} item={item} medlemstilbud={medlemstilbud} />
+        ))}
+      </ResponsiveKarrusel>
     </section>
   );
 };
 
 export default VennerKarrusel;
-

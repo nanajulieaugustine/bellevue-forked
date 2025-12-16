@@ -49,7 +49,7 @@ const DatoOversigt = ({ item }) => {
         key,
         map.has(key) ? Array.from(new Set([...map.get(key), ...slots])) : slots
       );
-    }); 
+    });
 
     return map;
   }, [item]);
@@ -59,7 +59,7 @@ const DatoOversigt = ({ item }) => {
     const d = new Date(date);
     d.setHours(0, 0, 0, 0);
     if (allowedSet.has(d.getTime())) setSelected(d);
-  }; 
+  };
 
   // måneder med available dates
   const availableMonths = useMemo(() => {
@@ -97,13 +97,12 @@ const DatoOversigt = ({ item }) => {
   };
 
   // vælger automatisk første ledige dato, kun ved initialization
-useEffect(() => {
-  if (allowedDates.length === 0) return;
-  if (!selected) {
-    setSelected(allowedDates[0]);
-  }
-}, [allowedDates, selected]);
-
+  useEffect(() => {
+    if (allowedDates.length === 0) return;
+    if (!selected) {
+      setSelected(allowedDates[0]);
+    }
+  }, [allowedDates, selected]);
 
   const CustomNavbar = ({ className, style }) => {
     const prev = getPrevMonth(visibleMonth);

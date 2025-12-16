@@ -18,8 +18,7 @@ const KontaktHero = () => (
         Tøv endelig ikke med at række ud - vi glæder os til at høre fra dig.
       </p>
     </section>
-  <KontaktInfo/>
-   
+    <KontaktInfo />
   </>
 );
 

@@ -18,11 +18,18 @@ const Nyhedsbrev = () => {
               />
             </div>
             <p className="text-center mb-6 text-xl pt-5">
-              Tilmeld dig vores nyhedsbrev og modtag de seneste nyheder direkte i din indbakke
+              Tilmeld dig vores nyhedsbrev og modtag de seneste nyheder direkte
+              i din indbakke
             </p>
 
             <TilmeldForm
-              fields={[{ name: "email", type: "email", placeholder: "Skriv din email" }]}
+              fields={[
+                {
+                  name: "email",
+                  type: "email",
+                  placeholder: "Skriv din email",
+                },
+              ]}
             />
           </div>
         </div>

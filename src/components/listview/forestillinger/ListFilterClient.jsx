@@ -54,9 +54,7 @@ export default function ListFilterClient({ items }) {
       }
     });
 
-    return [...set]
-      .map((time) => new Date(time))
-      .sort((a, b) => a - b);
+    return [...set].map((time) => new Date(time)).sort((a, b) => a - b);
   }, [baseItems]);
 
   // Formatér datoer til dropdown
@@ -95,8 +93,7 @@ export default function ListFilterClient({ items }) {
     // Filter: DATO
     const matchDate =
       selectedDate === "all" ||
-      (item.latestDate &&
-        formatDate(item.latestDate) === selectedDate);
+      (item.latestDate && formatDate(item.latestDate) === selectedDate);
 
     // Filter: KATEGORI
     const matchCategory =
@@ -138,7 +135,6 @@ export default function ListFilterClient({ items }) {
             FORESTILLINGER
           </h1>
         </button>
-
         <button onClick={() => setActiveTab("archive")}>
           <h1
             ref={archiveRef}
@@ -151,29 +147,38 @@ export default function ListFilterClient({ items }) {
             ARKIV
           </h1>
         </button>
+        {/* Underline kun på store skærme */}
+        <div className="hidden md:block">
+          <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
+        </div>{" "}
+      </div>
 
-{/* Underline kun på store skærme */}
-<div className="hidden md:block">
-  <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
-</div>      </div>
-
-<div className="max-w-150 flex flex-col gap-5">
-  <h3>Se vores fulde program</h3>
-      <p>Her får du et samlet overblik over alle aktuelle og kommende forestillinger. Sortér efter genre eller målgruppe og find præcis det, der passer til jeres aften i teatret.</p>
-      {/* DROPDOWNS MED DATO + KATEGORI + BØRN */}
-      <ListCardDropDown
-        dates={dateOptions}
-        categories={categories}
-        children={childrenOptions}
-        onFilterChange={handleFilterChange}
-      />
-</div>
+      <div className="max-w-150 flex flex-col gap-5">
+        <h3>Se vores fulde program</h3>
+        <p>
+          Her får du et samlet overblik over alle aktuelle og kommende
+          forestillinger. Sortér efter genre eller målgruppe og find præcis det,
+          der passer til jeres aften i teatret.
+        </p>
+        {/* DROPDOWNS MED DATO + KATEGORI + BØRN */}
+        <ListCardDropDown
+          dates={dateOptions}
+          categories={categories}
+          children={childrenOptions}
+          onFilterChange={handleFilterChange}
+        />
+      </div>
 
       {/* Grafik */}
       <div className="relative -top-80 left-180 -z-100 hidden lg:block">
-        <Image src="/svg/watertower-red.svg" className="absolute opacity-80" alt="" width={250} height={300} />
+        <Image
+          src="/svg/watertower-red.svg"
+          className="absolute opacity-80"
+          alt=""
+          width={250}
+          height={300}
+        />
       </div>
-
 
       {/* AKTIVE FILTRE */}
       {activeFilters.length > 0 && (

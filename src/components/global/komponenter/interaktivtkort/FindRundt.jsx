@@ -8,9 +8,19 @@ import PrimaryButton from "../../knapper/PrimaryButton";
 
 //id'er, der skal kunne klikkes på - er definerert fra objekters navn i Blender
 const interactiveIds = [
-  "foyerbar", "billetkontor", "gulv", "nordbar", "sydbar", "balkon", "tagteresse",
-  "øvrebar", "nordtoilet", "sydtoilet",
-  "handicaptoilet", "sydgarderobe", "nordgarderobe"
+  "foyerbar",
+  "billetkontor",
+  "gulv",
+  "nordbar",
+  "sydbar",
+  "balkon",
+  "tagteresse",
+  "øvrebar",
+  "nordtoilet",
+  "sydtoilet",
+  "handicaptoilet",
+  "sydgarderobe",
+  "nordgarderobe",
 ];
 //blokerer facaderne, så interactiveIds bliver klikbare
 const nonInteractiveIds = ["facade", "facade.001", "facade.002", "facade.003"];
@@ -22,10 +32,9 @@ function RotateCamera({ controlsRef, targetAngle, onDone }) {
   useFrame(() => {
     if (!controlsRef.current || targetAngle === null) return;
 
-   if (currentAngle.current === null) {
-  currentAngle.current = Math.atan2(camera.position.z, camera.position.x);
-}
-
+    if (currentAngle.current === null) {
+      currentAngle.current = Math.atan2(camera.position.z, camera.position.x);
+    }
 
     // rotation mod target på x-aksen
     currentAngle.current += (targetAngle - currentAngle.current) * 0.1;
@@ -75,7 +84,10 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
       }
 
       // Deaktivér objekter, der ikke skal være interaktive
-      if (nonInteractiveIds.includes(child.name) || !interactiveIds.includes(child.name)) {
+      if (
+        nonInteractiveIds.includes(child.name) ||
+        !interactiveIds.includes(child.name)
+      ) {
         child.raycast = () => {};
       }
     });
@@ -110,7 +122,9 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
         }
       } else {
         // Ingen selection: vis alle normalt
-        child.material.opacity = child.material.name.includes("Glass") ? 1 : 0.8;
+        child.material.opacity = child.material.name.includes("Glass")
+          ? 1
+          : 0.8;
         child.visible = true;
         if (interactiveIds.includes(id)) {
           child.raycast = THREE.Mesh.prototype.raycast; // aktiver raycast på alle interaktive
@@ -141,7 +155,11 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
         const id = e.object.userData.id;
         const label = formatIdLabel(id);
 
-        if (id && interactiveIds.includes(id) && (!selected || label === formatIdLabel(selected))) {
+        if (
+          id &&
+          interactiveIds.includes(id) &&
+          (!selected || label === formatIdLabel(selected))
+        ) {
           setHoveredId(id);
         }
       }}
@@ -156,27 +174,29 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
   );
 }
 
-
-
-
 function formatIdLabel(id) {
-  switch(id) {
+  switch (id) {
     case "nordbar":
     case "sydbar":
     case "foyerbar":
-    case "øvrebar": return "Barer";
+    case "øvrebar":
+      return "Barer";
 
     case "gulv":
-    case "balkon": return "Salen";
+    case "balkon":
+      return "Salen";
 
     case "nordtoilet":
     case "sydtoilet":
-    case "handicaptoilet": return "Toiletter";
+    case "handicaptoilet":
+      return "Toiletter";
 
     case "nordgarderobe":
-    case "sydgarderobe": return "Garderobe";
+    case "sydgarderobe":
+      return "Garderobe";
 
-    case "billetkontor": return "Billetkontor";
+    case "billetkontor":
+      return "Billetkontor";
   }
 }
 
@@ -189,49 +209,43 @@ const buttons = interactiveIds.reduce((acc, id) => {
   return acc;
 }, []);
 
-
-export default function FindRundt({item}) {
+export default function FindRundt({ item }) {
   const [direction, setDirection] = useState(null);
   const [activeId, setActiveId] = useState(null);
   const [activeHeading, setActiveHeading] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
-  const [select, setSelected] = useState(null)
+  const [select, setSelected] = useState(null);
 
-    // Her filtrerer vi item baseret på clickedId
-  const activeItem = activeId
-    ? item.find((i) => i.objekt === activeId) 
-    : null;
+  // Her filtrerer vi item baseret på clickedId
+  const activeItem = activeId ? item.find((i) => i.objekt === activeId) : null;
 
+  function TrackHeading({ setActiveHeading }) {
+    const { camera } = useThree();
+    const prevHeading = useRef(null);
 
-function TrackHeading({ setActiveHeading }) {
-  const { camera } = useThree();
-  const prevHeading = useRef(null);
+    useFrame(() => {
+      const angle = Math.atan2(camera.position.z, camera.position.x);
 
-  useFrame(() => {
-    const angle = Math.atan2(camera.position.z, camera.position.x);
+      const northAngle = -Math.PI / 2;
+      const southAngle = Math.PI / 2;
+      const tolerance = (30 * Math.PI) / 180;
 
-    const northAngle = -Math.PI / 2;
-    const southAngle = Math.PI / 2;
-    const tolerance = (30 * Math.PI) / 180;
+      let newHeading = null;
 
-    let newHeading = null;
+      if (Math.abs(angle - northAngle) < tolerance) {
+        newHeading = "north";
+      } else if (Math.abs(angle - southAngle) < tolerance) {
+        newHeading = "south";
+      }
 
-    if (Math.abs(angle - northAngle) < tolerance) {
-      newHeading = "north";
-    } else if (Math.abs(angle - southAngle) < tolerance) {
-      newHeading = "south";
-    }
+      if (newHeading !== prevHeading.current) {
+        prevHeading.current = newHeading;
+        setActiveHeading(newHeading);
+      }
+    });
 
-    if (newHeading !== prevHeading.current) {
-      prevHeading.current = newHeading;
-      setActiveHeading(newHeading);
-    }
-  });
-
-  return null;
-}
-
-
+    return null;
+  }
 
   const controlsRef = useRef();
 
@@ -244,78 +258,84 @@ function TrackHeading({ setActiveHeading }) {
 
   return (
     <>
-    <div className="h-screen relative flex">
-      <div className="flex flex-col w-fit gap-10 sticky p-15">
-       {buttons.map(({ id, label }) => (
-        <PrimaryButton
-          key={id}
-          onClick={() => setSelected(id)}
-          active={formatIdLabel(id) === formatIdLabel(select)}
-        >
-          {label}
-        </PrimaryButton>
-      ))}
-
+      <div className="h-screen relative flex">
+        <div className="flex flex-col w-fit gap-10 sticky p-15">
+          {buttons.map(({ id, label }) => (
+            <PrimaryButton
+              key={id}
+              onClick={() => setSelected(id)}
+              active={formatIdLabel(id) === formatIdLabel(select)}
+            >
+              {label}
+            </PrimaryButton>
+          ))}
         </div>
 
+        {/* Infoboks */}
+        <PopOverFindRundt
+          item={activeItem}
+          activeId={activeId}
+          setActiveId={setActiveId}
+        />
 
-       {/* Infoboks */}
-      <PopOverFindRundt
-         item={activeItem}
-        activeId={activeId}
-        setActiveId={setActiveId}
-      />
+        {/* Nord */}
+        <button
+          className="absolute top-20 right-20 rotate-90 z-50"
+          onClick={() => setDirection("north")}
+        >
+          <h3
+            className={`${
+              activeHeading === "north" ? "bellevueblaa-600" : ""
+            } underline`}
+          >
+            Nord
+          </h3>
+        </button>
 
-      {/* Nord */}
-      <button
-        className="absolute top-20 right-20 rotate-90 z-50"
-        onClick={() => setDirection("north")}
-      >
-        <h3 className={`${activeHeading === "north" ? "bellevueblaa-600" : ""} underline`}>
-        Nord
-        </h3>
-      </button>
+        {/* Syd */}
+        <button
+          className="absolute bottom-20 left-70 -rotate-90 z-50"
+          onClick={() => setDirection("south")}
+        >
+          <h3
+            className={`${
+              activeHeading === "south" ? "bellevueblaa-600" : ""
+            } underline`}
+          >
+            Syd
+          </h3>
+        </button>
 
-      {/* Syd */}
-      <button
-        className="absolute bottom-20 left-70 -rotate-90 z-50"
-        onClick={() => setDirection("south")}
-      >
-        <h3 className={`${activeHeading === "south" ? "bellevueblaa-600" : ""} underline`}>
-        Syd
-        </h3>
-      </button>
+        {select && (
+          <button
+            onClick={() => setSelected(null)}
+            className="absolute top-15 right-170 z-50 text-(--hvid) bg-(--moerkblaa-600) rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
+            title="Tilbage til oversigt"
+          >
+            ✕
+          </button>
+        )}
 
-      {select && (
-  <button
-    onClick={() => setSelected(null)}
-    className="absolute top-15 right-170 z-50 text-(--hvid) bg-(--moerkblaa-600) rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
-    title="Tilbage til oversigt"
-  >
-    ✕
-  </button>
-)}
+        <Canvas camera={{ position: [200, 70, 10], fov: 50 }}>
+          <ambientLight intensity={1} />
+          <directionalLight position={[50, 50, 50]} intensity={10} />
+          <directionalLight position={[-50, 50, -50]} intensity={10} />
+          <OrbitControls ref={controlsRef} enableZoom={false} />
+          <RotateCamera
+            controlsRef={controlsRef}
+            targetAngle={targetAngle}
+            onDone={() => setDirection(null)}
+          />
+          <TrackHeading setActiveHeading={setActiveHeading} />
 
-
-    <Canvas camera={{ position: [200, 70, 10], fov: 50 }}>
-        <ambientLight intensity={1} />
-        <directionalLight position={[50, 50, 50]} intensity={10} />
-        <directionalLight position={[-50, 50, -50]} intensity={10} />
-        <OrbitControls ref={controlsRef} enableZoom={false} />
-        <RotateCamera controlsRef={controlsRef} targetAngle={targetAngle} onDone={() => setDirection(null)} />
-       <TrackHeading setActiveHeading={setActiveHeading} />
-
-        <Model
+          <Model
             onMeshClick={setActiveId}
             hoveredId={hoveredId}
             setHoveredId={setHoveredId}
             selected={select}
-        />
-
-
-    </Canvas>
-
-    </div>
+          />
+        </Canvas>
+      </div>
     </>
   );
 }

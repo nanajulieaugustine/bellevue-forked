@@ -8,12 +8,12 @@ import ArrowXPositionLeft from "../animationer/ArrowXPositionLeft";
 const SecondaryButton = () => {
   const [hovered, setHovered] = useState(false);
   const goBack = () => {
-    history.back(); 
+    history.back();
   };
   return (
     <button
-    aria-label="Gå tilbage"
-     onClick={goBack}
+      aria-label="Gå tilbage"
+      onClick={goBack}
       className="flex items-center gap-3 pt-10 pl-10 text-nowrap"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -31,7 +31,6 @@ const SecondaryButton = () => {
       <h4 className="hover:scale-102 transition-all duration-300 font-light">
         Gå tilbage
       </h4>
-
     </button>
   );
 };

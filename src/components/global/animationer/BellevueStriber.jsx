@@ -38,9 +38,7 @@ const BellevueStriber = ({ children }) => {
       <div className="absolute bottom-0 left-0 w-full h-100 bg-linear-to-t from-(--hvid) to-transparent z-0 pointer-events-none" />
 
       {/* KLIKBART INDHOLD */}
-      <div className="relative z-10">
-        {children}
-      </div>
+      <div className="relative z-10">{children}</div>
     </div>
   );
 };

@@ -7,13 +7,13 @@ import BookBilletter from "@/components/venneforening/BookBilletter";
 
 const Venneforening = () => {
   return (
-<div className="pb-20">
+    <div className="pb-20">
       <HeroVenner />
       <Server />
       <MedlemsGoder />
       <BlivMedlem />
       <VennerQuestion />
-      <BookBilletter/>
+      <BookBilletter />
     </div>
   );
 };

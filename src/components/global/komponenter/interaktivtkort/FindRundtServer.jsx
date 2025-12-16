@@ -7,11 +7,7 @@ const supabase = createClient(
 );
 
 export default async function FindRundtServer() {
-
-  const { data, error } = await supabase
-    .from("interaktivt_kort")
-    .select("*");
-
+  const { data, error } = await supabase.from("interaktivt_kort").select("*");
 
   console.log("Supabase error:", error);
   console.log("Supabase data:", data);
@@ -23,7 +19,6 @@ export default async function FindRundtServer() {
   if (!data || data.length === 0) {
     return <p>Kunne ikke finde item</p>;
   }
-
 
   return <FindRundt item={data} />;
 }

@@ -6,7 +6,6 @@ import SecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButto
 import ScrollToPrimaryButton from "@/components/global/knapper/ScrollToPrimaryButton";
 
 export default function ListCard({ item, medlemstilbud, archive }) {
-
   return (
     <div className="relative ml-4 mr-4 mt-10 ">
       <div
@@ -42,39 +41,44 @@ export default function ListCard({ item, medlemstilbud, archive }) {
           </div>
           {medlemstilbud ? (
             <div>
-            <p className="font-extralight pt-2 text-md"> {item.venne_fordele[0]?.dato}</p>
-          <p className="pt-2 text-md"> {item.venne_fordele[0]?.billet_antal}</p>
-          </div>
-          ):(
+              <p className="font-extralight pt-2 text-md">
+                {" "}
+                {item.venne_fordele[0]?.dato}
+              </p>
+              <p className="pt-2 text-md">
+                {" "}
+                {item.venne_fordele[0]?.billet_antal}
+              </p>
+            </div>
+          ) : (
             <p className="font-extralight pt-2 text-md">{item.date}</p>
           )}
-            <p className=" font-light line-clamp-2 pt-5">{item.description_short}</p>
+          <p className=" font-light line-clamp-2 pt-5">
+            {item.description_short}
+          </p>
         </div>
 
         {/* Knapper - altid i bunden */}
         <div className="p-2 pt-0 pb-10 items-center justify-center mt-auto">
           <div className="flex flex-wrap justify-center items-center gap-10 w-full pt-10">
             <div>
-            {medlemstilbud ? (
-              // Note: Skal være scroll to anchor tag
-               <ScrollToPrimaryButton scrollToId="bookbilletter">
-        Find billetter
-        </ScrollToPrimaryButton>
-            ):(
-              <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
-                Køb billet
-              </AnchorTagPrimaryButton>
-            )}
-         
-
-            
+              {medlemstilbud ? (
+                // Note: Skal være scroll to anchor tag
+                <ScrollToPrimaryButton scrollToId="bookbilletter">
+                  Find billetter
+                </ScrollToPrimaryButton>
+              ) : (
+                <AnchorTagPrimaryButton href={`/forestillinger/${item.id}`}>
+                  Køb billet
+                </AnchorTagPrimaryButton>
+              )}
             </div>
             <div>
               <SecondaryButton href={`/forestillinger/${item.id}`}>
                 Læs Mere
               </SecondaryButton>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
