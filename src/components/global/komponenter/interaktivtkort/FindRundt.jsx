@@ -260,18 +260,6 @@ export default function FindRundt({ item }) {
   return (
     <>
     <div className="h-screen relative flex">
-      <div className="flex flex-col w-fit gap-10 sticky p-15">
-       {/* {buttons.map(({ id, label }) => (
-        <PrimaryButton
-          key={id}
-          onClick={() => setSelected(id)}
-          active={formatIdLabel(id) === formatIdLabel(select)}
-        >
-          {label}
-        </PrimaryButton>
-      ))} */}
-
-        </div>
 
         {/* Infoboks */}
         <PopOverFindRundt

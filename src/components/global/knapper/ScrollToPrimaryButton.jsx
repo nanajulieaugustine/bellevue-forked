@@ -24,7 +24,7 @@ const ScrollToPrimaryButton = ({
   const ButtonContent = (
     <>
       <span
-        className="block py-2 px-8 text-(--bellevueblaa-600) hover:scale-101 hover:text-(--bellevueblaa-900) transition-all duration-300 border-2 border-(--bellevueblaa-600) rounded-2xl text-center text-nowrap"
+        className="block py-2 px-3 md:px-6 text-(--bellevueblaa-600) hover:scale-101 hover:text-(--bellevueblaa-900) transition-all duration-300 border-2 border-(--bellevueblaa-600) rounded-2xl text-center text-nowrap"
         style={style}
       >
         {children}

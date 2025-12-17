@@ -6,7 +6,7 @@ const MedlemsGoder = () => (
       <h3 className="beige-100 text-center pt-10 pb-10">
         Det du får som medlem
       </h3>
-      <div className="flex gap-20">
+      <div className="flex flex-col md:flex-row gap-20">
         <div className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <h4 className="beige-100">Tidligere adgang til billetter</h4>

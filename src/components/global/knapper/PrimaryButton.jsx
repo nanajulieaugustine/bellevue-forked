@@ -18,7 +18,7 @@ const PrimaryButton = ({ children, onClick, disabled, active, ariaLabel }) => {
     >
       <span
         className={`
-        block py-2 px-8 rounded-2xl text-center text-nowrap
+        block py-2 px-3 md:px-6 rounded-2xl text-center text-nowrap
         border-2 transition-all duration-300
         ${
           active

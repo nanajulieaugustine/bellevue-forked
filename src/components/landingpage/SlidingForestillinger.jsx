@@ -31,7 +31,7 @@ const allShows = grouped.flatMap(group => group.shows.map(show => show.item));
 const uniqueShows = Array.from(new Map(allShows.map(item => [item.id, item])).values());
 
   return (
-    <section>
+    <div className="px-0 md:px-(--content-width)">
       <div className="absolute -left-1 top-400 -z-5 hidden lg:block">
         <Image src="/svg/snoerkel-left.svg" alt="" width={350} height={350} />
       </div>
@@ -50,7 +50,7 @@ const uniqueShows = Array.from(new Map(allShows.map(item => [item.id, item])).va
       ))}
     </ResponsiveKarrusel>
 
-    </section>
+    </div>
   );
 };
 

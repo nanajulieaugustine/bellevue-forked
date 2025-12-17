@@ -15,7 +15,7 @@ const PopOverFindRundt = ({ setActiveId, item }) => {
         animate={{ x: 0, opacity: 1 }}
         exit={{ x: 200, opacity: 0 }}
         transition={{ type: "spring", stiffness: 120, damping: 15 }}
-        className="absolute flex flex-col gap-5 top-50 right-10 bg-(--beige-600) p-10 min-w-110 min-h-100 shadow-lg rounded-xl z-50"
+        className="absolute flex flex-col gap-5 top-50 z-100 right-10 bg-(--beige-600) p-10 max-w-70 md:min-w-110 min-h-100 shadow-lg rounded-xl"
       >
         <button
           className="font-black text-2xl relative left-1/2 hover:scale-110 transition-all duration-300"

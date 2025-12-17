@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const FindVej = () => {
   return (
-    <div className="bg-(--moerkblaa-600) flex flex-col items-center gap-10 py-15">
+    <div className="bg-(--moerkblaa-600) flex flex-col items-center gap-10 px-10 md:px-0 py-15">
       <h1 className="beige-100">Find vej</h1>
       <p className="beige-100 max-w-150 text-center">
         Bellevue Teatret ligger midt i de ikoniske omgivelser i Arne Jacobsens
