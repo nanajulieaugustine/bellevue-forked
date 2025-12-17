@@ -39,10 +39,24 @@ const FlipCategories = ({ data }) => {
 
   const current = categories[index];
 
-  // Find det første item der matcher kategorien
-  const matchedItem = useMemo(() => {
-    return upcoming.find((item) => item.tags?.includes(current));
-  }, [upcoming, current]);
+  // Find den svg der matcher kategorien
+const matchedItem = useMemo(() => {
+  if (!current) return null;
+
+  return upcoming.find((item) => {
+    // Split tags på komma og trim whitespace
+    const tags = Array.isArray(item.tags)
+      ? item.tags.flatMap(tag => tag.split(",").map(t => t.trim()))
+      : typeof item.tags === "string"
+      ? item.tags.split(",").map(t => t.trim())
+      : [];
+
+    return tags.some(
+      (tag) => tag.toLowerCase() === current.toLowerCase()
+    );
+  });
+}, [upcoming, current]);
+
 
   const visibleCount = 3;
   const [startIndex, setStartIndex] = useState(0);

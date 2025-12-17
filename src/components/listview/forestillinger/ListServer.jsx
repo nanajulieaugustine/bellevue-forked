@@ -14,7 +14,20 @@ export default async function ListServer() {
 
   // Filtrér items, så "event" ikke medtages
   const filteredData =
-    data?.filter((item) => !item.tags?.includes("Event")) || [];
+  data?.filter((item) => {
+    if (!item.tags) return true;
+
+    const tags = Array.isArray(item.tags)
+      ? item.tags
+      : typeof item.tags === "string"
+      ? item.tags.split(",")
+      : [];
+
+    return !tags.some(
+      (tag) => typeof tag === "string" && tag.toLowerCase() === "event"
+    );
+  }) || [];
+
 
   console.log("Fetched data (filtered):", filteredData);
 

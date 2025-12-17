@@ -1,6 +1,12 @@
 import { parse } from "date-fns";
 import { da } from "date-fns/locale";
 
+//trimmer tags hvis der er forskel på størrelse af bogstaver
+export function normalizeTag(tag) {
+  return typeof tag === "string" ? tag.trim().toLowerCase() : "";
+}
+
+
 // ================================= Udregning af datoer i fortiden =========================================
 
 export function parseDates(input, options = {}) {
@@ -81,29 +87,33 @@ export function parseDates(input, options = {}) {
 export function extractCategories(data) {
   if (!Array.isArray(data)) return [];
 
-  const allTags = data.flatMap((item) => {
-    if (!item.tags) return [];
+  const map = new Map();
 
-    // Hvis tags er en string: "drama, komedie"
-    if (typeof item.tags === "string") {
-      return item.tags
-        .split(",")
-        .map((tag) => tag.trim())
-        .filter(Boolean);
-    }
+  data.forEach((item) => {
+    if (!item.tags) return;
 
-    // Hvis tags er et array
-    if (Array.isArray(item.tags)) {
-      return item.tags.flatMap((tag) =>
-        typeof tag === "string" ? tag.split(",").map((t) => t.trim()) : []
-      );
-    }
+    const tags =
+      typeof item.tags === "string"
+        ? item.tags.split(",")
+        : Array.isArray(item.tags)
+        ? item.tags
+        : [];
 
-    return [];
+    tags.forEach((tag) => {
+      if (typeof tag !== "string") return;
+
+      const trimmed = tag.trim();
+      const key = trimmed.toLowerCase();
+
+      if (!map.has(key)) {
+        map.set(key, trimmed); // gem original casing
+      }
+    });
   });
 
-  return [...new Set(allTags)];
+  return [...map.values()];
 }
+
 
 // ===================================== filtrering af aldersgrupper ==========================================
 export function extractAldersgruppe(data) {

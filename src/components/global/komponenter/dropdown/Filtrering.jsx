@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import DropDownContent from "./DropDownContent";
 import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
-
+import { useSearchParams } from "next/navigation";
 
 export default function Filtrering({
   items,
@@ -21,6 +21,17 @@ export default function Filtrering({
   const currentRef = useRef(null);
   const archiveRef = useRef(null);
   const [tabWidths, setTabWidths] = useState({ current: 0, archive: 0 });
+
+   const searchParams = useSearchParams();
+  const urlCategory = searchParams.get("category");
+
+
+//til videresendelse af kategorier fra forsiden
+  useEffect(() => {
+    if (urlCategory) {
+      setSelectedCategory(urlCategory);
+    }
+  }, [urlCategory]);
 
   useEffect(() => {
     if (showTabs) {
@@ -155,13 +166,13 @@ export default function Filtrering({
       () => require("@/app/library/utils").extractAldersgruppe(activeItems),
       [activeItems]
     );
-    useEffect(() => {
-        setSelectedDate("all");
-        setSelectedCategory("all");
-        setSelectedChildren("all");
-    }, [activeTab]);
-
-
+  useEffect(() => {
+  if (!urlCategory) {
+    setSelectedDate("all");
+    setSelectedCategory("all");
+    setSelectedChildren("all");
+  }
+}, [activeTab, urlCategory]);
 
   // ----- Render -----
   return (
@@ -189,12 +200,16 @@ export default function Filtrering({
         </div>
       )}
 <div>
-      <DropDownContent
-        dates={dateOptions}
-        categories={categories}
-        children={childrenOptions}
-        onFilterChange={handleFilterChange}
-        />
+     <DropDownContent
+      dates={dateOptions}
+      categories={categories}
+      children={childrenOptions}
+      onFilterChange={handleFilterChange}
+      selectedDate={selectedDate}
+      selectedCategory={selectedCategory}
+      selectedChildren={selectedChildren}
+    />
+
 
       {activeFilters.length > 0 && (
           <div className="flex gap-2 mt-4 ml-4 flex-wrap">
