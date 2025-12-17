@@ -9,7 +9,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
-export default async function ListServer() {
+export default async function KalenderServer() {
   // Hent data fra Supabase med navn på tabel
   const { data, error } = await supabase.from("bellevue_items").select("*");
 
