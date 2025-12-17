@@ -37,7 +37,7 @@ const StickyInfo = ({ item, isArchived}) => {
         </div>
       </div>
       {!isArchived ?(
-      <AnchorTagPrimaryButton href={item.billetter} ariaLabel={"Køb billet"}>
+      <AnchorTagPrimaryButton href={item.billetter} target="_blank" ariaLabel={"Køb billet"}>
         Køb billet
       </AnchorTagPrimaryButton>
       ):null}

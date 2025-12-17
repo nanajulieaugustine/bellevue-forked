@@ -104,6 +104,40 @@ const Header = () => {
             <ul className="rounded-full flex h-8 p-1 justify-between items-center w-screen px-(--content-width)">
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
+                aria-label="gå til forside"
+                  href="/"
+                  onClick={() =>
+                    setIsActive((prev) =>
+                      prev === "/" ? null : "/"
+                    )
+                  }
+                  // OnMouseEnter og onMouseLeave til at danne en smooth animation når brugeren hover
+                  onMouseEnter={() => setHovered("/")}
+                  onMouseLeave={() => setHovered(null)}
+                  onFocus={() => setHovered("/")}
+                  onBlur={() => setHovered(null)}
+                  className="cursor-pointer text-(--hvid) relative"
+                >
+                  Forside
+                  {/* papthname definerer den gule cirkel, dukker op når brugeren er på siden */}
+                  <AnimatePresence>
+                    {(hovered === "/" ||
+                      active === "/") && (
+                      <motion.div
+                        key="/"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className="absolute -top-3 -left-2 w-10 h-10 rounded-full bg-(--gul-900) -z-100"
+                      />
+                    )}
+                  </AnimatePresence>
+                </Link>
+              </li>
+              <li className="hover:scale-103 transition-all duration-300">
+                <Link
+                aria-label="gå til forestillinger"
                   href="/forestillinger"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -113,7 +147,7 @@ const Header = () => {
                   // OnMouseEnter og onMouseLeave til at danne en smooth animation når brugeren hover
                   onMouseEnter={() => setHovered("/forestillinger")}
                   onMouseLeave={() => setHovered(null)}
-                  onFocus={() => setHovered("/arrangementer")}
+                  onFocus={() => setHovered("/forestillinger")}
                   onBlur={() => setHovered(null)}
                   className="cursor-pointer text-(--hvid) relative"
                 >
@@ -137,6 +171,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
+                aria-label="gå til kalender"
                   href="/kalender"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -167,6 +202,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
+                aria-label="gå til om bellevue"
                   href="/om-bellevue"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -198,6 +234,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
+                aria-label="gå til praktisk info"
                   href="/praktisk-info"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -229,6 +266,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
+                aria-label="gå til kontakt"
                   href="/kontakt"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -260,6 +298,7 @@ const Header = () => {
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
                   href="/venneforening"
+                  aria-label="gå til venneforening"
                   onClick={() =>
                     setIsActive((prev) =>
                       prev === "/venneforening" ? null : "/venneforening"
@@ -292,7 +331,7 @@ const Header = () => {
         </ul>
         <button
           aria-label="gå til menu"
-          className="block md:hidden sticky py-10 cursor-pointer hover:scale-105 transition-all z-100 duration-300 text-(--hvid)"
+          className="block md:hidden sticky py-10 left-2/2 cursor-pointer hover:scale-105 transition-all z-100 duration-300 text-(--hvid)"
           onClick={toggleSideMenu}
         >
           {showSideMenu ? <IoMdClose size={40} /> : <IoIosMenu size={40} />}

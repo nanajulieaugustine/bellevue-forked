@@ -14,7 +14,7 @@ export function parseDates(input, options = {}) {
     function parseWithDateAndTime(entry) {
       if (!entry?.date) return null;
 
-      // Hvis tiden er en ARRAY, parse kun datoen
+      // Hvis tiden er en array, parse kun datoen
       if (Array.isArray(entry.time)) {
         const d = parse(entry.date, "dd/MM/yyyy", new Date(), { locale: da });
         return isNaN(d) ? null : d;

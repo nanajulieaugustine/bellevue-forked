@@ -11,6 +11,7 @@ export default function Filtrering({
   renderCard, // Callback til hvordan kort skal vises
   introTitle,
   introText,
+  allowMultipleTimes = false
 }) {
   if (!items?.length) return <p>Ingen forestillinger eller events fundet.</p>;
 
@@ -53,7 +54,32 @@ export default function Filtrering({
       .replace(",", "")
       .replace(" den ", " d. ")
       .replace(/^\w/, (c) => c.toUpperCase());
+      
+      const handleFilterChange = (type, value) => {
+          const normalized = value === "Alle" ? "all" : value;
+          if (type === "date") setSelectedDate(normalized);
+          if (type === "category") setSelectedCategory(normalized);
+          if (type === "children") setSelectedChildren(normalized);
+        };
+        
+        const removeFilter = (type) => {
+            if (type === "date") setSelectedDate("all");
+            if (type === "category") setSelectedCategory("all");
+            if (type === "children") setSelectedChildren("all");
+        };
+        
+        // ----- Filtrering -----
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        
+        const baseItems = grouped.filter(({ date }) => {
+            if (!showTabs) return true;
+            if (activeTab === "current") return date >= today;
+            if (activeTab === "archive") return date < today;
+            return true;
+        });
 
+<<<<<<< HEAD
   const dateOptions = useMemo(
     () => grouped.map(({ date }) => formatDate(date)),
     [grouped]
@@ -116,15 +142,54 @@ export default function Filtrering({
             selectedChildren === "all" ||
             aldersgruppe.includes(selectedChildren);
           return matchCategory && matchChildren;
+=======
+        const orderedBaseItems = useMemo(() => {
+        if (activeTab === "archive") {
+            // Seneste dato først
+            return [...baseItems].sort((a, b) => b.date - a.date);
+        }
+
+        // Aktuelle forestillinger: tidligste først (default)
+        return [...baseItems].sort((a, b) => a.date - b.date);
+        }, [baseItems, activeTab]);
+
+        
+        const seenIds = allowMultipleTimes ? null : new Set();
+
+        
+        const filteredGrouped = orderedBaseItems
+        .map(({ date, shows }) => {
+            if (selectedDate !== "all" && formatDate(date) !== selectedDate) return { date, shows: [] };
+            
+            const filteredShows = shows
+            .filter(({ item }) => {
+                const tags = item.tags || [];
+                const aldersgruppe = item.aldersgruppe || [];
+                const matchCategory =
+                selectedCategory === "all" ||
+                (Array.isArray(tags)
+                ? tags.some(tag => tag.toLowerCase().includes(selectedCategory.toLowerCase()))
+                : typeof tags === "string"
+                ? tags.toLowerCase().includes(selectedCategory.toLowerCase())
+                : false
+            );
+            
+            const matchChildren = selectedChildren === "all" || aldersgruppe.includes(selectedChildren);
+            return matchCategory && matchChildren;
+>>>>>>> cdbcab7b36523d8fe23d9b25ed8f03978d0de4cb
         })
-        .filter(({ item }) => {
-          if (seenIds.has(item.id)) return false;
-          seenIds.add(item.id);
-          return true;
+       .filter(({ item }) => {
+        if (!seenIds) return true; // kun til kalender (tillader flere cards pr. alle tidspunkter)
+
+        if (seenIds.has(item.id)) return false;
+        seenIds.add(item.id);
+        return true;
         });
 
-      return { date, shows: filteredShows };
+        
+        return { date, shows: filteredShows };
     })
+<<<<<<< HEAD
     .filter((group) => group.shows.length > 0);
 
   const activeFilters = [
@@ -132,6 +197,45 @@ export default function Filtrering({
     { type: "category", value: selectedCategory, label: selectedCategory },
     { type: "children", value: selectedChildren, label: selectedChildren },
   ].filter((f) => f.value !== "all");
+=======
+    .filter(group => group.shows.length > 0);
+    
+    const activeFilters = [
+        { type: "date", value: selectedDate, label: selectedDate },
+        { type: "category", value: selectedCategory, label: selectedCategory },
+        { type: "children", value: selectedChildren, label: selectedChildren },
+    ].filter(f => f.value !== "all");
+    
+    const activeItems = useMemo(() => {
+        return baseItems.flatMap(group =>
+            group.shows.map(show => show.item)
+        );
+    }, [baseItems]);
+    
+    
+      const dateOptions = useMemo(
+        () => orderedBaseItems.map(({ date }) => formatDate(date)),
+        [orderedBaseItems]
+        );
+
+    
+      const categories = useMemo(
+      () => require("@/app/library/utils").extractCategories(activeItems),
+      [activeItems]
+    );
+    
+    const childrenOptions = useMemo(
+      () => require("@/app/library/utils").extractAldersgruppe(activeItems),
+      [activeItems]
+    );
+    useEffect(() => {
+        setSelectedDate("all");
+        setSelectedCategory("all");
+        setSelectedChildren("all");
+    }, [activeTab]);
+
+
+>>>>>>> cdbcab7b36523d8fe23d9b25ed8f03978d0de4cb
 
   // ----- Render -----
   return (

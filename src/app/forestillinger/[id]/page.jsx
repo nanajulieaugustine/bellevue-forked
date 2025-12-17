@@ -1,4 +1,3 @@
-import BellevueStriber from "@/components/global/animationer/BellevueStriber";
 import SingleCard from "@/components/singleview/SingleCard";
 import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
