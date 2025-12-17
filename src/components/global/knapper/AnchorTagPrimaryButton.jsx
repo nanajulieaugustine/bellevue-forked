@@ -25,7 +25,7 @@ const AnchorTagPrimaryButton = ({
     >
       {/* Selve knappen */}
       <span
-        className="block text-(--bellevueblaa-600) hover:scale-101 hover:text-(--bellevueblaa-900) transition-all duration-300 border-2 border-(--bellevueblaa-600) py-2 px-6 rounded-2xl text-center text-nowrap"
+        className="block text-(--bellevueblaa-600) hover:scale-101 hover:text-(--bellevueblaa-900) transition-all duration-300 border-2 border-(--bellevueblaa-600) py-2 px-3 md:px-6 rounded-2xl text-center text-nowrap"
         style={style}
       >
         {children}

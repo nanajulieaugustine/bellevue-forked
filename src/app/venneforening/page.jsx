@@ -11,11 +11,11 @@ const Venneforening = () => {
       <HeroVenner />
       <Server />
       <MedlemsGoder />
-      <section>
+      <div className="px-0 md:px-(--content-width)">
       <BlivMedlem />
       <VennerQuestion />
       <BookBilletter />
-      </section>
+      </div>
     </div>
   );
 };

@@ -7,13 +7,13 @@ const BlivMedlem = () => {
       <h2 className="text-center">
         Bliv medlem - og få et særligt godt tilbud
       </h2>
-      <p className="text-center px-50 pt-10 highlighttext">
+      <p className="text-center px-0 md:px-(--content-width) pt-10 highlighttext">
         Tilmeld dig Bellevue Teatrets Venner i dag og få adgang til eksklusive
         fordele, unikke billetpriser og særlige arrangementer.
       </p>
 
-      <div className="p-0 md:p-20 md:px-4 mx-auto max-w-xl">
-        <div className="col-span-2 bg-(--bellevueblaa-600) text-(--beige-600) rounded-0 md:rounded-2xl p-10">
+      <div className="pt-5 md:p-20 md:px-4 mx-auto max-w-xl">
+        <div className="col-span-2 bg-(--bellevueblaa-600) text-(--beige-600) rounded-0 rounded-2xl p-10">
           <div className="w-full mx-auto flex flex-col gap-5 font-light">
             <div className="flex justify-center">
               <Image

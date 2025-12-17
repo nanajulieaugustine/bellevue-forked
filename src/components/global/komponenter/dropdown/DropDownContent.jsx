@@ -12,7 +12,7 @@ export default function DropDownContent({
   onFilterChange,
 }) {
   return (
-    <div className="flex gap-4">
+    <div className="flex flex-col md:flex-row gap-4">
       <DropDown
         label="Dato"
         items={["Alle", ...dates]}

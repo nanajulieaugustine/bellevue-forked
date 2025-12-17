@@ -36,7 +36,7 @@ const SlidingForestillinger = ({ data }) => {
   );
 
   return (
-    <section>
+    <div className="px-0 md:px-(--content-width)">
       <div className="absolute -left-1 top-400 -z-5 hidden lg:block">
         <Image src="/svg/snoerkel-left.svg" alt="" width={350} height={350} />
       </div>
@@ -50,10 +50,11 @@ const SlidingForestillinger = ({ data }) => {
         </PrimaryLink>
       </div>
       <ResponsiveKarrusel>
-        {uniqueShows.map((item) => (
-          <ListCard key={item.id} item={item} />
-        ))}
-      </ResponsiveKarrusel>
+      {uniqueShows.map(item => (
+        <ListCard key={item.id} item={item} />
+      ))}
+    </ResponsiveKarrusel>
+
     </section>
   );
 };

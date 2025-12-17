@@ -7,7 +7,7 @@ const BookBilletter = () => {
       <h2>Sådan booker du billetter</h2>
 
       {/* RÆKKE 1 */}
-      <div className="flex justify-between gap-20">
+      <div className="flex flex-col md:flex-row justify-between gap-20">
         <motion.div
           className="flex gap-10"
           initial={{ opacity: 0, y: 50 }}
@@ -18,7 +18,7 @@ const BookBilletter = () => {
           }}
           viewport={{ once: false, amount: 1 }}
         >
-          <h3 className="flex items-center justify-center w-70 h-20 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
+          <h3 className="flex items-center justify-center w-90 h-10 md:w-70 md:h-20 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
             1
           </h3>
           <p className="max-w-150">
@@ -39,7 +39,7 @@ const BookBilletter = () => {
           }}
           viewport={{ once: false, amount: 1 }}
         >
-          <h3 className="flex items-center justify-center w-32 h-15 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
+          <h3 className="flex items-center justify-center w-75 h-15 md:w-32 md:h-15 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
             2
           </h3>
           <p className="max-w-150">
@@ -50,7 +50,7 @@ const BookBilletter = () => {
       </div>
 
       {/* RÆKKE 2 */}
-      <div className="flex justify-between gap-20">
+      <div className="flex flex-col md:flex-row justify-between gap-20">
         <motion.div
           className="flex gap-10"
           initial={{ opacity: 0, y: 50 }}
@@ -61,7 +61,7 @@ const BookBilletter = () => {
           }}
           viewport={{ once: false, amount: 1 }}
         >
-          <h3 className="flex items-center justify-center w-22 h-15 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
+          <h3 className="flex items-center justify-center w-45 h-15 md:w-22 md:h-15 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
             3
           </h3>
           <p className="max-w-150">
@@ -79,7 +79,7 @@ const BookBilletter = () => {
           }}
           viewport={{ once: false, amount: 1 }}
         >
-          <h3 className="flex items-center justify-center w-35 h-17 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
+          <h3 className="flex items-center justify-center w-130 h-20 md:w-35 md:h-17 rounded-full border-2 bellevueblaa-600 border-(--bellevueblaa-600)">
             4
           </h3>
           <p className="max-w-150">

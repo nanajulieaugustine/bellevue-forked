@@ -33,7 +33,7 @@ const medlemstilbud = uniqueShows.filter(
 
 
   return (
-    <section>
+    <div className="px-0 md:px-(--content-width)">
       <div className="pl-25">
         <h2>Aktuelle medlemstilbud</h2>
       </div>
@@ -42,7 +42,7 @@ const medlemstilbud = uniqueShows.filter(
           <ListCard key={item.id} item={item} medlemstilbud={medlemstilbud} />
         ))}
       </ResponsiveKarrusel>
-    </section>
+    </div>
   );
 };
 
