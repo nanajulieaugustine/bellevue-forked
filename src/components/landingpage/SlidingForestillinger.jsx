@@ -55,7 +55,7 @@ const SlidingForestillinger = ({ data }) => {
       ))}
     </ResponsiveKarrusel>
 
-    </section>
+    </div>
   );
 };
 
