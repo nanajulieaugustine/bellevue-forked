@@ -1,6 +1,6 @@
 import KalenderSamlet from "./KalenderSamlet";
 import { createClient } from "@supabase/supabase-js";
-
+import { Suspense } from "react";
 // Supabase client (fungerer som server)
 const supabase = createClient(
   "https://rzwaokiepaobrlrpphia.supabase.co",
@@ -22,5 +22,9 @@ export default async function KalenderServer() {
   console.log("Fetched data:", data);
 
   // Returnerer data ellers tomt array
-  return <KalenderSamlet items={data || []} />;
+  return (
+     <Suspense fallback={<p>Loader...</p>}>
+       <KalenderSamlet items={data || []} />
+     </Suspense>
+);
 }
