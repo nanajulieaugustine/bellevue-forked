@@ -46,13 +46,13 @@ const BilledeSektion = () => {
         <p>Ved spørgsmål bedes du kontakte os på mail:</p>
 
         <div className="self-center pt-8">
-            <AnchorTagPrimaryButton
-              href={`mailto:adm@bellevueteatret.dk`}
-              ariaLabel={"Kontakt os"}
-            >
-              Kontakt os
-            </AnchorTagPrimaryButton>
-          </div>
+          <AnchorTagPrimaryButton
+            href={`mailto:adm@bellevueteatret.dk`}
+            ariaLabel={"Kontakt os"}
+          >
+            Kontakt os
+          </AnchorTagPrimaryButton>
+        </div>
       </div>
     </section>
   );

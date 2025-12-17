@@ -45,8 +45,10 @@ const RundvisningInfo = () => {
             <div className="grid gap-6">
               <p>Rundvisninger er arrangeret på faste dage.</p>
               <p>
-                For grupper på 10 personer eller flere, kontakt Marianne på 
-                <a href="mailto:marianne@bellvueteatret.dk"> marianne@bellevueteatret.dk.</a>
+                For grupper på 10 personer eller flere, kontakt Marianne på
+                <a href="mailto:marianne@bellvueteatret.dk">
+                  marianne@bellevueteatret.dk.
+                </a>
               </p>
             </div>
           </div>

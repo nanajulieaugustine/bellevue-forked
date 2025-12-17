@@ -59,7 +59,7 @@ const KalenderCard = ({ item, time }) => {
           </div>
 
           {/* KNAPPER */}
-          <div className="flex gap-6 shrink-0 whitespace-nowrap">
+          <div className="flex gap-6 shrink-0 whitespace-nowrap self-end">
             <AnchorTagPrimaryButton
               href={`/forestillinger/${item.id}`}
               ariaLabel={"Køb billet"}
@@ -72,7 +72,7 @@ const KalenderCard = ({ item, time }) => {
                 onClick={() => toggle(item.id)}
                 ariaLabel={"Læs Mere"}
               >
-                Læs Mere
+                Vis mere
               </SecondaryButton>
             ) : (
               <button

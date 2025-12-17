@@ -14,7 +14,12 @@ export default function ListFilterClient({ items }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredGrouped.flatMap(({ shows }) =>
             shows.map(({ item, time }, i) => (
-              <ListCard key={item.id + "-" + i} item={item} isArchived={false} className="basis-[calc(33.333%-0.5rem)]" />
+              <ListCard
+                key={item.id + "-" + i}
+                item={item}
+                isArchived={false}
+                className="basis-[calc(33.333%-0.5rem)]"
+              />
             ))
           )}
         </div>

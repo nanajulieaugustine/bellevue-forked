@@ -25,15 +25,15 @@ const LandingPageSamlet = () => {
         </section>
         <div className="relative pb-10">
           <Nyhedsbrev />
-   <div className="absolute right-0 -bottom-40 -z-10 hidden lg:block rotate-180">
-              <Image
-                src="/svg/snoerkel-top-right.svg"
-                alt=""
-                width={600}
-                height={350}
-                />
-            </div>
-                </div>
+          <div className="absolute right-0 -bottom-40 -z-10 hidden lg:block rotate-180">
+            <Image
+              src="/svg/snoerkel-top-right.svg"
+              alt=""
+              width={600}
+              height={350}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

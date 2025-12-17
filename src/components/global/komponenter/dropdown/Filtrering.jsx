@@ -4,12 +4,11 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import DropDownContent from "./DropDownContent";
 import WipeLineAnimation from "@/components/global/animationer/WipeLineAnimarion";
 
-
 export default function Filtrering({
   items,
   onlyFuture = false, // Til KalenderSamlet
-  showTabs = false,    // Til ListFilterClient
-  renderCard,          // Callback til hvordan kort skal vises
+  showTabs = false, // Til ListFilterClient
+  renderCard, // Callback til hvordan kort skal vises
   introTitle,
   introText,
 }) {
@@ -55,9 +54,18 @@ export default function Filtrering({
       .replace(" den ", " d. ")
       .replace(/^\w/, (c) => c.toUpperCase());
 
-  const dateOptions = useMemo(() => grouped.map(({ date }) => formatDate(date)), [grouped]);
-  const categories = useMemo(() => require("@/app/library/utils").extractCategories(items), [items]);
-  const childrenOptions = useMemo(() => require("@/app/library/utils").extractAldersgruppe(items), [items]);
+  const dateOptions = useMemo(
+    () => grouped.map(({ date }) => formatDate(date)),
+    [grouped]
+  );
+  const categories = useMemo(
+    () => require("@/app/library/utils").extractCategories(items),
+    [items]
+  );
+  const childrenOptions = useMemo(
+    () => require("@/app/library/utils").extractAldersgruppe(items),
+    [items]
+  );
 
   const handleFilterChange = (type, value) => {
     const normalized = value === "Alle" ? "all" : value;
@@ -74,7 +82,7 @@ export default function Filtrering({
 
   // ----- Filtrering -----
   const today = new Date();
-  today.setHours(0,0,0,0);
+  today.setHours(0, 0, 0, 0);
 
   const baseItems = grouped.filter(({ date }) => {
     if (!showTabs) return true;
@@ -87,7 +95,8 @@ export default function Filtrering({
 
   const filteredGrouped = baseItems
     .map(({ date, shows }) => {
-      if (selectedDate !== "all" && formatDate(date) !== selectedDate) return { date, shows: [] };
+      if (selectedDate !== "all" && formatDate(date) !== selectedDate)
+        return { date, shows: [] };
 
       const filteredShows = shows
         .filter(({ item }) => {
@@ -96,13 +105,16 @@ export default function Filtrering({
           const matchCategory =
             selectedCategory === "all" ||
             (Array.isArray(tags)
-                ? tags.some(tag => tag.toLowerCase().includes(selectedCategory.toLowerCase()))
-                : typeof tags === "string"
-                ? tags.toLowerCase().includes(selectedCategory.toLowerCase())
-                : false
-            );
+              ? tags.some((tag) =>
+                  tag.toLowerCase().includes(selectedCategory.toLowerCase())
+                )
+              : typeof tags === "string"
+              ? tags.toLowerCase().includes(selectedCategory.toLowerCase())
+              : false);
 
-          const matchChildren = selectedChildren === "all" || aldersgruppe.includes(selectedChildren);
+          const matchChildren =
+            selectedChildren === "all" ||
+            aldersgruppe.includes(selectedChildren);
           return matchCategory && matchChildren;
         })
         .filter(({ item }) => {
@@ -113,13 +125,13 @@ export default function Filtrering({
 
       return { date, shows: filteredShows };
     })
-    .filter(group => group.shows.length > 0);
+    .filter((group) => group.shows.length > 0);
 
   const activeFilters = [
     { type: "date", value: selectedDate, label: selectedDate },
     { type: "category", value: selectedCategory, label: selectedCategory },
     { type: "children", value: selectedChildren, label: selectedChildren },
-  ].filter(f => f.value !== "all");
+  ].filter((f) => f.value !== "all");
 
   // ----- Render -----
   return (
@@ -127,50 +139,77 @@ export default function Filtrering({
       {showTabs && (
         <div className="flex flex-col md:flex-row gap-6 mb-15 pb-3 relative w-full">
           <button onClick={() => setActiveTab("current")}>
-            <h1 ref={currentRef} className={activeTab === "current" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"}>FORESTILLINGER</h1>
+            <h1
+              ref={currentRef}
+              className={
+                activeTab === "current"
+                  ? "text-(--moerkeblaa-900)"
+                  : "bellevueblaa-100"
+              }
+            >
+              FORESTILLINGER
+            </h1>
           </button>
           <button onClick={() => setActiveTab("archive")}>
-            <h1 ref={archiveRef} className={activeTab === "archive" ? "text-(--moerkeblaa-900)" : "bellevueblaa-100"}>ARKIV</h1>
+            <h1
+              ref={archiveRef}
+              className={
+                activeTab === "archive"
+                  ? "text-(--moerkeblaa-900)"
+                  : "bellevueblaa-100"
+              }
+            >
+              ARKIV
+            </h1>
           </button>
           <div className="hidden md:block">
             <WipeLineAnimation activeTab={activeTab} tabWidths={tabWidths} />
           </div>
         </div>
       )}
-<div>
-<div className="flex flex-col gap-10">
+      <div>
+        <div className="flex flex-col gap-10">
+          {introTitle && introText && (
+            <div className="max-w-150 flex flex-col gap-5">
+              <h3>{introTitle}</h3>
+              <p>{introText}</p>
+            </div>
+          )}
+          <div>
+            <DropDownContent
+              dates={dateOptions}
+              categories={categories}
+              children={childrenOptions}
+              onFilterChange={handleFilterChange}
+            />
 
-      {introTitle && introText && (
-          <div className="max-w-150 flex flex-col gap-5">
-          <h3>{introTitle}</h3>
-          <p>{introText}</p>
+            {activeFilters.length > 0 && (
+              <div className="flex gap-2 mt-4 ml-4 flex-wrap">
+                {activeFilters.map((filter) => (
+                  <span
+                    key={filter.type}
+                    className="flex items-center gap-2 border-2 border-blue-400 text-blue-400 px-3 py-1 rounded-2xl text-sm"
+                  >
+                    {filter.label}
+                    <button
+                      onClick={() => removeFilter(filter.type)}
+                      className="font-bold hover:text-blue-800"
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {renderCard(filteredGrouped, formatDate)}
+
+          {!filteredGrouped.length && (
+            <p className="mt-6">Ingen forestillinger matcher dine filtre.</p>
+          )}
         </div>
-      )}
-<div>
-      <DropDownContent
-        dates={dateOptions}
-        categories={categories}
-        children={childrenOptions}
-        onFilterChange={handleFilterChange}
-        />
-
-      {activeFilters.length > 0 && (
-          <div className="flex gap-2 mt-4 ml-4 flex-wrap">
-          {activeFilters.map(filter => (
-              <span key={filter.type} className="flex items-center gap-2 border-2 border-blue-400 text-blue-400 px-3 py-1 rounded-2xl text-sm">
-              {filter.label}
-              <button onClick={() => removeFilter(filter.type)} className="font-bold hover:text-blue-800">×</button>
-            </span>
-          ))}
-        </div>
-      )}
-      </div>
-
-      {renderCard(filteredGrouped, formatDate)}
-
-      {!filteredGrouped.length && <p className="mt-6">Ingen forestillinger matcher dine filtre.</p>}
       </div>
     </div>
-      </div>
   );
 }

@@ -19,8 +19,11 @@ const InfoBokse = () => {
               </p>
               <p>
                 Har du spørgsmål eller brug for hjælp, er du altid velkommen til
-                at kontakte os på 
-              <a href="mailto:adm@bellevueteatret.dk"> adm@bellevueteatret.dk</a>
+                at kontakte os på
+                <a href="mailto:adm@bellevueteatret.dk">
+                  {" "}
+                  adm@bellevueteatret.dk
+                </a>
               </p>
             </div>
           </div>

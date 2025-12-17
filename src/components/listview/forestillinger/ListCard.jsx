@@ -7,7 +7,7 @@ import ScrollToPrimaryButton from "@/components/global/knapper/ScrollToPrimaryBu
 import { getItemStatus } from "@/app/library/utils.js";
 
 export default function ListCard({ item, medlemstilbud }) {
-    const { isArchived } = getItemStatus(item);
+  const { isArchived } = getItemStatus(item);
   return (
     <div className="relative pt-5 pb-10">
       <div
@@ -62,26 +62,23 @@ export default function ListCard({ item, medlemstilbud }) {
         <div className="p-2 pt-0 pb-10 items-center justify-center mt-auto">
           <div className="flex flex-wrap justify-center items-center gap-10 w-full pt-10">
             <div>
-            {!isArchived && (
-          medlemstilbud ? (
-            <ScrollToPrimaryButton
-              scrollToId="bookbilletter"
-              ariaLabel="Find billetter"
-            >
-              Find billetter
-            </ScrollToPrimaryButton>
-          ) : (
-            <AnchorTagPrimaryButton
-              target="_blank"
-              href={item.billetter}
-              ariaLabel="Køb billet"
-            >
-              Køb billet
-            </AnchorTagPrimaryButton>
-          )
-        )}
-
-
+              {!isArchived &&
+                (medlemstilbud ? (
+                  <ScrollToPrimaryButton
+                    scrollToId="bookbilletter"
+                    ariaLabel="Find billetter"
+                  >
+                    Find billetter
+                  </ScrollToPrimaryButton>
+                ) : (
+                  <AnchorTagPrimaryButton
+                    target="_blank"
+                    href={item.billetter}
+                    ariaLabel="Køb billet"
+                  >
+                    Køb billet
+                  </AnchorTagPrimaryButton>
+                ))}
             </div>
             <div>
               <SecondaryButton
