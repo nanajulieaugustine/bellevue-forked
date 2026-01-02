@@ -122,7 +122,7 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selectedGroup }) {
         originalY.current.set(child.name, child.position.y);
       }
 
-     // Ensure each mesh gets its own material instance
+     // reagerer på objekternes materialer for transparens og sørger for objektet reagerer og ikke materiale
      if (child.material) {
        if (Array.isArray(child.material)) {
          child.material = child.material.map((m) => m.clone());
@@ -206,7 +206,7 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selectedGroup }) {
         const id = e.object.userData.id;
         const label = formatIdLabel(id);
 
-        // Allow hover if no group is selected, or if this mesh belongs to the selected group
+        // tillad hover kun hvis det er en del af den valgte gruppe eller ingen gruppe er valgt
         if (id && interactiveIds.includes(id) && (!selectedGroup || label === selectedGroup)) {
           setHoveredId(id);
         }
