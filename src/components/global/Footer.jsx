@@ -1,25 +1,8 @@
 "use client";
-
-import { useState } from "react";
-import PopupNyhedsbrev from "../global/komponenter/PopupNyhedsbrev";
-import Tilmeld from "./knapper/TertiaryButton";
 import Image from "next/image";
+import TilmeldForm from "../global/komponenter/TilmeldForm";
 
 const Footer = () => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [email, setEmail] = useState("");
-
-  const handleTilmeldClick = () => {
-    if (!email.trim()) return; // kan tilføje validering senere
-
-    setShowPopup(true);
-    setEmail(""); // nulstil feltet
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
-
   const praktiskLinks = [
     "Handelsbetingelser",
     "CVR",
@@ -57,6 +40,7 @@ const Footer = () => {
           <p> 38 48 16 33</p>
         </div>
 
+{/* Instagram logo  */}
         <div className="flex gap-7 pt-10 items-center">
           <a
             href="https://www.instagram.com/bellevueteatret/"
@@ -71,6 +55,7 @@ const Footer = () => {
             />
           </a>
 
+{/* Facebook logo  */}
           <a
             href="https://www.facebook.com/BellevueTeatret?locale=da_DK"
             target="_blank"
@@ -96,15 +81,16 @@ const Footer = () => {
           din indbakke
         </p>
         <div className="w-full mx-auto flex flex-col gap-2 pt-10">
-          <input
-            id="footer-email"
-            type="email"
-            placeholder="Skriv din email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="bg-(--beige-600) rounded-xl p-4 w-full text-(--moerkblaa-900) border-2 border-(--beige-900) focus:outline-none"
-          />
-          <Tilmeld onClick={handleTilmeldClick} />
+        <TilmeldForm
+          fields={[
+            {
+              name: "email",
+              type: "email",
+              placeholder: "Skriv din email",
+            },
+          ]}
+          buttonText="Bliv medlem"
+        />
         </div>
       </div>
 
@@ -119,9 +105,6 @@ const Footer = () => {
 
         <div className="pt-10 flex flex-col items-center md:items-end">
           <div className="pb-4">
-            {/* <button className="text-(--koboltblaa-600) border-2 border-(--koboltblaa-600) bg-(--bellevueblaa-100) pt-3 pb-3 pl-15 pr-15 rounded-xl">
-              Find vej
-            </button> */}
             <a
               href="https://www.google.com/maps/search/?api=1&query=Strandvejen+451+2930+Klampenborg"
               target="_blank"
@@ -135,8 +118,7 @@ const Footer = () => {
           transition-colors duration-300
           hover:bg-(--koboltblaa-600)
           hover:text-(--bellevueblaa-100)
-            "
-            >
+            ">
               Find vej
             </a>
           </div>
@@ -145,9 +127,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-
-      {/* Popup */}
-      {showPopup && <PopupNyhedsbrev onClose={handleClosePopup} />}
     </div>
   );
 };
