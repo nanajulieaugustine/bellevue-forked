@@ -44,12 +44,14 @@ const RundvisningInfo = () => {
             {/* CONTAINER FOR TEKST */}
             <div className="grid gap-6">
               <p>Rundvisninger er arrangeret på faste dage.</p>
+              <div>
               <p>
-                For grupper på 10 personer eller flere, kontakt Marianne på
-                <a href="mailto:marianne@bellvueteatret.dk">
-                  marianne@bellevueteatret.dk.
-                </a>
+                For grupper på 10 personer eller flere, kontakt
               </p>
+                <a className="font-medium" href="mailto:marianne@bellvueteatret.dk">
+                   marianne@bellevueteatret.dk.
+                </a>
+              </div>
             </div>
           </div>
 
