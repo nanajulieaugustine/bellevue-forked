@@ -18,8 +18,27 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
     let newShake = {};
 
     fields.forEach((field) => {
+      const value = values[field.name]?.trim();
+
       if (!values[field.name]?.trim()) {
         newErrors[field.name] = "Skal udfyldes";
+        newShake[field.name] = true;
+      }
+
+          // Ekstra validering for email - "Hvis teksten ikke ligner en gyldig e-mailadresse, så er der en fejl.""
+          // Starter en betingelse (vi tjekker, om der skal vises en fejl)
+      if (
+        // Tjekker om det nuværende felt er et e-mail-felt
+        field.type === "email" &&
+        //Sikrer, at der faktisk er indtastet noget (feltet er ikke tomt)
+        value &&
+        //Tester om værdien ikke matcher et gyldigt e-mailformat
+        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+        //Hvis alle ovenstående betingelser er opfyldt, kører koden herunder
+      ) {
+        //Gemmer en fejlbesked for det specifikke felt:
+        newErrors[field.name] = "Indtast en gyldig e-mail";
+        //Aktiverer ryste-animationen på det felt, der er ugyldigt
         newShake[field.name] = true;
       }
     });
