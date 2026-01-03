@@ -8,6 +8,7 @@ const BilledKarrusel = ({ billede, item }) => {
       src={billede.url}
       alt={billede.alt}
       fill
+      loading="lazy"
       className="object-cover max-h-screen rounded-4xl"
     />
   );

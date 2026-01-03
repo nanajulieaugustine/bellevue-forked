@@ -27,6 +27,7 @@ export default function SnapWrapper({ image, children }) {
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           {image && (
             <Image
+            loading="lazy"
               src={image.url}
               alt={image.alt || ""}
               fill

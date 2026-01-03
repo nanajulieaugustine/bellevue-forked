@@ -194,7 +194,7 @@ const timesByDate = useMemo(() => {
         }}
         modifiers={{ available: allowedDates }}
         modifiersStyles={{
-          available: { color: "#1c82c2", borderRadius: "100%" },
+          available: { color: "#003f9e", borderRadius: "100%" },
         }}
         styles={{
           day_selected: { backgroundColor: "#1c82c2", borderRadius: "9999px" },
@@ -207,7 +207,7 @@ const timesByDate = useMemo(() => {
       <div className="flex flex-col gap-5 min-w-50">
         <h3>Book billetter</h3>
         <div className="flex">
-          {selected ? (
+          {selected && (
             <ul className="flex gap-10">
              {(timesByDate.get(selected.getTime()) || []).map(
             ({ time, billet }) => (
@@ -222,9 +222,7 @@ const timesByDate = useMemo(() => {
             )
           )}
             </ul>
-          ) : (
-            <span>Vælg en dato</span>
-          )}
+  )}
         </div>
       </div>
     </div>
