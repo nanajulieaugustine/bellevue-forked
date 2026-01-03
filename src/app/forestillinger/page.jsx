@@ -4,12 +4,12 @@ import Image from "next/image";
 export default function Forestillinger() {
   return (
     <div className="py-40 relative">
-      <div className="absolute -right-40 top-20 -z-10 hidden lg:block">
+      <div className="absolute right-1 rotate-180 overflow-clip top-20 -z-10 hidden lg:block">
               <Image
-                src="/svg/snoerkel-top-right.svg"
+                src="/svg/snoerkel-one.svg"
                 alt=""
-                width={600}
-                height={350}
+                width={450}
+                height={250}
               />
             </div>
       <ListServer />;

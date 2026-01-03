@@ -2,7 +2,7 @@ import OmSamlet from "@/components/ombellevue/OmSamlet";
 
 const OmBellevue = () => {
   return (
-    <div className="py-40">
+    <div>
       <OmSamlet />
     </div>
   );
