@@ -3,19 +3,16 @@ import SnapWrapper from "../global/komponenter/SnapWrapper";
 const OmHero = () => {
   return (
     // =============================== HERO SECTION ================================
-    <div className="flex flex-col gap-8">
-      <section>
-        <h1>OM BELLEVUE TEATRET</h1>
-      </section>
-
+    <div>
       <SnapWrapper
         image={{
           url: "/images/ombellevuehero.webp",
           alt: "Bellevue Teatret",
         }}
-      >
-        <div className="flex items-center justify-center h-full px-8">
-          <p className="max-w-3xl text-center">
+        >
+        <div className="flex flex-col items-center justify-center h-full px-8 gap-10  w-full">
+          <h1 className="beige-100">OM BELLEVUE TEATRET</h1>
+          <p className="max-w-3xl text-center font-bold">
             Bellevue Teatret er et hovedværk blandt Arne Jacobsens tidlige
             arbejde og den funktionalistiske arkitektur i Danmark. Sommerteatret
             er det tredje i rækken af byggerier med glatte, hvidpudsede facader,

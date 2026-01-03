@@ -222,13 +222,13 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selectedGroup }) {
   );
 }
 
-export default function FindRundt({ item }) {
+export default function FindRundt({ item, defaultGroup = null }) {
   const containerRef = useRef(null);
   const [direction, setDirection] = useState(null);
   const [activeId, setActiveId] = useState(null);
   const [activeHeading, setActiveHeading] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
-const [selectedGroup, setSelectedGroup] = useState(null);
+const [selectedGroup, setSelectedGroup] = useState(defaultGroup);
   const [showLottie, setShowLottie] = useState(false);
 
   const isInView = useInView(containerRef, {

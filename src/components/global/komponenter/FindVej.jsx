@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import Link from "next/link";
 const FindVej = () => {
   return (
     <div className="bg-(--moerkblaa-600) flex flex-col items-center gap-10 px-10 md:px-0 py-15">
@@ -10,15 +10,15 @@ const FindVej = () => {
         komme til både med bil, tog og bus, hvor den smukke tur ad Strandvejen
         bliver en del af oplevelsen.
       </p>
-      <div className="">
+      <Link href="https://www.google.com/maps/search/?api=1&query=Strandvejen+451+2930+Klampenborg" target="_blank" rel="noopener noreferrer" >
         <Image
           src={"/images/findvej.webp"}
           alt={"kort"}
           height={1200}
           width={1200}
-          className="w-full h-full object-cover shrink-0"
+          className="w-full h-full object-cover shrink-0 hover:scale-105 transition-all duration-300"
         />
-      </div>
+      </Link>
     </div>
   );
 };
