@@ -32,11 +32,18 @@ const Footer = () => {
 
   return (
     <div className="bg-(--moerkblaa-600) text-(--moerkblaa-100) grid grid-cols-1 md:grid-cols-3 gap-8 p-5">
+     <div className="col-span-full flex justify-center">
+      <Image
+        src="/svg/vandtaarn_hvid.svg"
+        alt="Vandtårn"
+        width={40}
+        height={40}
+      />
+    </div>
       {/* --- Kolonne 1 --- */}
       <div className="flex flex-col items-center md:items-start text-center md:text-left">
-        <div>{/* logo af some */}</div>
 
-        <div className="md:pt-40">
+        <div className="">
           <p className="font-bold pb-2 text-white">Administration:</p>
           <p>39 63 49 00 </p>
           <p> (hverdage 10 - 14)</p>
@@ -80,7 +87,7 @@ const Footer = () => {
       </div>
 
       {/* --- Kolonne 2 --- */}
-      <div className="pt-10 md:pt-40 flex flex-col items-center text-center">
+      <div className=" flex flex-col items-center text-center">
         <h3 className="pb-4 text-white text-2xl beige-100">
           Hold dig opdateret
         </h3>
@@ -102,7 +109,7 @@ const Footer = () => {
       </div>
 
       {/* --- Kolonne 3 --- */}
-      <div className="pt-10 md:pt-40 flex flex-col items-center md:items-end text-center md:text-right">
+      <div className=" flex flex-col items-center md:items-end text-center md:text-right">
         <p className="font-bold pb-2 text-white">Praktisk</p>
         <div className="flex flex-col items-center md:items-end gap-2">
           {praktiskLinks.map((link) => (
