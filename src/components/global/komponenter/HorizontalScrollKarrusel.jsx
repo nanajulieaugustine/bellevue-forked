@@ -101,6 +101,7 @@ const HorizontalScrollKarruselMedPile = ({ children }) => {
       <button
         className="absolute left-0 top-1/2 -translate-y-1/2 p-10 z-20"
         onClick={goToPrev}
+        aria-label="Gå til forrige slide"
       >
         <ArrowLeft className="text-(--hvid)" size={40} />
       </button>
@@ -109,6 +110,7 @@ const HorizontalScrollKarruselMedPile = ({ children }) => {
       <button
         className="absolute right-0 top-1/2 -translate-y-1/2 p-10 z-20"
         onClick={goToNext}
+        aria-label="Gå til næste slide"
       >
         <ArrowRight className="text-(--hvid)" size={40} />
       </button>

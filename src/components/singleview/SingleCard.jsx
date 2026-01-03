@@ -88,6 +88,7 @@ export default function SingleCard({ item, pauseSlot }) {
 
           <div className="h-full w-full">
             <iframe
+              title={`video fra ${item.name}`}
               src={item.embed}
               className="w-full h-full rounded-4xl"
               frameBorder="0"

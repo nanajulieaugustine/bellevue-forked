@@ -121,13 +121,16 @@ const matchedItem = useMemo(() => {
       </div>
 
       <ul className="flex items-center justify-between mt-10 uppercase font-light gap-5">
+        <li>
         <ArrowXPositionLeft
           onClick={handlePrev}
           className="opacity-70 hover:opacity-100 text-(--roed-900) transition disabled:opacity-0"
           disabled={startIndex === 0}
+          ariaLabel={"Forrige kategori"}
         />
+        </li>
 
-        <div className="flex gap-3 flex-wrap justify-between flex-1">
+        <li className="flex gap-3 flex-wrap justify-between flex-1">
           {visibleCategories.map((category) => (
             <PrimaryLink
               href={`/forestillinger?category=${encodeURIComponent(category)}`}
@@ -137,13 +140,17 @@ const matchedItem = useMemo(() => {
               {category}
             </PrimaryLink>
           ))}
-        </div>
+        </li>
 
+          <li>
         <ArrowXPositionRight
           onClick={handleNext}
           className="opacity-70 hover:opacity-100 text-(--roed-900) transition disabled:opacity-0"
           disabled={startIndex + visibleCount >= categories.length}
-        />
+          ariaLabel={"Næste kategori"}
+          />
+          </li>
+        
       </ul>
     </div>
   );

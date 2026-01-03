@@ -2,7 +2,8 @@ import SingleCard from "@/components/singleview/SingleCard";
 import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
 import Pause from "@/components/singleview/Pause";
-// Brug præcis samme opsætning som ListServer
+
+
 const supabase = createClient(
   "https://rzwaokiepaobrlrpphia.supabase.co",
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
@@ -25,13 +26,13 @@ export default async function SingleItem({ params }) {
   if (!data) {
     return <p>Kunne ikke finde item</p>;
   }
-
+  
   return (
     <div className="relative">
       <SingleCard
       item={data}
       pauseSlot={data.pause ? <Pause item={data} /> : null}
-    />
+      />
 
 
       <div className="absolute right-0 top-230 -z-5 hidden lg:block rotate-180">
@@ -39,4 +40,23 @@ export default async function SingleItem({ params }) {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata({ params }) {
+    const { id } = await params;
+
+   const { data } = await supabase
+    .from("bellevue_items")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  return {
+    title: data.name,
+    description: data.description_short,
+    openGraph: {
+      title: data.name,
+      description: data.description_short,
+    },
+  };
 }

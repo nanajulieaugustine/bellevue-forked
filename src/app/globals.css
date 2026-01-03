@@ -158,7 +158,7 @@ section {
 /* Selected day */
 .rdp-day_selected {
   font-weight: 900;
-  background-color: var(--bellevueblaa-900);
+  background-color: var(--koboltblaa-600);
   border-radius: 9999px !important;
   color: var(--hvid);
 }
@@ -166,7 +166,7 @@ section {
 /* Available dates */
 .rdp-day_available {
   border-radius: 9999px !important;
-  background-color: var(--bellevueblaa-600);
+  background-color: var(--koboltblaa-600);
   color: var(--hvid);
 
   :hover {
