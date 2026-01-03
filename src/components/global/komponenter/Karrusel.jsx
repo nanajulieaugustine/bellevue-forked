@@ -67,6 +67,7 @@ const Karrusel = ({ children, interval = 10000 }) => {
       <button
         className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl font-bold p-10"
         onClick={goToPrev}
+        aria-label="Gå til forrige slide"
       >
         <ArrowLeft className="text-(--hvid)" size={40} />
       </button>
@@ -74,6 +75,7 @@ const Karrusel = ({ children, interval = 10000 }) => {
       <button
         className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl font-bold p-10"
         onClick={goToNext}
+        aria-label="Gå til næste slide"
       >
         <ArrowRight className="text-(--hvid)" size={40} />
       </button>

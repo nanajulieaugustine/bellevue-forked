@@ -9,13 +9,13 @@ const StickyInfo = ({ item, isArchived}) => {
     <div className="flex flex-col gap-20 max-w-200 p-10">
       <div className="h-full z-10 flex gap-20">
         <div className="flex flex-col gap-20">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <Calender size={30} className="inline-block text-(--roed-600)" />
             <h3>Spilleperiode</h3>
             <p>{item.date}</p>
           </div>
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <Clock size={30} className="inline-block text-(--roed-600)" />
             <h3>Varighed</h3>
             <p>{item.varighed}</p>
@@ -23,13 +23,13 @@ const StickyInfo = ({ item, isArchived}) => {
         </div>
 
         <div className="flex flex-col gap-20">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <Price size={30} className="inline-block text-(--roed-600)" />
             <h3>Pris</h3>
             <p>{item.price}</p>
           </div>
 
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center gap-2">
             <Child size={30} className="inline-block text-(--roed-600)" />
             <h3>Alder</h3>
             <p>{item.alder}</p>
