@@ -9,6 +9,10 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
   const [shake, setShake] = useState({});
   const [showPopup, setShowPopup] = useState(false);
 
+  // Gemmer de indtastede værdier, så de kan vises i popup'en
+  const [submittedData, setSubmittedData] = useState({});
+
+
   const handleChange = (name, value) => {
     setValues((prev) => ({ ...prev, [name]: value }));
   };
@@ -51,10 +55,17 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
       return;
     }
 
+    // Hvis alle felter er gyldige:
+    // - Gemmes brugerens input
+    // - Popup vises som succes-feedback
+    // - Formularen nulstilles
     setShowPopup(true);
     setValues({});
     setErrors({});
     onSuccess?.(values);
+
+    setSubmittedData(values);
+    setShowPopup(true);
   };
 
   return (
@@ -85,7 +96,15 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
 
       <Tilmeld onClick={handleSubmit}>{buttonText}</Tilmeld>
 
-      {showPopup && <PopupNyhedsbrev onClose={() => setShowPopup(false)} />}
+{/* Popup vises efter succesfuld submit
+    Sender navn og email videre for at bekræfte brugerens input */}
+      {showPopup && (
+    <PopupNyhedsbrev
+    onClose={() => setShowPopup(false)}
+    navn={submittedData.navn}
+    email={submittedData.email}
+  />
+)}
 
       <style jsx>{`
         @keyframes shake {

@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-const PopupNyhedsbrev = ({ onClose }) => {
+// Modtager navn og email som props for at bekræfte brugerens input
+const PopupNyhedsbrev = ({ onClose, navn, email }) => {
   return (
     <motion.div
       initial={{ y: 100 }}
@@ -25,6 +26,13 @@ const PopupNyhedsbrev = ({ onClose }) => {
         </button>
 
         <h2 className=" mb-4 text-center">Tak for din tilmelding!</h2>
+        <div className="pt-8 text-center text-(--moerkblaa-900)">
+          {/* Viser kun navn og email hvis de findes
+              Bruges til at bekræfte at de indtastede oplysninger er korrekte */}
+        {navn && <p><strong>Navn:</strong> {navn}</p>}
+        {email && <p><strong>E-mail:</strong> {email}</p>}
+        </div>
+        
         <p className="text-center text-(--moerkblaa-900) pt-10 font-light ">
           Tak for din tilmelding – vi glæder os til at byde dig velkommen i
           fællesskabet. Hold øje med din mail – dit medlemstilbud er på vej!
