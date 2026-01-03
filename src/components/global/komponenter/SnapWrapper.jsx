@@ -3,9 +3,11 @@ import { useRef, Children } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Karrusel from "./Karrusel";
+import { usePathname } from "next/navigation";
 
 export default function SnapWrapper({ image, children }) {
   const containerRef = useRef(null);
+  const pathname = usePathname();
 
   // Filtrer så vi kun får faktiske DOM-elementer
   const validChildren = Children.toArray(children).filter(
@@ -73,7 +75,13 @@ export default function SnapWrapper({ image, children }) {
           count > 1 ? "snap-y snap-mandatory" : ""
         }`}
       >
-        <div className="h-[90vh] snap-start" />
+        {pathname.includes("/om-bellevue") ? (
+          <div className="snap-start flex justify-center">
+            <h1 className="beige-100 display py-40 flex items-center text-center justify-center">Om Bellevue Teatret</h1>
+          </div>
+        ) : (
+          <div className="h-[90vh] snap-start" />
+        )}
 
         <div
           className={`snap-start h-[90vh] text-(--hvid)`}

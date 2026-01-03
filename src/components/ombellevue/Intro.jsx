@@ -11,7 +11,6 @@ const OmHero = () => {
         }}
         >
         <div className="flex flex-col items-center justify-center h-full px-8 gap-10  w-full">
-          <h1 className="beige-100">OM BELLEVUE TEATRET</h1>
           <p className="max-w-3xl text-center font-bold">
             Bellevue Teatret er et hovedværk blandt Arne Jacobsens tidlige
             arbejde og den funktionalistiske arkitektur i Danmark. Sommerteatret
