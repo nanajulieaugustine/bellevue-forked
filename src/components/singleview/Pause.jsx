@@ -16,7 +16,7 @@ const Pause = ({ item }) => {
           dig i foryeeren.
         </p>
       </div>
-      <FindRundtServer />
+      <FindRundtServer defaultGroup="Barer" />
     </div>
   );
 };

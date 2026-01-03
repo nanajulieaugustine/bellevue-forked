@@ -6,11 +6,10 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
-export default async function FindRundtServer() {
-  const { data, error } = await supabase.from("interaktivt_kort").select("*");
-
-  console.log("Supabase error:", error);
-  console.log("Supabase data:", data);
+export default async function FindRundtServer({ defaultGroup = null }) {
+  const { data, error } = await supabase
+    .from("interaktivt_kort")
+    .select("*");
 
   if (error) {
     return <p>Der skete en fejl med at hente item.</p>;
@@ -20,5 +19,6 @@ export default async function FindRundtServer() {
     return <p>Kunne ikke finde item</p>;
   }
 
-  return <FindRundt item={data} />;
+  return <FindRundt item={data} defaultGroup={defaultGroup} />;
 }
+
