@@ -4,7 +4,7 @@ import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { useRef, useState, useEffect } from "react";
 import PopOverFindRundt from "./PopOverFindRundt";
-import PrimaryButton from "../../knapper/PrimaryButton";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 //id'er, der skal kunne klikkes på - er definerert fra objekters navn i Blender
 const interactiveIds = [
@@ -12,6 +12,7 @@ const interactiveIds = [
   "billetkontor",
   "gulv",
   "nordbar",
+  "scenen",
   "sydbar",
   "balkon",
   "tagteresse",
@@ -27,6 +28,52 @@ const interactiveIds = [
 ];
 //blokerer facaderne, så interactiveIds bliver klikbare
 const nonInteractiveIds = ["facade", "facade.001", "facade.002", "facade.003"];
+
+function formatIdLabel(id) {
+  switch (id) {
+    case "nordbar":
+    case "sydbar":
+    case "foyerbar":
+    case "øvrebar":
+      return "Barer";
+
+          case "merch":
+      return "Merchandise";
+
+    case "scenen":
+      return "Salen";
+
+    case "nordtoilet":
+    case "sydtoilet":
+    case "handicaptoilet":
+      return "Toiletter";
+
+    case "nordgarderobe":
+    case "sydgarderobe":
+      return "Garderobe";
+
+    case "billetkontor":
+      return "Billetkontor";
+
+        case "cafeen":
+      return "Cafeen";
+
+
+        case "tagteresse":
+      return "Tagteresse";
+
+    default:
+      return null;
+  }
+}
+
+const buttons = interactiveIds.reduce((acc, id) => {
+  const label = formatIdLabel(id);
+  if (label && !acc.find((b) => b.label === label)) {
+    acc.push({ label });
+  }
+  return acc;
+}, []);
 
 function RotateCamera({ controlsRef, targetAngle, onDone }) {
   const { camera } = useThree();
@@ -59,10 +106,11 @@ function RotateCamera({ controlsRef, targetAngle, onDone }) {
 }
 
 import * as THREE from "three";
+import { useInView } from "framer-motion";
 
-function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
+function Model({ onMeshClick, hoveredId, setHoveredId, selectedGroup }) {
   const { scene } = useGLTF("/kort/bellevue.glb");
-  const originalPositions = useRef(new Map());
+  const originalY = useRef(new Map());
 
   useEffect(() => {
     scene.traverse((child) => {
@@ -70,23 +118,29 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
 
       child.userData.id = child.name;
 
-      // Gem original Y-position
-      if (!originalPositions.current.has(child.name)) {
-        originalPositions.current.set(child.name, child.position.y);
+      if (!originalY.current.has(child.name)) {
+        originalY.current.set(child.name, child.position.y);
       }
 
-      const isGlass = child.material.name.includes("Glass");
-      if (isGlass) {
-        child.material.transparent = true;
-        child.material.opacity = 1;
-      } else {
-        child.material.flatShading = true;
-        child.material.transparent = true;
-        child.material.opacity = 0.8;
-        child.material.depthWrite = false;
-      }
+     // reagerer på objekternes materialer for transparens og sørger for objektet reagerer og ikke materiale
+     if (child.material) {
+       if (Array.isArray(child.material)) {
+         child.material = child.material.map((m) => m.clone());
+         child.material.forEach((m) => {
+           m.transparent = true;
+           m.opacity = 0.8;
+           m.depthWrite = false;
+           m.needsUpdate = true;
+         });
+       } else {
+         child.material = child.material.clone();
+         child.material.transparent = true;
+         child.material.opacity = 0.8;
+         child.material.depthWrite = false;
+         child.material.needsUpdate = true;
+       }
+     }
 
-      // Deaktivér objekter, der ikke skal være interaktive
       if (
         nonInteractiveIds.includes(child.name) ||
         !interactiveIds.includes(child.name)
@@ -101,36 +155,29 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
       if (!child.isMesh) return;
 
       const id = child.userData.id;
-      const originalY = originalPositions.current.get(id);
-      if (originalY == null) return;
-
-      // Hover animation
-      const isHovered = hoveredId === id;
-      const targetY = isHovered ? originalY + 1 : originalY;
-      child.position.y += (targetY - child.position.y) * 0.15;
+      const baseY = originalY.current.get(id);
+      if (baseY == null) return;
 
       const label = formatIdLabel(id);
-      const isSelectedGroup = selected && label === formatIdLabel(selected);
+      const isHovered = hoveredId === id;
+      const isActiveGroup = selectedGroup && label === selectedGroup;
 
-      if (selected) {
-        if (isSelectedGroup) {
-          child.material.opacity = 1;
-          child.visible = true;
-          // Aktiver raycast på den valgte gruppe
-          child.raycast = THREE.Mesh.prototype.raycast;
-        } else {
-          child.material.opacity = 0.05;
-          child.visible = true;
-          child.raycast = () => {}; // fjern interaktivitet
-        }
+      // Hover lift
+      const targetY = isHovered ? baseY + 1 : baseY;
+      child.position.y += (targetY - child.position.y) * 0.15;
+
+      if (selectedGroup) {
+        const targetOpacity = isActiveGroup ? 1 : 0.05;
+        child.material.opacity +=
+          (targetOpacity - child.material.opacity) * 0.1;
+
+        child.raycast = isActiveGroup
+          ? THREE.Mesh.prototype.raycast
+          : () => {};
       } else {
-        // Ingen selection: vis alle normalt
-        child.material.opacity = child.material.name.includes("Glass")
-          ? 1
-          : 0.8;
-        child.visible = true;
+        child.material.opacity += (0.8 - child.material.opacity) * 0.1;
         if (interactiveIds.includes(id)) {
-          child.raycast = THREE.Mesh.prototype.raycast; // aktiver raycast på alle interaktive
+          child.raycast = THREE.Mesh.prototype.raycast;
         }
       }
     });
@@ -145,24 +192,22 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
         const clickedId = e.object.userData.id;
         const label = formatIdLabel(clickedId);
 
-        if (
-          clickedId &&
-          interactiveIds.includes(clickedId) &&
-          (!selected || label === formatIdLabel(selected))
-        ) {
-          onMeshClick(clickedId);
-        }
+      if (
+      clickedId &&
+      interactiveIds.includes(clickedId) &&
+      (!selectedGroup || label === selectedGroup)
+    ) {
+      onMeshClick(clickedId);
+    }
+
       }}
       onPointerOver={(e) => {
         e.stopPropagation();
         const id = e.object.userData.id;
         const label = formatIdLabel(id);
 
-        if (
-          id &&
-          interactiveIds.includes(id) &&
-          (!selected || label === formatIdLabel(selected))
-        ) {
+        // tillad hover kun hvis det er en del af den valgte gruppe eller ingen gruppe er valgt
+        if (id && interactiveIds.includes(id) && (!selectedGroup || label === selectedGroup)) {
           setHoveredId(id);
         }
       }}
@@ -177,45 +222,33 @@ function Model({ onMeshClick, hoveredId, setHoveredId, selected }) {
   );
 }
 
-
-
-
-function formatIdLabel(id) {
-  switch(id) {
-    case "nordbar":
-    case "sydbar":
-    case "foyerbar":
-    case "øvrebar": return "Barer";
-
-    case "gulv":
-    case "balkon": return "Salen";
-
-    case "nordtoilet":
-    case "sydtoilet":
-    case "handicaptoilet": return "Toiletter";
-
-    case "nordgarderobe":
-    case "sydgarderobe": return "Garderobe";
-
-    case "billetkontor": return "Billetkontor";
-  }
-}
-
-//  array med unikke knapper baseret på formatIdLabel
-const buttons = interactiveIds.reduce((acc, id) => {
-  const label = formatIdLabel(id);
-  if (label && !acc.find((b) => b.label === label)) {
-    acc.push({ id, label });
-  }
-  return acc;
-}, []);
-
 export default function FindRundt({ item }) {
+  const containerRef = useRef(null);
   const [direction, setDirection] = useState(null);
   const [activeId, setActiveId] = useState(null);
   const [activeHeading, setActiveHeading] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
-  const [select, setSelected] = useState(null);
+const [selectedGroup, setSelectedGroup] = useState(null);
+  const [showLottie, setShowLottie] = useState(false);
+
+  const isInView = useInView(containerRef, {
+  amount: 0.5, // fx 50% synlig
+});
+
+  // Lottie animation effect
+  useEffect(() => {
+  if (!isInView) return;
+
+  setShowLottie(true);
+
+  const timer = setTimeout(() => {
+    setShowLottie(false);
+  }, 4000);
+
+  return () => clearTimeout(timer);
+}, [isInView]);
+
+
 
   // Her filtrerer vi item baseret på clickedId
   const activeItem = activeId ? item.find((i) => i.objekt === activeId) : null;
@@ -259,7 +292,7 @@ export default function FindRundt({ item }) {
 
   return (
     <>
-    <div className="h-screen relative flex">
+    <div className="h-screen relative flex" ref={containerRef}>
 
         {/* Infoboks */}
         <PopOverFindRundt
@@ -270,7 +303,7 @@ export default function FindRundt({ item }) {
 
         {/* Nord */}
         <button
-          className="absolute top-20 right-20 rotate-90 z-50"
+          className="absolute top-20 right-20 rotate-90 z-50 hover:scale-110 transition-all duration-300"
           onClick={() => setDirection("north")}
         >
           <h3
@@ -284,7 +317,7 @@ export default function FindRundt({ item }) {
 
         {/* Syd */}
         <button
-          className="absolute bottom-20 left-20 -rotate-90 z-50"
+          className="absolute bottom-20 left-20 -rotate-90 z-50 hover:scale-110 transition-all duration-300"
           onClick={() => setDirection("south")}
         >
           <h3
@@ -296,15 +329,24 @@ export default function FindRundt({ item }) {
           </h3>
         </button>
 
-        {select && (
+        {selectedGroup && (
           <button
-            onClick={() => setSelected(null)}
-            className="absolute top-15 right-170 z-50 text-(--hvid) bg-(--moerkblaa-600) rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
+            onClick={() => setSelectedGroup(null)}
+            className="absolute top-15 right-130 z-50 text-(--hvid) bg-(--moerkblaa-600) rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
             title="Tilbage til oversigt"
           >
             ✕
           </button>
         )}
+
+          {showLottie && (
+        <DotLottieReact
+          src="https://lottie.host/b3026a43-db70-4b8d-a4d9-3422f1669b6f/shENEAkoS3.lottie"
+          autoplay
+          loop
+          className="absolute inset-0 z-50 pointer-events-none w-100 h-100 top-50 left-80"
+        />
+      )}
 
         <Canvas camera={{ position: [200, 70, 10], fov: 50 }}>
           <ambientLight intensity={1} />
@@ -318,13 +360,37 @@ export default function FindRundt({ item }) {
           />
           <TrackHeading setActiveHeading={setActiveHeading} />
 
-          <Model
-            onMeshClick={setActiveId}
-            hoveredId={hoveredId}
-            setHoveredId={setHoveredId}
-            selected={select}
-          />
+         <Model
+        onMeshClick={(id) => {
+          const label = formatIdLabel(id);
+          setActiveId(id);
+          setSelectedGroup(label);
+        }}
+        hoveredId={hoveredId}
+        setHoveredId={setHoveredId}
+        selectedGroup={selectedGroup}
+      />
         </Canvas>
+
+         {/* BUNDKNAPPER */}
+      <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 z-50 flex flex-col md:flex-row gap-3 bg-white/80 backdrop-blur px-4 py-3 rounded-full shadow-lg">
+        {buttons.map(({ label }) => (
+          <button
+            key={label}
+            onClick={() =>
+              setSelectedGroup((prev) => (prev === label ? null : label))
+            }
+            className={`px-4 py-2 rounded-full text-sm transition-all duration-300
+              ${
+                selectedGroup === label
+                  ? "bg-(--moerkblaa-600) text-white scale-105"
+                  : "bg-white hover:bg-gray-100"
+              }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
       </div>
     </>
   );
