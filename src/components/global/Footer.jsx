@@ -89,7 +89,7 @@ const Footer = () => {
               placeholder: "Skriv din email",
             },
           ]}
-          buttonText="Bliv medlem"
+          buttonText="Tilmeld"
         />
         </div>
       </div>
