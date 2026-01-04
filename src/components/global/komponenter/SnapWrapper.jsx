@@ -27,7 +27,7 @@ export default function SnapWrapper({ image, children }) {
         <motion.div style={{ y }} className="absolute inset-0 z-0">
           {image && (
             <Image
-            loading="lazy"
+              loading="lazy"
               src={image.url}
               alt={image.alt || ""}
               fill
@@ -77,16 +77,14 @@ export default function SnapWrapper({ image, children }) {
         }`}
       >
         {pathname.includes("/om-bellevue") ? (
-          <div className="snap-start flex justify-center">
-            <h1 className="beige-100 display py-40 flex items-center text-center justify-center">Om Bellevue Teatret</h1>
-          </div>
+          <section className="snap-start pb-20">
+            <h1 className="py-40">OM BELLEVUE</h1>
+          </section>
         ) : (
           <div className="h-[90vh] snap-start" />
         )}
 
-        <div
-          className={`snap-start h-[90vh] text-(--hvid)`}
-        >
+        <div className={`snap-start h-[90vh] text-(--hvid)`}>
           {count > 1 ? <Karrusel>{validChildren}</Karrusel> : validChildren}
         </div>
       </div>

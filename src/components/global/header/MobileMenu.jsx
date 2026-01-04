@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const MobileMenu = ({ isVisible, closeMenu }) => {
   const links = [
-       { href: "/", text: "Forside" },
+    { href: "/", text: "Forside" },
     { href: "/forestillinger", text: "Forestillinger" },
     { href: "/kalender", text: "kalender" },
     { href: "/om-bellevue", text: "Om Teatret" },
@@ -25,7 +25,11 @@ const MobileMenu = ({ isVisible, closeMenu }) => {
           <ul className="p-10 overflow-y-auto grid gap-8">
             {links.map((link) => (
               <li className="text-(--hvid)" key={link.href}>
-                <Link href={link.href} onClick={closeMenu} aria-label={`gå til ${link.text}`}>
+                <Link
+                  href={link.href}
+                  onClick={closeMenu}
+                  aria-label={`gå til ${link.text}`}
+                >
                   {link.text}
                 </Link>
               </li>

@@ -1,5 +1,4 @@
 import BellevueStriber from "@/components/global/animationer/BellevueStriber";
-import AnchorTagPrimaryButton from "../global/knapper/AnchorTagPrimaryButton";
 import BellevueVideo from "../global/komponenter/BellevueVideo";
 import Clock from "../global/ikoner/Clock";
 import Chat from "../global/ikoner/Chat";
@@ -21,23 +20,19 @@ const RundvisningInfo = () => {
             <div className="flex flex-col gap-6">
               <div className="flex gap-4 items-center">
                 <Clock size={30} className={"text-(--moerkblaa-300)"} />
-                <p className="highlighttext">45 minutters varighed</p>
+                <p>45 minutters varighed</p>
               </div>
               <div className="flex gap-4 items-center">
                 <Chat size={25} className={"text-(--moerkblaa-300)"} />
-                <p className="highlighttext">Tilbydes på dansk eller engelsk</p>
+                <p>Tilbydes på dansk eller engelsk</p>
               </div>
               <div className="flex gap-4 items-center">
                 <Calender size={25} className={"text-(--moerkblaa-300)"} />
-                <p className="highlighttext">
-                  Arrangeres på hverdage mellem 9-16
-                </p>
+                <p>Arrangeres på hverdage mellem 9-16</p>
               </div>
               <div className="flex gap-4 items-center">
                 <Price size={25} className={"text-(--moerkblaa-300)"} />
-                <p className="highlighttext">
-                  135 kr. per person (min. 10 pers)
-                </p>
+                <p>135 kr. per person (min. 10 pers)</p>
               </div>
             </div>
 
@@ -45,11 +40,12 @@ const RundvisningInfo = () => {
             <div className="grid gap-6">
               <p>Rundvisninger er arrangeret på faste dage.</p>
               <div>
-              <p>
-                For grupper på 10 personer eller flere, kontakt
-              </p>
-                <a className="font-medium" href="mailto:marianne@bellvueteatret.dk">
-                   marianne@bellevueteatret.dk.
+                <p>For grupper på 10 personer eller flere, kontakt</p>
+                <a
+                  className="font-medium"
+                  href="mailto:marianne@bellvueteatret.dk"
+                >
+                  marianne@bellevueteatret.dk.
                 </a>
               </div>
             </div>

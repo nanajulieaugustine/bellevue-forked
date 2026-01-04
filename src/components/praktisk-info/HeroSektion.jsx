@@ -3,7 +3,7 @@ const HeroSektion = () => {
     // =============================== WRAPPER FOR HERO INDHOLD ================================
     <section className="flex flex-col gap-12">
       <h1>PRAKTISK INFO</h1>
-      <div className="flex flex-col gap-4 max-w-3xl">
+      <div className="flex flex-col gap-4 max-w-3xl bg-white rounded-3xl">
         <p>
           <strong> Alt det, der gør dit besøg nemt og trygt</strong>
         </p>

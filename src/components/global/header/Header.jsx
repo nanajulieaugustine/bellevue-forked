@@ -104,12 +104,10 @@ const Header = () => {
             <ul className="rounded-full flex h-8 p-1 justify-between items-center w-screen px-(--content-width)">
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
-                aria-label="gå til forside"
+                  aria-label="gå til forside"
                   href="/"
                   onClick={() =>
-                    setIsActive((prev) =>
-                      prev === "/" ? null : "/"
-                    )
+                    setIsActive((prev) => (prev === "/" ? null : "/"))
                   }
                   // OnMouseEnter og onMouseLeave til at danne en smooth animation når brugeren hover
                   onMouseEnter={() => setHovered("/")}
@@ -121,8 +119,7 @@ const Header = () => {
                   Forside
                   {/* papthname definerer den gule cirkel, dukker op når brugeren er på siden */}
                   <AnimatePresence>
-                    {(hovered === "/" ||
-                      active === "/") && (
+                    {(hovered === "/" || active === "/") && (
                       <motion.div
                         key="/"
                         initial={{ scale: 0 }}
@@ -137,7 +134,7 @@ const Header = () => {
               </li>
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
-                aria-label="gå til forestillinger"
+                  aria-label="gå til forestillinger"
                   href="/forestillinger"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -171,7 +168,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
-                aria-label="gå til kalender"
+                  aria-label="gå til kalender"
                   href="/kalender"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -202,7 +199,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
-                aria-label="gå til om bellevue"
+                  aria-label="gå til om bellevue"
                   href="/om-bellevue"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -215,7 +212,7 @@ const Header = () => {
                   onBlur={() => setHovered(null)}
                   className="cursor-pointer text-(--hvid) relative"
                 >
-                  Om Teatret
+                  Om Bellevue
                   <AnimatePresence>
                     {(hovered === "/om-bellevue" ||
                       active === "/om-bellevue") && (
@@ -234,7 +231,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
-                aria-label="gå til praktisk info"
+                  aria-label="gå til praktisk info"
                   href="/praktisk-info"
                   onClick={() =>
                     setIsActive((prev) =>
@@ -266,7 +263,7 @@ const Header = () => {
 
               <li className="hover:scale-103 transition-all duration-300">
                 <Link
-                aria-label="gå til kontakt"
+                  aria-label="gå til kontakt"
                   href="/kontakt"
                   onClick={() =>
                     setIsActive((prev) =>

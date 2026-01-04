@@ -97,7 +97,7 @@ const FAQ = () => {
                   if (isClosing) setClosingId(null);
                 }}
               >
-                <p className="text-gray-700 text-xl">{item.answer}</p>
+                <p>{item.answer}</p>
               </div>
             </li>
           );
