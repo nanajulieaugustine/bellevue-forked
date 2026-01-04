@@ -5,31 +5,38 @@ import { useState } from "react";
 import Image from "next/image";
 
 // Imports af komponentet
-import PrimaryButton from "@/components/global/knapper/PrimaryButton";
 import AnchorTagPrimaryButton from "@/components/global/knapper/AnchorTagPrimaryButton";
 import SecondaryButton from "@/components/global/knapper/SecondaryButton";
 import AnchorTagSecondaryButton from "@/components/global/knapper/AnchorTagSecondaryButton";
 
 const KalenderCard = ({ item, time }) => {
+  // Holder styr på hvilket card der er åbent
   const [openId, setOpenId] = useState(null);
+
+  // Bruges kun til animation, openId sættes til null, closingId markerer at card er i gang med at lukke
   const [closingId, setClosingId] = useState(null);
 
+  // Åbner og lukker card
   const toggle = (id) => {
+    // Hvis card allerede er åbent
     if (openId === id) {
-      setClosingId(id);
-      setOpenId(null);
+      setClosingId(id); // marker at det er ved at lukke
+      setOpenId(null); // luk accordion
+
+      // Ellers åben card (hvis cardet er lukket)
     } else {
       setOpenId(id);
     }
   };
 
+  // Hvis item mangler eller er undefined, så render ingenting
   if (!item) return null;
 
   // Formatér time (kan være string eller array)
-  const displayTime = Array.isArray(time) ? time.join(", ") : time || ""; // fallback hvis tomt
+  const displayTime = Array.isArray(time) ? time.join(", ") : time || ""; // fallback hvis tomt, brug tom string i stedet
 
-  const isOpen = openId === item.id;
-  const isClosing = closingId === item.id;
+  const isOpen = openId === item.id; // openId = id på det åbne card, item.id = id på dette card
+  const isClosing = closingId === item.id; // openId bliver null
   const noBottomRadius = isOpen || isClosing;
 
   return (
@@ -39,7 +46,7 @@ const KalenderCard = ({ item, time }) => {
         <div
           className={`flex items-start justify-between p-10 transition-colors duration-300 shadow-md ${
             isOpen ? "bg-(--beige-300)" : "bg-(--beige-100)"
-          } ${noBottomRadius ? "rounded-t-2xl" : "rounded-2xl"} gap-6`}
+          } ${noBottomRadius ? "rounded-t-2xl" : "rounded-2xl"} gap-6`} // Åben: Kun top-hjørner
         >
           {/* INFORMATION */}
           <div className="grid gap-5 min-w-0">

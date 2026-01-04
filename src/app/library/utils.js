@@ -6,7 +6,6 @@ export function normalizeTag(tag) {
   return typeof tag === "string" ? tag.trim().toLowerCase() : "";
 }
 
-
 // ================================= Udregning af datoer i fortiden =========================================
 
 export function parseDates(input, options = {}) {
@@ -82,7 +81,7 @@ export function parseDates(input, options = {}) {
   return [];
 }
 
-// ===================================== filtrering af kategorier ==========================================
+// ===================================== Filtrering af kategorier ==========================================
 
 export function extractCategories(data) {
   if (!Array.isArray(data)) return [];
@@ -114,63 +113,87 @@ export function extractCategories(data) {
   return [...map.values()];
 }
 
-
 // ===================================== filtrering af aldersgrupper ==========================================
 export function extractAldersgruppe(data) {
   if (!Array.isArray(data)) return [];
 
   const allGroups = data
-    .map((item) => item.aldersgruppe)   // hent aldersgruppe
-    .filter(Boolean);                  // fjern undefined/null
+    .map((item) => item.aldersgruppe) // hent aldersgruppe
+    .filter(Boolean); // fjern undefined/null
 
-  return [...new Set(allGroups)];      // returner unikke værdier
+  return [...new Set(allGroups)]; // returner unikke værdier
 }
 
 // ========================== Gruppér kalender-items pr. dato og split tider ud =============================
 
 // Gruppér forestillinger efter dato og split tider ud pr. tidspunkt
 export function groupShowsByDate(items, { onlyFuture = false } = {}) {
+  // Find “i dag” (uden klokkeslæt)
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
+  // Map til gruppering,
   const map = new Map();
 
+  // Loop gennem alle items
   items.forEach((item) => {
+    // Loop gennem alle datoer for et item, hvor ?. beskytter mod undefined
     item.fullDates?.forEach((entry) => {
-      // parse dato + evt. tid
+      // parse dato + evt. tid, tager kun første resultat
       const parsed = parseDates([entry])[0];
+
+      // Hvis parsing fejler → spring videre
       if (!parsed) return;
 
+      // Normalisér dato (uden tid)
       const dateKey = new Date(parsed);
       dateKey.setHours(0, 0, 0, 0);
 
+      // Hvis kun fremtidige
       if (onlyFuture && dateKey < today) return;
 
+      // 1. Brug timestamp som key 2. Gør datoen sammenlignelig 3. Bruges som Map-key
       const ts = dateKey.getTime();
 
+      // Opret dag hvis den ikke findes. ts = én bestemt kalenderdag (fx 12. marts)
       if (!map.has(ts)) map.set(ts, []);
 
+      // Case 1: Ingen tid
       if (!entry.time) {
-        // Ingen tid
-        map.get(ts).push({ item, time: null, billet: entry.billet || item.billetter });
+        map
+          .get(ts)
+          .push({ item, time: null, billet: entry.billet || item.billetter });
       } else if (typeof entry.time === "string") {
-        // Tid som streng
-        map.get(ts).push({ item, time: entry.time, billet: entry.billet || item.billetter });
+        // Case 2: Én tid (string)
+        // map.get(ts) = Giv mig arrayet med alle shows for denne dag
+        map.get(ts).push({
+          item,
+          time: entry.time,
+          billet: entry.billet || item.billetter,
+        });
       } else if (Array.isArray(entry.time)) {
-        // Tid som array af objekter
+        // Case 3: Flere tider (array med objekter)
         entry.time.forEach((t) => {
+          // Splitter én forestilling til flere kalender-rækker
           map.get(ts).push({ item, time: t.time, billet: t.billet });
         });
       }
     });
   });
 
-  return [...map.entries()]
-    .sort(([a], [b]) => a - b)
-    .map(([ts, shows]) => ({
-      date: new Date(ts),
-      shows,
-    }));
+  // Fra Map → Array (til React)
+  return (
+    [...map.entries()]
+
+      // Sortér datoer - Ældste dato først
+      .sort(([a], [b]) => a - b)
+
+      // Formatér til slutformat
+      .map(([ts, shows]) => ({
+        date: new Date(ts),
+        shows,
+      }))
+  );
 }
 
 // ========================== Arkiverede versus aktive forestillinger =============================
@@ -186,7 +209,15 @@ export function getItemStatus(item) {
 
   const today = new Date();
   // Sæt tid til slutningen af dagen
-  const endOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+  const endOfToday = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    23,
+    59,
+    59,
+    999
+  );
 
   const isArchived = parsed.latestDate.getTime() < endOfToday.getTime();
 
@@ -200,7 +231,15 @@ export function getItemStatus(item) {
  */
 export function filterItemsByStatus(items, status = "current") {
   const today = new Date();
-  const endOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999);
+  const endOfToday = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    23,
+    59,
+    59,
+    999
+  );
 
   return items.filter((item) => {
     const { latestDate } = getItemStatus(item);

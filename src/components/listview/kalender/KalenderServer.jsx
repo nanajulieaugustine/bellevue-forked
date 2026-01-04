@@ -23,8 +23,8 @@ export default async function KalenderServer() {
 
   // Returnerer data ellers tomt array
   return (
-     <Suspense fallback={<p>Loader...</p>}>
-       <KalenderSamlet items={data || []} />
-     </Suspense>
-);
+    <Suspense fallback={<p>Loader...</p>}>
+      <KalenderSamlet items={data || []} />
+    </Suspense>
+  );
 }

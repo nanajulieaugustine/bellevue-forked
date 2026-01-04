@@ -13,9 +13,6 @@ const PraktiskInfo = () => {
         />
       </div>
       <PraktiskInfoSamlet />
-      <div className="absolute -left-1 -z-10 hidden lg:block">
-        <Image src="/svg/snoerkel-one.svg" alt="" width={600} height={350} />
-      </div>
     </div>
   );
 };
