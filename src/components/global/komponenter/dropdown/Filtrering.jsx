@@ -49,7 +49,7 @@ export default function Filtrering({
 
   if (!grouped.length) return <p>Ingen kommende forestillinger.</p>;
 
-  // ----- Filtre -----
+  // ----- Filtre efter dato, kateogri og børn/voksen-----
   const [selectedDate, setSelectedDate] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedChildren, setSelectedChildren] = useState("all");
