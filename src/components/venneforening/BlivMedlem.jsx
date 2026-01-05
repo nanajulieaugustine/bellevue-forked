@@ -1,6 +1,7 @@
 import TilmeldForm from "../global/komponenter/TilmeldForm";
 import Image from "next/image";
 
+//Der oprettes en react komponent "BlivMedlem"
 const BlivMedlem = () => {
   return (
     <section className="pt-20 pb-20" id="blivmedlem">
@@ -18,7 +19,7 @@ const BlivMedlem = () => {
             <div className="flex justify-center">
               <Image
                 src="/svg/venneforening-logo-lille.svg"
-                alt=""
+                alt="vennelogo"
                 width={100}
                 height={900}
               />
@@ -26,7 +27,9 @@ const BlivMedlem = () => {
 
             <TilmeldForm
               fields={[
-                { name: "navn", type: "text", placeholder: "Dit fulde navn" },
+                { name: "navn", 
+                type: "text", 
+                placeholder: "Dit fulde navn" },
                 {
                   name: "email",
                   type: "email",
