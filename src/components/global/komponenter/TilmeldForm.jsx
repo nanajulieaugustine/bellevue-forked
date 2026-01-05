@@ -25,7 +25,7 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
       const value = values[field.name]?.trim();
 
       if (!values[field.name]?.trim()) {
-        newErrors[field.name] = "Skal udfyldes";
+        newErrors[field.name] = "Skal udfyldes*";
         newShake[field.name] = true;
       }
 
@@ -41,7 +41,7 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
         //Hvis alle ovenstående betingelser er opfyldt, kører koden herunder
       ) {
         //Gemmer en fejlbesked for det specifikke felt:
-        newErrors[field.name] = "Indtast en gyldig e-mail";
+        newErrors[field.name] = "Indtast en gyldig e-mail!";
         //Aktiverer ryste-animationen på det felt, der er ugyldigt
         newShake[field.name] = true;
       }
