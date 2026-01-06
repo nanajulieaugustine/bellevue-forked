@@ -14,7 +14,9 @@ const HeroVenner = () => {
       iconWidth: 80,
       iconHeight: 80,
     },
-    { icon: "/svg/people.svg", text: "12 måneders medlemskab 600 kr." },
+    { 
+      icon: "/svg/people.svg", 
+      text: "12 måneders medlemskab 600 kr." },
   ];
 
   return (
