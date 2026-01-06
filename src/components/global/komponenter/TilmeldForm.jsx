@@ -113,7 +113,7 @@ const TilmeldForm = ({ fields, onSuccess, buttonText = "Tilmeld" }) => {
           {/* tjekker: Er der en fejlbesked gemt for dette felt */}
           {/* “Hvis der findes en fejlbesked (errors[field.name] er sand), så vis det, der står efter &&.” */}
           {errors[field.name] && (
-            <p className="text-(--roed-600) text-sm mt-1 absolute top-full left-0">
+            <p className="text-red-500 font-medium pb-2 text-md mt-1 absolute top-full left-0">
               {errors[field.name]}
             </p>
           )}
